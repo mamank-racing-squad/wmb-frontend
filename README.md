@@ -1,76 +1,68 @@
-<p align="center">
-<a href="https://designrevision.com/downloads/shards-dashboard-lite/">
-<img src="assets/preview.png" width="250" />
-</a>
-</p>
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-<h1 align="center" style="border-bottom: none !important; margin-bottom: 5px !important;"><a href="https://designrevision.com/downloads/shards-dashboard-lite/">Shards Dashboard UI Kit</a></h1>
-<p align="center">
-  <a href="#">
-    <img src="https://img.shields.io/badge/License-MIT-brightgreen.svg" />
-  </a>
-  <a href="https://twitter.com/designrevision">
-    <img src="https://img.shields.io/twitter/follow/DesignRevision.svg?style=social&label=Follow" />
-  </a>
-</p>
-<p align="center">
-A modern & free Bootstrap 4 admin dashboard template pack.
-</p>
+## Available Scripts
 
-<p align="center">
-  <a href="https://designrevision.com/demo/shards-dashboard-lite">
-    <img height="55px" src="assets/btn-live-preview.png" />
-  </a>
-  <a href="https://designrevision.com/downloads/shards-dashboard-lite/">
-    <img height="55px" src="assets/btn-learn-more.png" />
-  </a>
-  <a href="https://designrevision.com/docs/shards-dashboard-lite/">
-    <img height="55px" src="assets/btn-documentation.png" />
-  </a>
-</p>
+In the project directory, you can run:
 
-<br />
+### `yarn start`
 
-<p align="center">
-<a href="https://designrevision.com/downloads/shards-dashboard-lite/">
-<img src="assets/demo-preview.gif" width="650" />
-</a>
-</p>
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-<br />
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-> ✨ **Note:** You can download the Sketch files from the official product page.
+### `yarn test`
 
-<br />
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### Quick Start
+### `yarn build`
 
-* Install Yarn dependencies.
-* Run `yarn start` to start the local development server.
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-<br />
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-### Built using
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-* [Bootstrap Datepicker by Stefan Petre and Andrew Rowls (Apache 2.0)](https://github.com/uxsolutions/bootstrap-datepicker)
-* [noUiSlider by Léon Gersen (WTFPL License)](https://refreshless.com/nouislider/download/)
-* [Quill](https://quilljs.com/)
-* [Material Icons](http://material.io/icons)
-* [FontAwesome Icons](http://fontawesome.io)
+### `yarn eject`
 
-<br />
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-### Contributing
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-<br />
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-### Feedback
-Building better products is something I'm trying to get really good at. I’d love to hear more about how you plan on using Shards and what features you consider important in similar products. If you could spare a few minutes, please fill out [this Google Form](https://docs.google.com/forms/u/0/d/1B7_o8GLBNsTf_D99yzgY1SYCHbreHqWSCFBX9xLZmkw/edit?usp=forms_home&ths=true) to help me better understand your current context and what I could do to improve my products.
+## Learn More
 
-<br />
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-### Changelog
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-TODO
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `yarn build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
