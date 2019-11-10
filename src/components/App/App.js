@@ -29,6 +29,7 @@ class App extends Component {
         this.state = {
             search: ''
         };
+        console.log(this.props)
         this.props.addFoods(
             [
                 {name: "Spaghetti", image: spaghetti, price: 130000, isSelected: false, isAvailable: false},
@@ -105,9 +106,9 @@ class App extends Component {
         return (
             <div>
                 <div className="Nav">
-                    <NavLink exact to="/dining-table" activeClassName="active">
+                    <NavLink exact to="/dining-table" activeClassName="active"  className="dining-table">
                         {
-                            this.props.match && this.props.match.params.type === 'foods' ?
+                            this.props.match && this.props.match.params.type === 'dining-table' ?
                                 <img src={food}/> :
                                 <img src={foodGray}/>
                         }
@@ -136,6 +137,17 @@ class App extends Component {
                     <Topbar {...this.props} search={this.state.search} handleSearch={this.handleSearch}/>
                     <div className="items_wrapper">
                         <Route path="/foods" render={() => foods.map((item, key) => {
+                                if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {
+                                    return (
+                                        <FoodItem item_name={item.name} item_image={item.image} price={item.price}
+                                                  isSelected={item.isSelected}
+                                                  handleClick={() => this.handleFoodItemSelect('foods', key)} key={key}
+                                        />
+                                    )
+                                }
+                            }
+                        )}/>
+                        <Route path="/dining-table" render={() => foods.map((item, key) => {
                                 if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {
                                     return (
                                         <FoodItem item_name={item.name} item_image={item.image} price={item.price}

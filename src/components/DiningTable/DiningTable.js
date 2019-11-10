@@ -1,5 +1,5 @@
 import React from 'react';
-import './MenuItem.scss';
+import './DiningTable.scss.scss';
 
 import tick from '../../images/tick.png'
 import {connect} from 'react-redux'
