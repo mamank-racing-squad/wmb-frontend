@@ -1,15 +1,9 @@
 import React from 'react';
-import './NumberSpinner.scss';
-import PropTypes from 'prop-types';
-import upIcon from './up-arrow.png'
-import downIcon from './angle-arrow-down.png'
+import './AmountControl.scss';
+import upIcon from '../../images/up-arrow.png'
+import downIcon from '../../images/angle-arrow-down.png'
 
-class NumberSpinner extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-        }
-    }
+class AmountControl extends React.Component {
     render() {
         return (
             <div className="numberSpinnerBox">
@@ -23,11 +17,4 @@ class NumberSpinner extends React.Component {
     }
 }
 
-NumberSpinner.propTypes = {
-    number: PropTypes.number,
-    handleUpClick: PropTypes.func,
-    handleDownClick: PropTypes.func,
-
-}
-
-export default NumberSpinner;
+export default AmountControl;

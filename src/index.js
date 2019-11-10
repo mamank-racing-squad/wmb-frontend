@@ -1,17 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import './index.css';
 import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import itemApp from './store'
+import itemApp from './reducers/store'
 
-const store = createStore(itemApp,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(itemApp,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 ReactDOM.render(
     <Provider store={store}>
@@ -19,7 +17,6 @@ ReactDOM.render(
             <div>
                 <Route exact path="/" component={App} />
                 <Route path="/:type(foods|drinks)" component={App} />
-
             </div>
         </BrowserRouter>
     </Provider>,
