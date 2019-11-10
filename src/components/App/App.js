@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {NavLink, Route} from "react-router-dom";
+import {NavLink, Route, Switch} from "react-router-dom";
 
 import food from '../../images/salad.png';
 import foodGray from '../../images/salad-gray.png';
@@ -16,12 +16,14 @@ import cola from '../../images/cola.jpg'
 import coffee from '../../images/coffee.JPG'
 import milkTea from '../../images/milk-tea.jpg'
 import blackTea from '../../images/black-tea.jpg'
+import category from '../../images/category.png'
 import Order from '../Order/Order'
 
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import * as action from '../../action'
+import MenuCategory from '../MenuCategory/MenuCategory';
 
 class App extends Component {
     constructor(props) {
@@ -131,6 +133,14 @@ class App extends Component {
                         }
                         <span>Drinks</span>
                     </NavLink>
+                    <NavLink to="/menu-category" activeClassName="active" className="menu-category">
+                        {
+                            this.props.match && this.props.match.params.type === 'menu-category' ?
+                                <img src={category}/>: 
+                                <img src={category}/>
+                        }
+                        <span>Category</span>
+                    </NavLink>
                 </div>
 
                 <div className="right-wrapper">
@@ -169,6 +179,11 @@ class App extends Component {
                                 }
                             }
                         )}/>
+                        <Switch>
+                            <Route path="/menu-category" >
+                              <MenuCategory/> 
+                            </Route>
+                        </Switch>
                     </div>
                     <Order/>
                 </div>
