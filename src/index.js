@@ -16,7 +16,7 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
                 <Route exact path="/" component={App} />
-                <Route path="/:type(foods|drinks)" component={App} />
+                <Route path="/:type(foods|drinks|dining-table)" component={App} />
             </div>
         </BrowserRouter>
     </Provider>,
