@@ -1,0 +1,38 @@
+.topbar {
+    position: relative;
+    background: white;
+    border-radius: 20px;
+    width: calc(100vw - 200px);
+    // height: 100px;
+    margin: 20px;
+    padding: 20px 30px;
+    .title {
+        font-size: 30px;
+        font-weight: bold;
+        color: #464a52;
+        vertical-align: middle;
+    }
+    .searchBox {
+        display: inline-block;
+        margin-left: 50px;
+        vertical-align: middle;
+        img {
+            width: 25px;
+            height: 25px;
+            vertical-align: middle;
+            margin-right: 20px;
+        }
+        .searchInput {
+            border: none;
+            border-left: 1px solid #c8ccd2;
+            padding: 10px 20px;
+            outline: 0;
+            font-size: 15px;
+            vertical-align: middle;
+            &::placeholder {
+                color: #c8ccd2;
+                font-weight: 300;
+            }
+        }
+    }
+}
