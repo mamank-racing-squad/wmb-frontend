@@ -25,6 +25,7 @@ const Button = styled.button`
       color: white;
     `};
 `;
+
 class DiningTableContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -32,34 +33,28 @@ class DiningTableContainer extends React.Component {
 
     render() {
         return (
-            <div>
-
-                <div className="container">
-
-                    <h1>Dining Table</h1>
-                    <Button primary>Create</Button>
-                    <table id="customers">
-                        <tr>
-                            <th>Name</th>
-                            <th style={{textAlign: "center"}}>Capacity</th>
-                            <th style={{textAlign: "center"}}>Availability</th>
-                            <th style={{textAlign: "center"}}>action</th>
-                        </tr>
-                        <tr>
-                            <td>Tabel Orang Kaya</td>
-                            <td style={{textAlign: "center"}}>4</td>
-                            <td style={{textAlign: "center"}}>used</td>
-                            <td style={{textAlign:"center"}}> <Button>Edit</Button>|<Button>Delete</Button> </td>
-                        </tr>
-                    </table>
+            <div className="right-wrapper">
+                <div className="items_wrapper">
+                    <div className="container">
+                        <h1>Dining Table</h1>
+                        <table id="customers">
+                            <tr>
+                                <th>Name</th>
+                                <th style={{textAlign: "center"}}>Capacity</th>
+                                <th style={{textAlign: "center"}}>Availability</th>
+                                <th style={{textAlign: "center"}}>action</th>
+                            </tr>
+                            <tr>
+                                <td>Tabel Orang Kaya</td>
+                                <td style={{textAlign: "center"}}>4</td>
+                                <td style={{textAlign: "center"}}>used</td>
+                                <td style={{textAlign: "center"}}><Button>Edit</Button>|<Button>Delete</Button></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-                <div>
-                    <DiningTableForm/>
-                </div>
-
+                <DiningTableForm/>
             </div>
-
-
         )
     }
 }
