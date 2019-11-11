@@ -26,6 +26,8 @@ const Button = styled.button`
     `};
 `;
 
+
+
 class DiningTableContainer extends React.Component {
     constructor(props) {
         super(props);

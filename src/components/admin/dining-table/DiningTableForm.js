@@ -7,7 +7,6 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import * as action from '../../../action/action'
 
-
 class DiningTableForm extends React.Component {
     constructor(props) {
         super(props);
