@@ -6,13 +6,10 @@ export async function fetchMenuCategory(){
     return data;
 }
 
-export async function submitMenuCategory(menu, image) {
-    let menuInput = JSON.stringify(menu);
-    const formData = new FormData();
-    formData.append('image', image);
-    formData.append('menuInput', menuInput);
-    const data = await fetch("http://localhost:9090/menu/upload",
-        {method:"PUT", body: formData})
+export async function submitMenuCategory(menuCategory) {
+    let menuCategoryInput = JSON.stringify(menuCategory);
+    const data = await fetch("http://localhost:9090/menu-category",
+        {method:"PUT", headers:{'Content-Type': 'application/json'}, body: menuCategoryInput})
         .then((response)=>{
             return response.json()
         }).catch(reason => console.log(reason));

@@ -10,7 +10,9 @@ export function menuCategoryReducer(state=initialState, action) {
         case 'FETCH_MENU_CATEGORY_SUCCESS' :
             return {...state, menuCategory: action.payload};
         case 'HANDLE_INPUT_CATEGORY_NAME':
-            return {...state, menuCategoryInput: {categoryName:action.categoryName}}
+            return {...state, menuCategoryInput: {...state.menuCategoryInput, categoryName:action.categoryName}};
+        case 'RELOAD':
+            return {...state};
         default:
             return {...state}
     }
