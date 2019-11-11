@@ -13,7 +13,7 @@ export function diningTableReducer(state=initialState, action) {
         case 'FETCH_DINING_TABLE_SUCCESS':
             return {...state, diningTables: action.payload};
         case 'ADD_NEW_DINING_TABLE':
-            return {...state, diningTables: state.diningTables.concat([{...action.payload}])}
+            return {...state, diningTables: state.diningTables.concat([{...action.payload}])};
         case 'HANDLE_ID_DINING_TABLE_FORM':
             return {...state, diningTableForm: {...state.diningTableForm, idDiningTable: action.payload}};
         case 'HANDLE_NUMBER_DINING_TABLE_FORM':

@@ -39,8 +39,9 @@ class DiningTableForm extends React.Component {
                     <form>
                         <Input type="hidden" placeholder="ID"/>
                         <Label>Number Dining Table</Label>
-                        <Input type="text" placeholder="Number Dining Table"/>
-                        <Input type="number" min={1} placeholder="Capacity"/>
+                        <Input type="text" placeholder="Input Dining Table"/>
+                        <Label>Capacity</Label>
+                        <Input type="number" min={1} placeholder="0"/>
                         <div>
                             <button className="clearBtn">Clear</button>
                             <button className="payBtn">Save</button>
