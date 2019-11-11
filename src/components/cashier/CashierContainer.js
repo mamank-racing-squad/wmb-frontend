@@ -5,10 +5,10 @@ import food from '../../images/salad.png';
 import foodGray from '../../images/salad-gray.png';
 import drink from '../../images/cheers.png';
 import drinkGray from '../../images/cheers-gray.png';
-import './App.scss';
-import Topbar from '../Topbar/Topbar'
+import '../../assets/css/App.scss';
+import Topbar from './Topbar'
 
-import FoodItem from '../MenuItem/MenuItem'
+import FoodItem from './MenuItem'
 import spaghetti from '../../images/spaghetti.jpg';
 import pizza from '../../images/Pizza.jpg'
 import frenchFries from '../../images/french-fries.jpg'
@@ -17,15 +17,15 @@ import coffee from '../../images/coffee.JPG'
 import milkTea from '../../images/milk-tea.jpg'
 import blackTea from '../../images/black-tea.jpg'
 import category from '../../images/category.png'
-import Order from '../Order/Order'
+import Order from './Order'
 
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import * as action from '../../action'
-import MenuCategory from '../MenuCategory/MenuCategory';
+import * as action from '../../action/action'
+import MenuCategory from './MenuCategory';
 
-class App extends Component {
+class CashierContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -36,7 +36,7 @@ class App extends Component {
             [
                 {name: "Spaghetti", image: spaghetti, price: 130000, isSelected: false, isAvailable: false},
                 {name: "Pizza", image: pizza, price: 250000, isSelected: false, isAvailable: false},
-                {name: "French-Frices", image: frenchFries, price: 80, isSelected: false, isAvailable: true}
+                {name: "French-Frices", image: frenchFries, price: 8000, isSelected: false, isAvailable: true}
             ]
         );
         this.props.addDrinks(
@@ -73,7 +73,7 @@ class App extends Component {
         } else {
             let drink = drinks;
             drink[id].isSelected = !drinks[id].isSelected;
-            this.props.updateDrink(drink)
+            this.props.updateDrink(drink);
 
             if (drinks[id].isSelected) {
                 this.props.onItemSelected(
@@ -133,13 +133,13 @@ class App extends Component {
                         }
                         <span>Drinks</span>
                     </NavLink>
-                    <NavLink to="/menu-category" activeClassName="active" className="menu-category">
+                    <NavLink to="/admin" activeClassName="active" className="menu-category">
                         {
                             this.props.match && this.props.match.params.type === 'menu-category' ?
                                 <img src={category}/>: 
                                 <img src={category}/>
                         }
-                        <span>Category</span>
+                        <span>Admin</span>
                     </NavLink>
                 </div>
 
@@ -180,11 +180,10 @@ class App extends Component {
                             }
                         )}/>
                         <Switch>
-                            <Route path="/menu-category" >
-                             <MenuCategory/> 
+                            <Route path="/admin" >
+                             <MenuCategory/>
                             </Route>
                         </Switch>
-                      
                     </div>
                     <Order/>
                 </div>
@@ -202,4 +201,4 @@ const mapStateToProps = state => (
     }
 );
 
-export default withRouter(connect(mapStateToProps, action)(App))
+export default withRouter(connect(mapStateToProps, action)(CashierContainer))

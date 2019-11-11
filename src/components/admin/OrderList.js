@@ -1,10 +1,10 @@
 import React from 'react';
-import './OrderList.scss';
+import '../../assets/css/OrderList.scss';
 import deleteIcon from '../../images/garbage.png';
 
-import AmountControl from '../AmountControl/AmountControl'
+import AmountControl from '../cashier/AmountControl'
 import { withRouter } from 'react-router-dom'
-import * as action from '../../action'
+import * as action from '../../action/action'
 import { connect } from 'react-redux'
 
 class OrderList extends React.Component {

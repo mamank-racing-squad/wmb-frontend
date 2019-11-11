@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import './MenuCategory.scss'
+import '../../assets/css/MenuCategory.scss'
 import styled, { css } from 'styled-components'
+import Order from "./Order";
 
 const Button = styled.button`
   background: transparent;
@@ -17,7 +18,7 @@ const Button = styled.button`
       background: palevioletred;
       color: white;
     `};
-`
+`;
 
 export default class MenuCategory extends Component {
   render() {

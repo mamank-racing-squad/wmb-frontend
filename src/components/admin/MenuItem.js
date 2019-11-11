@@ -1,12 +1,13 @@
 import React from 'react';
-import './DiningTable.scss';
+import '../../assets/css/MenuItem.scss';
 
 import tick from '../../images/tick.png'
 import {connect} from 'react-redux'
-import * as action from '../../action'
+import * as action from '../../action/action'
 import {withRouter} from 'react-router-dom'
+import Order from "./Order";
 
-class DiningTable extends React.Component {
+class MenuItem extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -43,4 +44,4 @@ const mapStateToProps = store => (
     }
 );
 
-export default withRouter(connect(mapStateToProps, action)(DiningTable))
+export default withRouter(connect(mapStateToProps, action)(MenuItem))
