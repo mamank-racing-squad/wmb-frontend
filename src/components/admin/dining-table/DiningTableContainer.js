@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../../assets/css/DiningTable.scss';
+import '../../../assets/css/Order.scss'
 
 import {connect} from 'react-redux'
 import * as action from '../../../action/action'
@@ -8,6 +9,7 @@ import styled, {css} from "styled-components";
 import DiningTableForm from "./DiningTableForm";
 
 const Button = styled.button`
+  font-size: 16px;
   background: transparent;
   border-radius: 3px;
   border: 2px solid palevioletred;
@@ -19,7 +21,7 @@ const Button = styled.button`
   ${props =>
     props.primary &&
     css`
-      background: palevioletred;
+      background: #FF5F6D;
       color: white;
     `};
 `;
@@ -31,23 +33,32 @@ class DiningTableContainer extends React.Component {
     render() {
         return (
             <div>
+
                 <div className="container">
+
                     <h1>Dining Table</h1>
+                    <Button primary>Create</Button>
                     <table id="customers">
                         <tr>
-                            <th>asda</th>
-                            <th>asdasd</th>
-                            <th>action</th>
+                            <th>Name</th>
+                            <th style={{textAlign: "center"}}>Capacity</th>
+                            <th style={{textAlign: "center"}}>Availability</th>
+                            <th style={{textAlign: "center"}}>action</th>
                         </tr>
                         <tr>
-                            <td>sadasd</td>
-                            <td>sadasdas</td>
+                            <td>Tabel Orang Kaya</td>
+                            <td style={{textAlign: "center"}}>4</td>
+                            <td style={{textAlign: "center"}}>used</td>
                             <td style={{textAlign:"center"}}> <Button>Edit</Button>|<Button>Delete</Button> </td>
                         </tr>
                     </table>
                 </div>
-                <DiningTableForm/>
+                <div>
+                    <DiningTableForm/>
+                </div>
+
             </div>
+
 
         )
     }

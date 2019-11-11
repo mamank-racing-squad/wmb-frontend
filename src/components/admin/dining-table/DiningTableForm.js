@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../../assets/css/DiningTable.scss';
+import '../../../assets/css/Order.scss'
 
 import OrderList from '../OrderList'
 import {connect} from 'react-redux'
