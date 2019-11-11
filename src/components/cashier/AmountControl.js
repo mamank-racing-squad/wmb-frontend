@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../assets/css/AmountControl.scss';
-import upIcon from '../../images/up-arrow.png'
-import downIcon from '../../images/angle-arrow-down.png'
+import upIcon from '../../assets/images/up-arrow.png'
+import downIcon from '../../assets/images/angle-arrow-down.png'
 
 class AmountControl extends React.Component {
     render() {

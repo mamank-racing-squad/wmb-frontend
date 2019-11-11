@@ -1,22 +1,23 @@
 import React, {Component} from 'react';
 import {NavLink, Route, Switch} from "react-router-dom";
 
-import food from '../../images/salad.png';
-import foodGray from '../../images/salad-gray.png';
-import drink from '../../images/cheers.png';
-import drinkGray from '../../images/cheers-gray.png';
+import food from '../../assets/images/salad.png';
+import foodGray from '../../assets/images/salad-gray.png';
+import drink from '../../assets/images/cheers.png';
+import drinkGray from '../../assets/images/cheers-gray.png';
 import '../../assets/css/App.scss';
 import Topbar from './Topbar'
 
 import FoodItem from './MenuItem'
-import spaghetti from '../../images/spaghetti.jpg';
-import pizza from '../../images/Pizza.jpg'
-import frenchFries from '../../images/french-fries.jpg'
-import cola from '../../images/cola.jpg'
-import coffee from '../../images/coffee.JPG'
-import milkTea from '../../images/milk-tea.jpg'
-import blackTea from '../../images/black-tea.jpg'
-import category from '../../images/category.png'
+import spaghetti from '../../assets/images/spaghetti.jpg';
+import pizza from '../../assets/images/Pizza.jpg'
+import frenchFries from '../../assets/images/french-fries.jpg'
+import cola from '../../assets/images/cola.jpg'
+import coffee from '../../assets/images/coffee.JPG'
+import milkTea from '../../assets/images/milk-tea.jpg'
+import blackTea from '../../assets/images/black-tea.jpg'
+import category from '../../assets/images/category.png'
+import back from '../../assets/images/left-arrow.png'
 import Order from './Order'
 
 import {withRouter} from 'react-router-dom'
@@ -143,7 +144,11 @@ class AdminContainer extends Component {
                         <span>Menu Category</span>
                     </NavLink>
                     <NavLink to="/" activeClassName="active" className="menu-category">
-
+                        {
+                            this.props.match && this.props.match.params.type === 'menu-category' ?
+                                <img src={back}/> :
+                                <img src={back}/>
+                        }
                         <span>Back</span>
                     </NavLink>
                 </div>

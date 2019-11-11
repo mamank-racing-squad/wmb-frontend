@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../assets/css/Topbar.scss';
-import searchIcon from '../../images/search.png';
+import searchIcon from '../../assets/images/search.png';
 
 class Topbar extends React.Component {
     constructor(props) {
