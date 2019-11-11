@@ -1,0 +1,38 @@
+#customers {
+
+	font-size: 20px;
+    border-collapse: collapse;
+	width: 100%;
+	td {
+		border-radius: 1px solid #ddd;
+		padding: 5px;
+	}
+	th {
+		border: 1px solid #ddd;
+		padding: 12px;
+		padding-top: 12px;
+		padding-bottom: 12px;
+		text-align: left;
+		background-color:  #FF5F6D;
+    
+		color: white;
+	}
+	tr {
+		&:nth-child(even) {
+			background-color: #f2f2f2;
+		}
+		&:hover {
+			background-color: #ddd;
+		}
+	}
+}
+
+.container {
+    position: relative;
+    background: white;
+    border-radius: 20px;
+    width: calc(60vw - 100px);
+    // height: 100px;
+    padding: 40px 20px;
+   
+}

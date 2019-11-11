@@ -2,21 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from "react-router-dom";
 import './index.css';
-import App from './components/App/App';
+import CashierContainer from './components/cashier/CashierContainer';
 import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import itemApp from './reducers/store'
+import AdminContainer from "./components/admin/AdminContainer";
 
-const store = createStore(itemApp,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(itemApp);
 
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <div>
-                <Route exact path="/" component={App} />
-                <Route path="/:type(foods|drinks|dining-table)" component={App} />
+                <Route exact path="/" component={CashierContainer} />
+                <Route path="/:type(foods|drinks|dining-table|menu-category)" component={CashierContainer} />
+                <Route path="/admin" component={AdminContainer}/>
             </div>
         </BrowserRouter>
     </Provider>,
