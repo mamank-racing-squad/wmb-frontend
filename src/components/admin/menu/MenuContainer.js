@@ -25,6 +25,7 @@ const Button = styled.button`
       color: white;
     `};
 `;
+
 class MenuContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -32,23 +33,25 @@ class MenuContainer extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="container">
-                    <h1>Menu</h1>
-                    <table id="customers">
-                        <tr>
-                            <th>asda</th>
-                            <th>asdasd</th>
-                            <th>action</th>
-                        </tr>
-                        <tr>
-                            <td>sadasd</td>
-                            <td>sadasdas</td>
-                            <td style={{textAlign:"center"}}> <Button>Edit</Button>|<Button>Delete</Button> </td>
-                        </tr>
-                    </table>
+            <div className="right-wrapper">
+                <div className="items_wrapper">
+                    <div className="container">
+                        <h1>Menu</h1>
+                        <table id="customers">
+                            <tr>
+                                <th>asda</th>
+                                <th>asdasd</th>
+                                <th>action</th>
+                            </tr>
+                            <tr>
+                                <td>sadasd</td>
+                                <td>sadasdas</td>
+                                <td style={{textAlign: "center"}}><Button>Edit</Button>|<Button>Delete</Button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <MenuForm/>
                 </div>
-                <MenuForm/>
             </div>
 
         )

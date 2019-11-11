@@ -30,7 +30,8 @@ class DiningTableContainer extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="right-wrapper">
+                <div className="items_wrapper">
                 <div className="container">
                     <h1>Dining Table</h1>
                     <table id="customers">
@@ -46,6 +47,8 @@ class DiningTableContainer extends React.Component {
                         </tr>
                     </table>
                 </div>
+
+            </div>
                 <DiningTableForm/>
             </div>
 
