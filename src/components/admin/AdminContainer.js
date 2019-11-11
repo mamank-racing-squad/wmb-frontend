@@ -25,6 +25,7 @@ import {connect} from 'react-redux'
 import * as action from '../../action/action'
 import MenuCategory from './MenuCategory';
 import DiningTableContainer from "./dining-table/DiningTableContainer";
+import MenuCategoryContainer from "./menu-category/MenuCategoryContainer";
 
 class AdminContainer extends Component {
     constructor(props) {
@@ -126,14 +127,6 @@ class AdminContainer extends Component {
                         }
                         <span>Foods</span>
                     </NavLink>
-                    <NavLink to="/admin/drinks" activeClassName="active" className="drinks">
-                        {
-                            this.props.match && this.props.match.params.type === 'drinks' ?
-                                <img src={drink}/> :
-                                <img src={drinkGray}/>
-                        }
-                        <span>Drinks</span>
-                    </NavLink>
                     <NavLink to="/admin/menu-category" activeClassName="active" className="drinks">
                         {
                             this.props.match && this.props.match.params.type === 'menu-category' ?
@@ -142,44 +135,33 @@ class AdminContainer extends Component {
                         }
                         <span>Menu Category</span>
                     </NavLink>
-                    <NavLink to="/" activeClassName="active" className="menu-category">
-
+                    <NavLink to="/" activeClassName="" className="menu-category">
                         <span>Back</span>
                     </NavLink>
                 </div>
 
                 <div className="right-wrapper">
                     <Topbar {...this.props} search={this.state.search} handleSearch={this.handleSearch}/>
-                    <div className="items_wrapper">
-                        <Route path="/admin/menu"
-                               render={() => foods.map((item, key) => {
-                                if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {
-                                    return (
-                                        <FoodItem item_name={item.name} item_image={item.image} price={item.price}
-                                                  isSelected={item.isSelected}
-                                                  handleClick={() => this.handleFoodItemSelect('foods', key)} key={key}
-                                        />
-                                    )
-                                }
-                            }
-                        )}
+                    <Route path="/admin/menu"
+                           render={() => foods.map((item, key) => {
+                                   if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {
+                                       return (
+                                           <FoodItem item_name={item.name} item_image={item.image} price={item.price}
+                                                     isSelected={item.isSelected}
+                                                     handleClick={() => this.handleFoodItemSelect('foods', key)} key={key}
+                                           />
+                                       )
+                                   }
+                               }
+                           )}
 
-                        />
-                        <Route path="/admin/dining-table"
-                               component={DiningTableContainer}
-                        />
-                        <Route path="/admin/drinks" render={() => drinks.map((item, key) => {
-                                if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {
-                                    return (
-                                        <FoodItem item_name={item.name} item_image={item.image} price={item.price}
-                                                  isSelected={item.isSelected}
-                                                  handleClick={() => this.handleFoodItemSelect('drinks', key)} key={key}
-                                        />
-                                    )
-                                }
-                            }
-                        )}/>
-                        <Route path="/admin/menu-category" component={MenuCategory}/>
+                    />
+                    <Route path="/admin/dining-table"
+                           component={DiningTableContainer}
+                    />
+                    <Route path="/admin/menu-category" component={MenuCategoryContainer}/>
+                    <div className="items_wrapper">
+
                     </div>
                     {/*<Order/>*/}
                 </div>
