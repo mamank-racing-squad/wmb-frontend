@@ -51,7 +51,7 @@ function dealFoods(state = [], action) {
         case 'SET_DEFAULT_FOODS':
             {
                 return state.map((item) => {
-                    item.isSelected = false
+                    item.isSelected = false;
                     return item
                 })
             }
