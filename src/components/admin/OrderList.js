@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../assets/css/OrderList.scss';
-import deleteIcon from '../../images/garbage.png';
+import deleteIcon from '../../assets/images/garbage.png';
 
 import AmountControl from '../cashier/AmountControl'
 import { withRouter } from 'react-router-dom'

@@ -1,10 +1,11 @@
 #customers {
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+
+	font-size: 20px;
     border-collapse: collapse;
 	width: 100%;
 	td {
 		border-radius: 1px solid #ddd;
-		padding: 12px;
+		padding: 5px;
 	}
 	th {
 		border: 1px solid #ddd;
@@ -32,6 +33,6 @@
     border-radius: 20px;
     width: calc(60vw - 100px);
     // height: 100px;
-    padding: 50px 20px;
+    padding: 40px 20px;
    
 }
