@@ -1,6 +1,4 @@
-This project was bootstrapped with [Create React AdminContainer](https://github.com/facebook/create-react-app).
-
-## Available Scripts
+## Mamank Racing Squad
 
 In the project directory, you can run:
 

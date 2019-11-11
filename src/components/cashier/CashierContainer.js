@@ -17,6 +17,7 @@ import coffee from '../../assets/images/coffee.JPG'
 import milkTea from '../../assets/images/milk-tea.jpg'
 import blackTea from '../../assets/images/black-tea.jpg'
 import category from '../../assets/images/category.png'
+import payment from '../../assets/images/payment.png'
 import Order from './Order'
 
 import {withRouter} from 'react-router-dom'
@@ -132,6 +133,14 @@ class CashierContainer extends Component {
                                 <img src={drinkGray}/>
                         }
                         <span>Drinks</span>
+                    </NavLink>
+                    <NavLink to="/payment" activeClassName="active" className="drinks">
+                        {
+                            this.props.match && this.props.match.params.type === 'drinks' ?
+                                <img src={payment}/> :
+                                <img src={payment}/>
+                        }
+                        <span>Payment</span>
                     </NavLink>
                     <NavLink to="/admin" activeClassName="active" className="menu-category">
                         {
