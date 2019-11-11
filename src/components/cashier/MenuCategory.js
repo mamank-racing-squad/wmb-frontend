@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import '../../assets/css/MenuCategory.scss'
+import '../../assets/css/Order.scss';
 import styled, { css } from 'styled-components'
 
 const Button = styled.button`
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: bolder;  
   background: transparent;
   border-radius: 3px;
   border: 2px solid palevioletred;
@@ -14,7 +18,7 @@ const Button = styled.button`
   ${props =>
     props.primary &&
     css`
-      background: palevioletred;
+      background: #FF5F6D;
       color: white;
     `};
 `
@@ -23,9 +27,9 @@ export default class MenuCategory extends Component {
   render() {
     return (
      <div className="container">
-        <Button>Create</Button>      
+        <Button primary>Create</Button>
         <table id="customers">
-          <tr>
+          <tr >
           <th>No</th>
             <th>Category Name</th>
             <th style={{textAlign:"center"}}>Action</th>
@@ -35,6 +39,11 @@ export default class MenuCategory extends Component {
             <td>Maria Anders</td>
             <td style={{textAlign:"center"}}> <Button>Edit</Button>|<Button>Delete</Button> </td>
           </tr>
+            <tr>
+                <td>2</td>
+                <td>Maria Aldi</td>
+                <td style={{textAlign:"center"}}> <Button>Edit</Button>|<Button>Delete</Button> </td>
+            </tr>
         </table>
       </div>
     );
