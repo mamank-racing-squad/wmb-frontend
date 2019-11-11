@@ -181,9 +181,10 @@ class App extends Component {
                         )}/>
                         <Switch>
                             <Route path="/menu-category" >
-                              <MenuCategory/> 
+                             <MenuCategory/> 
                             </Route>
                         </Switch>
+                      
                     </div>
                     <Order/>
                 </div>
