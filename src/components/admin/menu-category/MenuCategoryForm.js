@@ -2,10 +2,13 @@ import React from 'react';
 import '../../../assets/css/DiningTable.scss';
 import '../../../assets/css/Order.scss'
 
+import OrderList from '../OrderList'
+import styled, {css} from "styled-components";
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import * as action from '../../../action/action'
-import styled from "styled-components";
+import {FETCH_MENU_CATEGORY_SUCCESS, HANDLE_INPUT_CATEGORY_NAME} from "../AdminAction";
+import {fetchMenuCategory, submitMenuCategory} from "./MenuCategoryService";
 
 const Input = styled.input`
     display: block;
@@ -27,21 +30,27 @@ const Input = styled.input`
 class MenuCategoryForm extends React.Component {
     render() {
         return (
-            <div className="orderBox">
-                <div className="title">
-                    <p>Input Menu Category</p>
-                </div>
-                <div className="checkoutBox">
-                    <Input type="text" placeholder="ID"/>
-
-                    <Input type="text" placeholder="Category Name"/>
-                    <div>
-                        <button className="clearBtn" onClick={this.clearOrder}>Clear</button>
-                        <button className="payBtn" onClick={this.checkout}>Save</button>
+                <div className="orderBox">
+                    <div className="title">
+                        <p>Input Menu Category</p>
+                    </div>
+                    <div className="checkoutBox">
+                        <input type="text" placeholder="ID" disabled="true"/>
+                        <input type="text" placeholder="Category Name"
+                               value={this.props.menuCategoryInput.categoryName}
+                               onChange={event => {this.props.dispatch({...HANDLE_INPUT_CATEGORY_NAME, categoryName:event.target.value})}}
+                        />
+                        <div>
+                            <button className="clearBtn" onClick={this.clearOrder}>Edit</button>
+                            <button className="payBtn"
+                                    onClick={this.handleSubmitMenuCategory}>Save</button>
+                        </div>
                     </div>
                 </div>
-            </div>
         )
+    }
+    handleSubmitMenuCategory=()=>{
+        submitMenuCategory(this.props.menuCategoryInput);
     }
 }
 
@@ -49,8 +58,9 @@ const mapStateToProps = store => (
     {
         selectedItem: store.selectedItem,
         foods: store.foods,
-        drinks: store.drinks
+        drinks: store.drinks,
+        menuCategoryInput: store.menuCategoryReducer.menuCategoryInput
     }
 );
 
-export default withRouter(connect(mapStateToProps, action)(MenuCategoryForm))
+export default withRouter(connect(mapStateToProps)(MenuCategoryForm))

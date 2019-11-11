@@ -6,11 +6,11 @@ import CashierContainer from './components/cashier/CashierContainer';
 import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import itemApp from './reducers/store'
+import {combineReducers, createStore} from 'redux'
 import AdminContainer from "./components/admin/AdminContainer";
+import {reducers} from "./reducers/CombineReducers";
 
-const store = createStore(itemApp);
+const store = createStore(reducers);
 
 ReactDOM.render(
     <Provider store={store}>

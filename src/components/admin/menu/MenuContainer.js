@@ -19,7 +19,11 @@ const Button = styled.button`
     `};
 `;
 
-class MenuContainer extends Component {
+class MenuContainer extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div className="right-wrapper">
@@ -38,8 +42,8 @@ class MenuContainer extends Component {
                             </tr>
                         </table>
                     </div>
+                    <MenuForm/>
                 </div>
-                <MenuForm/>
             </div>
 
         );
