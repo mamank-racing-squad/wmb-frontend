@@ -25,3 +25,13 @@
 		}
 	}
 }
+
+.container {
+    position: relative;
+    background: white;
+    border-radius: 20px;
+    width: calc(60vw - 100px);
+    // height: 100px;
+    padding: 50px 20px;
+   
+}
