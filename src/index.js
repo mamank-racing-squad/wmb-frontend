@@ -15,7 +15,7 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <div>
-                <Route exact path="/cashier" component={App} />
+                <Route exact path="/" component={App} />
                 <Route path="/:type(foods|drinks|dining-table|menu-category)" component={App} />
             </div>
         </BrowserRouter>
