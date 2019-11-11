@@ -187,7 +187,6 @@ class CashierContainer extends Component {
                     </div>
                     <Order/>
                 </div>
-
             </div>
         );
     }

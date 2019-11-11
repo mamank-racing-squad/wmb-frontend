@@ -23,7 +23,7 @@ class MenuCategoryContainer extends Component {
     render() {
         return (
             <div className="right-wrapper">
-                <div className="items_wrapper">
+                <div className="items_wrapper mt-0">
                     <div className="container">
                         <table id="customers">
                             <tr>
