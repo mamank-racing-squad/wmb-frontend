@@ -19,7 +19,6 @@ class MenuCategoryForm extends React.Component {
     }
 
     render() {
-        console.log(this.props.menuCategoryInput)
         return (
                 <div className="orderBox">
                     <div className="title">
@@ -27,7 +26,7 @@ class MenuCategoryForm extends React.Component {
                     </div>
                     <div className="checkoutBox">
                         <input type="text" placeholder="ID" disabled="true"/>
-                        <input type="text" placeholder="Category Name"/>
+                        <input type="text" placeholder="Category Name" value={this.props.menuCategoryInput}/>
                         <div>
                             <button className="clearBtn" onClick={this.clearOrder}>Edit</button>
                             <button className="payBtn" onClick={this.checkout}>Save</button>
@@ -43,8 +42,8 @@ const mapStateToProps = store => (
         selectedItem: store.selectedItem,
         foods: store.foods,
         drinks: store.drinks,
-        menuCategoryInput: store.menuCategoryInput
+        menuCategoryInput: store.menuCategoryReducer.menuCategoryInput
     }
 );
 
-export default withRouter(connect(mapStateToProps, action)(MenuCategoryForm))
+export default withRouter(connect(mapStateToProps)(MenuCategoryForm))
