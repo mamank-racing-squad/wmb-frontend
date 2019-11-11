@@ -1,12 +1,5 @@
-import React from 'react';
-import '../../../assets/css/DiningTable.scss';
-
-import {connect} from 'react-redux'
-import * as action from '../../../action/action'
-import {withRouter} from 'react-router-dom'
-import Order from "../Order";
-import DiningTableForm from "./DiningTableForm";
-import styled, {css} from "styled-components";
+import React, {Component} from "react";
+import styled, {css} from 'styled-components'
 import MenuForm from "./MenuForm";
 
 const Button = styled.button`
@@ -25,42 +18,32 @@ const Button = styled.button`
       color: white;
     `};
 `;
-class MenuContainer extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
+class MenuContainer extends Component {
     render() {
         return (
-            <div>
-                <div className="container">
-                    <h1>Menu</h1>
-                    <table id="customers">
-                        <tr>
-                            <th>asda</th>
-                            <th>asdasd</th>
-                            <th>action</th>
-                        </tr>
-                        <tr>
-                            <td>sadasd</td>
-                            <td>sadasdas</td>
-                            <td style={{textAlign:"center"}}> <Button>Edit</Button>|<Button>Delete</Button> </td>
-                        </tr>
-                    </table>
+            <div className="right-wrapper">
+                <div className="items_wrapper mt-0">
+                    <div className="container">
+                        <table id="customers">
+                            <tr>
+                                <th>No</th>
+                                <th>Category Name</th>
+                                <th style={{textAlign: "center"}}>Action</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Foods</td>
+                                <td style={{textAlign: "center"}}><Button>Edit</Button>|<Button>Delete</Button></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
                 <MenuForm/>
             </div>
 
-        )
+        );
     }
 }
 
-const mapStateToProps = store => (
-    {
-        selectedItem: store.selectedItem,
-        foods: store.foods,
-        drinks: store.drinks
-    }
-);
-
-export default withRouter(connect(mapStateToProps, action)(MenuContainer))
+export default MenuContainer;

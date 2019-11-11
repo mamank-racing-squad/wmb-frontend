@@ -1,15 +1,8 @@
-import React from 'react';
-import '../../../assets/css/DiningTable.scss';
-import '../../../assets/css/Order.scss'
-
-import {connect} from 'react-redux'
-import * as action from '../../../action/action'
-import {withRouter} from 'react-router-dom'
-import styled, {css} from "styled-components";
+import React, {Component} from "react";
+import styled, {css} from 'styled-components'
 import DiningTableForm from "./DiningTableForm";
 
 const Button = styled.button`
-  font-size: 16px;
   background: transparent;
   border-radius: 3px;
   border: 2px solid palevioletred;
@@ -21,35 +14,26 @@ const Button = styled.button`
   ${props =>
     props.primary &&
     css`
-      background: #FF5F6D;
+      background: palevioletred;
       color: white;
     `};
 `;
 
-
-
-class DiningTableContainer extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
+class DiningTableContainer extends Component {
     render() {
         return (
             <div className="right-wrapper">
-                <div className="items_wrapper">
+                <div className="items_wrapper mt-0">
                     <div className="container">
-                        <h1>Dining Table</h1>
                         <table id="customers">
                             <tr>
-                                <th>Name</th>
-                                <th style={{textAlign: "center"}}>Capacity</th>
-                                <th style={{textAlign: "center"}}>Availability</th>
-                                <th style={{textAlign: "center"}}>action</th>
+                                <th>No</th>
+                                <th>Category Name</th>
+                                <th style={{textAlign: "center"}}>Action</th>
                             </tr>
                             <tr>
-                                <td>Tabel Orang Kaya</td>
-                                <td style={{textAlign: "center"}}>4</td>
-                                <td style={{textAlign: "center"}}>used</td>
+                                <td>1</td>
+                                <td>Foods</td>
                                 <td style={{textAlign: "center"}}><Button>Edit</Button>|<Button>Delete</Button></td>
                             </tr>
                         </table>
@@ -57,16 +41,9 @@ class DiningTableContainer extends React.Component {
                 </div>
                 <DiningTableForm/>
             </div>
-        )
+
+        );
     }
 }
 
-const mapStateToProps = store => (
-    {
-        selectedItem: store.selectedItem,
-        foods: store.foods,
-        drinks: store.drinks
-    }
-);
-
-export default withRouter(connect(mapStateToProps, action)(DiningTableContainer))
+export default DiningTableContainer;
