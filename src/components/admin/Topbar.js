@@ -1,5 +1,5 @@
 import React from 'react';
-import './Topbar.scss';
+import '../../assets/css/Topbar.scss';
 import searchIcon from '../../images/search.png';
 
 class Topbar extends React.Component {

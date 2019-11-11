@@ -1,9 +1,9 @@
 import React from 'react';
-import './MenuItem.scss';
+import '../../assets/css/MenuItem.scss';
 
 import tick from '../../images/tick.png'
 import {connect} from 'react-redux'
-import * as action from '../../action'
+import * as action from '../../action/action'
 import {withRouter} from 'react-router-dom'
 
 class MenuItem extends React.Component {

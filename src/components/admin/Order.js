@@ -1,10 +1,10 @@
 import React from 'react';
-import './Order.scss';
+import '../../assets/css/Order.scss';
 
-import OrderList from '../OrderList/OrderList'
+import OrderList from './OrderList'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import * as action from '../../action'
+import * as action from '../../action/action'
 
 
 class Order extends React.Component {

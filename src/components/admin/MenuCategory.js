@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './MenuCategory.scss'
+import '../../assets/css/MenuCategory.scss'
 import styled, { css } from 'styled-components'
 
 const Button = styled.button`

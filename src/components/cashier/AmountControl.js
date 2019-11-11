@@ -1,5 +1,5 @@
 import React from 'react';
-import './AmountControl.scss';
+import '../../assets/css/AmountControl.scss';
 import upIcon from '../../images/up-arrow.png'
 import downIcon from '../../images/angle-arrow-down.png'
 
