@@ -5,6 +5,7 @@ import tick from '../../images/tick.png'
 import {connect} from 'react-redux'
 import * as action from '../../action/action'
 import {withRouter} from 'react-router-dom'
+import Order from "./Order";
 
 class MenuItem extends React.Component {
     constructor(props) {

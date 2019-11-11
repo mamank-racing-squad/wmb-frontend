@@ -24,6 +24,7 @@ import {connect} from 'react-redux'
 
 import * as action from '../../action/action'
 import MenuCategory from './MenuCategory';
+import DiningTableContainer from "./dining-table/DiningTableContainer";
 
 class AdminContainer extends Component {
     constructor(props) {
@@ -108,7 +109,7 @@ class AdminContainer extends Component {
         return (
             <div>
                 <div className="Nav">
-                    <NavLink exact to="/dining-table" activeClassName="active"  className="dining-table">
+                    <NavLink exact to="/admin/dining-table" activeClassName="active" className="dining-table">
                         {
                             this.props.match && this.props.match.params.type === 'dining-table' ?
                                 <img src={food}/> :
@@ -117,7 +118,7 @@ class AdminContainer extends Component {
                         <span>Dining</span>
                         <span style={{paddingTop: "5px"}}>Table</span>
                     </NavLink>
-                    <NavLink exact to="/foods" activeClassName="active" className="foods">
+                    <NavLink exact to="/admin/menu" activeClassName="active" className="foods">
                         {
                             this.props.match && this.props.match.params.type === 'foods' ?
                                 <img src={food}/> :
@@ -125,7 +126,7 @@ class AdminContainer extends Component {
                         }
                         <span>Foods</span>
                     </NavLink>
-                    <NavLink to="/drinks" activeClassName="active" className="drinks">
+                    <NavLink to="/admin/drinks" activeClassName="active" className="drinks">
                         {
                             this.props.match && this.props.match.params.type === 'drinks' ?
                                 <img src={drink}/> :
@@ -133,20 +134,25 @@ class AdminContainer extends Component {
                         }
                         <span>Drinks</span>
                     </NavLink>
-                    <NavLink to="/menu-category" activeClassName="active" className="menu-category">
+                    <NavLink to="/admin/menu-category" activeClassName="active" className="drinks">
                         {
                             this.props.match && this.props.match.params.type === 'menu-category' ?
-                                <img src={category}/>: 
+                                <img src={category}/> :
                                 <img src={category}/>
                         }
-                        <span>Category</span>
+                        <span>Menu Category</span>
+                    </NavLink>
+                    <NavLink to="/" activeClassName="active" className="menu-category">
+
+                        <span>Back</span>
                     </NavLink>
                 </div>
 
                 <div className="right-wrapper">
                     <Topbar {...this.props} search={this.state.search} handleSearch={this.handleSearch}/>
                     <div className="items_wrapper">
-                        <Route path="/foods" render={() => foods.map((item, key) => {
+                        <Route path="/admin/menu"
+                               render={() => foods.map((item, key) => {
                                 if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {
                                     return (
                                         <FoodItem item_name={item.name} item_image={item.image} price={item.price}
@@ -156,19 +162,13 @@ class AdminContainer extends Component {
                                     )
                                 }
                             }
-                        )}/>
-                        <Route path="/dining-table" render={() => foods.map((item, key) => {
-                                if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {
-                                    return (
-                                        <FoodItem item_name={item.name} item_image={item.image} price={item.price}
-                                                  isSelected={item.isSelected}
-                                                  handleClick={() => this.handleFoodItemSelect('foods', key)} key={key}
-                                        />
-                                    )
-                                }
-                            }
-                        )}/>
-                        <Route path="/drinks" render={() => drinks.map((item, key) => {
+                        )}
+
+                        />
+                        <Route path="/admin/dining-table"
+                               component={DiningTableContainer}
+                        />
+                        <Route path="/admin/drinks" render={() => drinks.map((item, key) => {
                                 if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {
                                     return (
                                         <FoodItem item_name={item.name} item_image={item.image} price={item.price}
@@ -179,14 +179,9 @@ class AdminContainer extends Component {
                                 }
                             }
                         )}/>
-                        <Switch>
-                            <Route path="/menu-category" >
-                             <MenuCategory/> 
-                            </Route>
-                        </Switch>
-                      
+                        <Route path="/admin/menu-category" component={MenuCategory}/>
                     </div>
-                    <Order/>
+                    {/*<Order/>*/}
                 </div>
 
             </div>

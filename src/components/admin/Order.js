@@ -74,6 +74,7 @@ class Order extends React.Component {
                 <div className="title">
                     <p>New Order</p>
                 </div>
+
                 {selectedItem && selectedItem.map((item, key) => {
                     return (
                         <OrderList name={item.name} unitPrice={item.price} number={item.quantity}
