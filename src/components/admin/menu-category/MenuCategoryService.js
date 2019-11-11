@@ -16,3 +16,12 @@ export async function submitMenuCategory(menuCategory) {
     console.log(data);
     return data;
 }
+
+export async function deleteMenuCategory(id){
+    const data = await fetch(`http://localhost:9090/menu-category/${id}`,{method:"DELETE"})
+        .then((response)=>{
+            alert('data dihapus')
+            }
+        );
+    return data;
+}

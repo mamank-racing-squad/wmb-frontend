@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import styled, {css} from 'styled-components'
 import MenuCategoryForm from "./MenuCategoryForm";
-import {fetchMenuCategory} from "./MenuCategoryService";
+import {deleteMenuCategory, fetchMenuCategory} from "./MenuCategoryService";
 import {FETCH_MENU_CATEGORY_SUCCESS} from "../AdminAction";
 import {connect} from 'react-redux';
+import {NavLink} from "react-router-dom";
 
 const Button = styled.button`
   background: transparent;
@@ -23,13 +24,22 @@ const Button = styled.button`
 `;
 
 class MenuCategoryContainer extends Component {
+
+    deleteData = (id) =>{
+        deleteMenuCategory(id);
+        this.fetchData();
+
+    };
+
     render() {
         console.log(this.props);
+        this.props.dispatch({type:'RELOAD'})
         const dataCategory = this.props.menuCategory.map((element, index)=>{
             return <tr>
                 <td>{index+1}</td>
                 <td>{element.categoryName}</td>
-                <td style={{textAlign: "center"}}><Button>Edit</Button>|<Button>Delete</Button></td>
+                <td style={{textAlign: "center"}}><Button>Edit</Button>|
+                    <Button onClick={ () => {this.deleteData(element.idMenuCategory)}}>Delete</Button></td>
             </tr>
         });
         return (

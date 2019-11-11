@@ -7,7 +7,7 @@ import styled, {css} from "styled-components";
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import * as action from '../../../action/action'
-import {FETCH_MENU_CATEGORY_SUCCESS, HANDLE_INPUT_CATEGORY_NAME} from "../AdminAction";
+import {HANDLE_INPUT_CATEGORY_NAME} from "../AdminAction";
 import {fetchMenuCategory, submitMenuCategory} from "./MenuCategoryService";
 
 const Input = styled.input`
@@ -51,6 +51,7 @@ class MenuCategoryForm extends React.Component {
     }
     handleSubmitMenuCategory=()=>{
         submitMenuCategory(this.props.menuCategoryInput);
+        this.props.dispatch({type:'RELOAD', payload:this.props.menuCategoryInput})
     }
 }
 
