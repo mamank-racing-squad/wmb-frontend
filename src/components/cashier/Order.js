@@ -74,6 +74,8 @@ class Order extends React.Component {
                 <div className="title">
                     <p>New Order</p>
                 </div>
+                <input type="text" placeholder="PIC" className=""/>
+                <input type="text" placeholder="Total Costumer" className=""/>
                 {selectedItem && selectedItem.map((item, key) => {
                     return (
                         <OrderList name={item.name} unitPrice={item.price} number={item.quantity}

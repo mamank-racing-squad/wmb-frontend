@@ -15,11 +15,15 @@ class Topbar extends React.Component {
             switch (nextProps.match.params.type) {
                 case 'foods':
                     return {
-                        title: 'Foods'
+                        title: 'Select Foods'
                     };
                 case 'drinks':
                     return {
-                        title: 'Drinks'
+                        title: 'Select Drinks'
+                    }
+                case 'dining-table':
+                    return {
+                        title: 'Select Dining Table'
                     }
             }
         }
@@ -30,14 +34,14 @@ class Topbar extends React.Component {
         return (
             <div className="topbar">
                 <span className="title">{this.state.title}</span>
-                {/*<div className="searchBox">
+                <div className="searchBox">
                     <img src={searchIcon} />
                     <input type="text" className="searchInput"
                         value={this.props.search}
                         placeholder={'Search for items'}
                         onChange={this.props.handleSearch}
                     />
-                </div>*/}
+                </div>
             </div>
         )
     }

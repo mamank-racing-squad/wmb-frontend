@@ -1,10 +1,11 @@
 import React from 'react';
-import '../../assets/css/DiningTable.scss';
+import '../../../assets/css/DiningTable.scss';
 
 import tick from '../../images/tick.png'
 import {connect} from 'react-redux'
 import * as action from '../../action/action'
 import {withRouter} from 'react-router-dom'
+import Order from "./DiningTableForm";
 
 class DiningTable extends React.Component {
     constructor(props) {
@@ -30,6 +31,7 @@ class DiningTable extends React.Component {
                        onChange={this.handleChange}/>
                 <span className="priceTag">{'IDR. ' + this.props.price}</span>
                 <span className="itemNameTag">{this.props.item_name}</span>
+
             </div>
         )
     }

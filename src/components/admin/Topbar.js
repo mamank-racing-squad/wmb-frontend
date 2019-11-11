@@ -21,6 +21,10 @@ class Topbar extends React.Component {
                     return {
                         title: 'Drinks'
                     }
+                default :
+                    return {
+                        title:'ADMIN'
+                    }
             }
         }
         return null

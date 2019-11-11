@@ -133,13 +133,13 @@ class CashierContainer extends Component {
                         }
                         <span>Drinks</span>
                     </NavLink>
-                    <NavLink to="/menu-category" activeClassName="active" className="menu-category">
+                    <NavLink to="/admin" activeClassName="active" className="menu-category">
                         {
                             this.props.match && this.props.match.params.type === 'menu-category' ?
                                 <img src={category}/>: 
                                 <img src={category}/>
                         }
-                        <span>Category</span>
+                        <span>Admin</span>
                     </NavLink>
                 </div>
 
@@ -180,11 +180,10 @@ class CashierContainer extends Component {
                             }
                         )}/>
                         <Switch>
-                            <Route path="/menu-category" >
-                             <MenuCategory/> 
+                            <Route path="/admin" >
+                             <MenuCategory/>
                             </Route>
                         </Switch>
-                      
                     </div>
                     <Order/>
                 </div>
