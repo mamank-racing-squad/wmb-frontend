@@ -1,10 +1,9 @@
 import React from 'react';
 import '../../../assets/css/DiningTable.scss';
 import '../../../assets/css/Order.scss'
-
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import styled from "styled-components";
+import { Input, Select } from '../../styled/styles';
 import {fetchMenuCategory} from "../menu-category/MenuCategoryService";
 import {
     FETCH_MENU_CATEGORY_SUCCESS_IN_MENU,
@@ -13,40 +12,6 @@ import {
     HANDLE_MENU_PRICE
 } from "./MenuAction";
 import {editDataMenu, submitDataMenu} from "./MenuService";
-
-const Input = styled.input`
-    display: block;
-    width: 100%;
-    height: calc(1em + .75rem + 2px);
-    padding-left: 10px;
-    margin-bottom: 10px;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-`;
-
-const Select = styled.select`
-    display: block;
-    width: 100%;
-    height: calc(1em + .75rem + 2px);
-    padding-left: 10px;
-    margin-bottom: 10px;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-`;
 
 class MenuForm extends React.Component {
     render() {

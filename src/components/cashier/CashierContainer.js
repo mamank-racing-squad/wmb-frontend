@@ -131,6 +131,14 @@ class CashierContainer extends Component {
                         <span>Dining</span>
                         <span style={{paddingTop: "5px"}}>Table</span>
                     </NavLink>
+                    <NavLink exact to="/menu-test" activeClassName="active" className="menu-test">
+                        {
+                            this.props.match && this.props.match.params.type === 'menu-test' ?
+                                <img src={food} alt="Cashier"/> :
+                                <img src={foodGray} alt="Cashier"/>
+                        }
+                        <span>Menu - test</span>
+                    </NavLink>
                     <NavLink exact to="/foods" activeClassName="active" className="foods">
                         {
                             this.props.match && this.props.match.params.type === 'foods' ?
@@ -154,14 +162,6 @@ class CashierContainer extends Component {
                                 <img src={paymentGray} alt="Cashier"/>
                         }
                         <span>Payment</span>
-                    </NavLink>
-                    <NavLink exact to="/menu-test" activeClassName="active" className="menu-test">
-                        {
-                            this.props.match && this.props.match.params.type === 'menu-test' ?
-                                <img src={food} alt="Cashier"/> :
-                                <img src={foodGray} alt="Cashier"/>
-                        }
-                        <span>Menu - test</span>
                     </NavLink>
                     <NavLink to="/admin" activeClassName="active" className="menu-category">
                         {
@@ -218,7 +218,6 @@ class CashierContainer extends Component {
                         <Route path="/menu-test" component={MenuContainer}>
                             <MenuContainer/>
                         </Route>
-
                         <Route path="/admin" component={MenuCategory}>
                             <MenuCategory/>
                         </Route>
