@@ -1,34 +1,8 @@
 import React, {Component} from 'react';
 import {NavLink, Route} from "react-router-dom";
 
-import food from '../../assets/images/salad.png';
-import foodGray from '../../assets/images/salad-gray.png';
-
-import admin from '../../assets/images/admin.png';
-import adminGray from '../../assets/images/admin-gray.png';
-
-import drink from '../../assets/images/cheers.png';
-import drinkGray from '../../assets/images/cheers-gray.png';
-
-import diningTable from '../../assets/images/table.png';
-import diningTableGray from '../../assets/images/table-gray.png';
-
-import payment from '../../assets/images/payment.png'
-import paymentGray from '../../assets/images/payment-gray.png'
-
 import '../../assets/css/App.scss';
 import Topbar from './Topbar'
-
-//imgDummy
-import FoodItem from './MenuItem'
-import spaghetti from '../../assets/images/spaghetti.jpg';
-import pizza from '../../assets/images/Pizza.jpg'
-import frenchFries from '../../assets/images/french-fries.jpg'
-import cola from '../../assets/images/cola.jpg'
-import coffee from '../../assets/images/coffee.JPG'
-import milkTea from '../../assets/images/milk-tea.jpg'
-import blackTea from '../../assets/images/black-tea.jpg'
-
 
 import Order from './Order'
 
@@ -39,6 +13,27 @@ import * as action from '../../action/action'
 import MenuCategory from './MenuCategory';
 import MenuContainer from "../cashier/menu/MenuContainer";
 import PaymentContainer from "./payment/PaymentContainer";
+import DiningTable from "./dining-table/DiningTable";
+
+//imgDummy
+import FoodItem from './MenuItem'
+import spaghetti from '../../assets/images/spaghetti.jpg';
+import pizza from '../../assets/images/Pizza.jpg'
+import frenchFries from '../../assets/images/french-fries.jpg'
+import cola from '../../assets/images/cola.jpg'
+import coffee from '../../assets/images/coffee.JPG'
+import milkTea from '../../assets/images/milk-tea.jpg'
+import blackTea from '../../assets/images/black-tea.jpg'
+import food from '../../assets/images/salad.png';
+import foodGray from '../../assets/images/salad-gray.png';
+import admin from '../../assets/images/admin.png';
+import adminGray from '../../assets/images/admin-gray.png';
+import drink from '../../assets/images/cheers.png';
+import drinkGray from '../../assets/images/cheers-gray.png';
+import diningTable from '../../assets/images/table.png';
+import diningTableGray from '../../assets/images/table-gray.png';
+import payment from '../../assets/images/payment.png'
+import paymentGray from '../../assets/images/payment-gray.png'
 
 class CashierContainer extends Component {
     constructor(props) {
@@ -201,14 +196,12 @@ class CashierContainer extends Component {
                         )}/>
 
                         <Route path="/dining-table" render={() => foods.map((item, key) => {
-                                if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {
-                                    return (
-                                        <FoodItem item_name={item.name} item_image={item.image} price={item.price}
-                                                  isSelected={item.isSelected}
-                                                  handleClick={() => this.handleFoodItemSelect('foods', key)} key={key}
-                                        />
-                                    )
-                                }
+                            return (
+                                <DiningTable item_name={item.name} item_image={item.image} price={item.price}
+                                             isSelected={item.isSelected}
+                                             handleClick={() => this.handleFoodItemSelect('foods', key)} key={key}
+                                />
+                            )
                             }
                         )}/>
                         <Route path="/payment" component={PaymentContainer}>
@@ -231,10 +224,12 @@ class CashierContainer extends Component {
 }
 
 const mapStateToProps = state => (
+    console.log(state),
     {
         selectedItem: state.selectedItem,
         foods: state.foods,
-        drinks: state.drinks
+        drinks: state.drinks,
+        diningTables: state.diningTableReducer.diningTables,
     }
 );
 

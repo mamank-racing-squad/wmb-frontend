@@ -1,6 +1,7 @@
 import React from 'react';
-import '../../assets/css/DiningTable.scss';
+import '../../../assets/css/DiningTable.scss';
 
+import diningTable from '../../assets/images/dining-table.png';
 import tick from '../../assets/images/tick.png'
 import {connect} from 'react-redux'
 import * as action from '../../action/action'
@@ -18,10 +19,10 @@ class DiningTable extends React.Component {
         return (
             <div onClick={this.props.handleClick}
                  className={this.props.isSelected ? 'FoodItemBox selected' : 'FoodItemBox'}>
-                <img className="itemImage" src={this.props.item_image} alt={"image"}/>
+                <img className="itemImage" src={diningTable} alt={"image"}/>
                 {this.props.isSelected ?
                     <label>
-                        <img src={tick}/>
+                        <im src={tick}/>
                     </label>
                     : null
                 }
