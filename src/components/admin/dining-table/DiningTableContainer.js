@@ -89,7 +89,7 @@ class DiningTableContainer extends Component {
     };
 
     handleDeleteData = async (id) => {
-        await deleteDiningTableById(id).then(fetchDiningTable)
+        await deleteDiningTableById(id)
             .then(this.fetchDataDiningTable);
     }
 

@@ -3,7 +3,6 @@ import '../../../assets/css/DiningTable.scss';
 import '../../../assets/css/Order.scss'
 
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
 import {
     handleCapacityDiningTableForm,
     handleNumberDiningTableForm
@@ -57,4 +56,4 @@ const mapStateToProps = (state) => {
     return {...state.diningTableReducer}
 };
 
-export default withRouter(connect(mapStateToProps)(DiningTableForm));
+export default connect(mapStateToProps)(DiningTableForm);

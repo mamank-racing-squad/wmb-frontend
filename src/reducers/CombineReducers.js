@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import {menuOrderReducer} from "./CashierReducer";
-import {menuCategoryReducer} from "../components/admin/menu-category/MenuCategoryReducer";
-import {menuReducer} from "../components/admin/menu/MenuReducer";
-import {diningTableReducer} from "../components/admin/dining-table/DiningTableReducer";
+import {menuCategoryReducer} from "./MenuCategoryReducer";
+import {menuReducer} from "./MenuReducer";
+import {diningTableReducer} from "./DiningTableReducer";
 
 export const reducers = combineReducers({
     orderReducer: menuOrderReducer,

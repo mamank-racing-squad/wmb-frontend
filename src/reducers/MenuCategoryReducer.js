@@ -1,24 +1,23 @@
 const initialState = {
-    menuCategory:[],
-    menuCategoryInput:{
-        idMenuCategory:"",
-        categoryName:""
+    menuCategories:[],
+    menuCategoryForm:{
+        idMenuCategory: "",
+        categoryName: ""
     }
 };
 
 export function menuCategoryReducer(state=initialState, action) {
     switch (action.type) {
         case 'FETCH_MENU_CATEGORY_SUCCESS' :
-            return {...state, menuCategory: action.payload};
-        case 'HANDLE_INPUT_CATEGORY_ID':
-            return {...state, menuCategoryInput: {...state.menuCategoryInput, idMenuCategory:action.idMenuCategory}};
-        case 'HANDLE_INPUT_CATEGORY_NAME':
-            return {...state, menuCategoryInput: {...state.menuCategoryInput, categoryName:action.categoryName}};
-        case 'EDIT_DATA':
-            return {...state, menuCategoryInput: {...action.menuCategoryInput}};
-        case 'RELOAD':
-            return {...state};
-        default:
-            return {...state}
+            return {...state, menuCategories: action.payload};
+        case 'EDIT_MENU_CATEGORY_FORM':
+            return {...state, menuCategoryForm: action.payload};
+        case 'HANDLE_ID_CATEGORY_FORM':
+            return {...state, menuCategoryForm: {...state.menuCategoryForm, idMenuCategory: action.payload}};
+        case 'HANDLE_CATEGORY_NAME_FORM':
+            return {...state, menuCategoryForm: {...state.menuCategoryForm, categoryName: action.payload}};
+        case 'RESET_MENU_CATEGORY_FORM':
+            return {...state, diningTableForm: {...state.diningTableForm, idMenuCategory: "", categoryName: ""}};
+        default: return {...state}
     }
 }
