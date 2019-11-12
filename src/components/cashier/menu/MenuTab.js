@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styled, {css} from "styled-components";
+import {connect} from "react-redux";
 const Button = styled.button`
   background: transparent;
   border-radius: 3px;
@@ -16,19 +17,17 @@ const Button = styled.button`
   `}
 `;
 
-
-
-class TabberMenu extends Component {
+class MenuTab extends Component {
     render() {
+        console.log(this.props)
         return (
             <div>
                 <Button primary>Foods</Button>
                 <Button primary>Drinks</Button>
                 <Button primary>Dessert</Button>
-
             </div>
         );
     }
 }
 
-export default TabberMenu;
+export default connect()(MenuTab);

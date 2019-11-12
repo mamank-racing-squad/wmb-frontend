@@ -29,6 +29,8 @@ export function menuReducer(state=initialState, action) {
             return {...state, image: action.image};
         case 'EDIT_DATA_MENU':
             return {...state, menuInput: {...action.menuInput}};
+        case 'RELOAD_MENU':
+            return {...state}
         default:
             return {...state}
     }

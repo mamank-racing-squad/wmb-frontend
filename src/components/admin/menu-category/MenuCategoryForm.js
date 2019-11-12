@@ -34,7 +34,7 @@ class MenuCategoryForm extends React.Component {
                         <p>Menu Category Form</p>
                     </div>
                     <div className="checkoutBox">
-                        <Input type="text" placeholder="Generated Id" value={this.props.menuCategoryInput.idMenuCategory} disabled="true"/>
+                        <Input type="hidden" placeholder="Generated Id" value={this.props.menuCategoryInput.idMenuCategory} disabled="true"/>
                         <Input type="text" placeholder="Category Name"
                                value={this.props.menuCategoryInput.categoryName}
                                onChange={event => {this.props.dispatch({...HANDLE_INPUT_CATEGORY_NAME, categoryName:event.target.value})}}

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import TabberMenu from "./TabberMenu";
+import MenuTab from "./MenuTab";
 import {FETCH_MENU_SUCCESS} from "../../cashier/CashierAction";
 import {fetchMenu} from "./MenuService";
 
@@ -9,7 +9,7 @@ class MenuContainer extends Component {
     render() {
         return (
          <div>
-             <TabberMenu/>
+             <MenuTab/>
              <h1>Hello guys</h1>
          </div>
         )

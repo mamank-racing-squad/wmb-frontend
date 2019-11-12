@@ -17,7 +17,7 @@ export function menuCategoryReducer(state=initialState, action) {
         case 'EDIT_DATA':
             return {...state, menuCategoryInput: {...action.menuCategoryInput}};
         case 'RELOAD':
-            return {...state, menuCategory: [...state.menuCategory]};
+            return {...state};
         default:
             return {...state}
     }

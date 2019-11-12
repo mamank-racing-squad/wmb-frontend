@@ -26,7 +26,6 @@ class MenuContainer extends React.Component {
 
     deleteData = (id) => {
         deleteMenu(id);
-        this.props.dispatch({type: 'RELOAD'});
     };
 
     editData = async (id) => {

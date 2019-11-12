@@ -1,3 +1,5 @@
+
+
 export function dealSelectedItem(state = [], action) {
 
     switch (action.type) {
@@ -72,7 +74,7 @@ export function dealDrinks(state = [], action) {
             {
                 return state.map((item) => {
                     if(action.payload.name === item.name)
-                    item.isSelected = action.payload.isSelected
+                    item.isSelected = action.payload.isSelected;
 
                     return Object.assign(state.filter(drinks => drinks.name !== action.payload.name), item)
                 })
@@ -86,5 +88,17 @@ export function dealDrinks(state = [], action) {
             }
         default:
             return state
+    }
+}
+
+const initialState={
+    menu:[]
+};
+export function cashierComponent(state=initialState, action) {
+    switch (action.type) {
+        case 'FETCH_DATA_SUCCESS':
+            return {...state, menu: action.payload};
+        default :
+            return {...state}
     }
 }

@@ -12,7 +12,7 @@ import {
     HANDLE_MENU_NAME,
     HANDLE_MENU_PRICE
 } from "./MenuAction";
-import {submitDataMenu} from "./MenuService";
+import {editDataMenu, submitDataMenu} from "./MenuService";
 
 const Input = styled.input`
     display: block;
@@ -82,13 +82,16 @@ class MenuForm extends React.Component {
                         {menuCategory}
                     </Select>
                     <div>
-                        <button className="clearBtn" onClick={this.clearOrder}>Clear</button>
+                        <button className="clearBtn" onClick={this.handleEdit}>Edit</button>
                         <button className="payBtn" onClick={this.handleSubmit}>Save</button>
                     </div>
                 </div>
             </div>
         )
     }
+    handleEdit=()=>{
+        editDataMenu(this.props.menuInput)
+    };
 
     handleInputName = (event) => {
         this.props.dispatch({...HANDLE_MENU_NAME, menuName: event.target.value})

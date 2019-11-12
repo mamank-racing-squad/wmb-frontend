@@ -25,7 +25,7 @@ class Topbar extends React.Component {
                     return {
                         title: 'Select Dining Table'
                     };
-                default: return null;
+                default: return {title:'Warung Makan Bahari'};
             }
         }
         return null

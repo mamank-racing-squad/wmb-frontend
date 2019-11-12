@@ -91,6 +91,8 @@ class Order extends React.Component {
                 <div className="title">
                     <p>New Order</p>
                 </div>
+                <Input type="text" placeholder="PIC"/>
+                <Input type="text" placeholder="Voucher"/>
 
                 {selectedItem && selectedItem.map((item, key) => {
                     return (
@@ -99,8 +101,7 @@ class Order extends React.Component {
                     )
                 })}
                 <div className="checkoutBox">
-                    <Input type="text" placeholder="PIC"/>
-                    <Input type="text" placeholder="Voucher"/>
+
                     <div>
                         <span>Subtotal</span>
                         <span className="subtotal">{subtotal}</span>
