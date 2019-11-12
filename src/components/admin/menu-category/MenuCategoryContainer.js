@@ -9,11 +9,14 @@ import {
 import {editMenuCategoryForm, fetchMenuCategorySuccess} from "./MenuCategoryAction";
 import {connect} from 'react-redux';
 import {resetDiningTableForm} from "../dining-table/DiningTableAction";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal);
 
 class MenuCategoryContainer extends Component {
 
     render() {
-        console.log(this.props)
         return (
             <div className="container">
                 <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#modalForm">
@@ -80,8 +83,20 @@ class MenuCategoryContainer extends Component {
     };
 
     handleDeleteData = async (id) => {
-        await deleteMenuCategoryById(id)
-            .then(this.fetchDataCategoryMenu);
+        MySwal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then( async (result) => {
+            if (result.value){
+                await deleteMenuCategoryById(id)
+                    .then(this.fetchDataCategoryMenu);
+            }
+        })
     }
 
 }
