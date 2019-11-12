@@ -6,7 +6,7 @@ import styled from "styled-components";
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {HANDLE_INPUT_CATEGORY_NAME} from "./MenuCategoryAction";
-import {submitMenuCategory} from "./MenuCategoryService";
+import {submitMenuCategory} from "../../../services/MenuCategoryService";
 
 const Input = styled.input`
     display: block;

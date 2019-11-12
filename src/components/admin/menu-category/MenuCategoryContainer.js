@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import styled, {css} from 'styled-components'
 import MenuCategoryForm from "./MenuCategoryForm";
-import {deleteMenuCategory, fetchMenuCategory, getMenuCategoryById} from "./MenuCategoryService";
+import {deleteMenuCategory, fetchMenuCategory, getMenuCategoryById} from "../../../services/MenuCategoryService";
 import {EDIT_DATA, FETCH_MENU_CATEGORY_SUCCESS} from "./MenuCategoryAction";
 import {connect} from 'react-redux';
 

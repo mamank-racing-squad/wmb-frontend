@@ -1,42 +1,33 @@
 import React from 'react';
 import '../../assets/css/MenuItem.scss';
+import pizza from '../../assets/images/Pizza.jpg';
 
 import tick from '../../assets/images/tick.png'
-import {connect} from 'react-redux'
-import * as action from '../../action/action'
-import {withRouter} from 'react-router-dom'
+import {connect} from "react-redux";
 
 class MenuItem extends React.Component {
 
-    handleChange = () => {
+    handleClick = (data) => {
+        this.props.dispatch({type: "ADD_SELECTED_MENU", payload: {...data, amount: 1}});
     };
 
     render() {
         return (
-            <div onClick={this.props.handleClick} className={this.props.isSelected ? 'FoodItemBox selected' : 'FoodItemBox'}>
-                <img className="itemImage" src={this.props.item_image} alt="Menu Item Images"/>
+            <div onClick={() => {this.handleClick(this.props)}}
+                 className={this.props.isSelected ? 'FoodItemBox selected' : 'FoodItemBox'}
+            >
+                <img className="itemImage" src={pizza} alt="Menu Item Images"/>
                 {this.props.isSelected ?
                     <label>
                         <img src={tick} alt="Menu Item"/>
                     </label>
                     : null
                 }
-
-                <input type="checkbox" checked={this.props.isSelected} value={this.props.isSelected}
-                       onChange={this.handleChange}/>
                 <span className="priceTag">{'IDR. ' + this.props.price}</span>
-                <span className="itemNameTag">{this.props.item_name}</span>
+                <span className="itemNameTag">{this.props.menuName}</span>
             </div>
         )
     }
 }
 
-const mapStateToProps = store => (
-    {
-        selectedItem: store.selectedItem,
-        foods: store.foods,
-        drinks: store.drinks
-    }
-);
-
-export default withRouter(connect(mapStateToProps, action)(MenuItem))
+export default connect()(MenuItem);

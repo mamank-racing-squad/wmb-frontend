@@ -5,14 +5,14 @@ import '../../../assets/css/Order.scss'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import styled from "styled-components";
-import {fetchMenuCategory} from "../menu-category/MenuCategoryService";
+import {fetchMenuCategory} from "../../../services/MenuCategoryService";
 import {
     FETCH_MENU_CATEGORY_SUCCESS_IN_MENU,
     HANDLE_MENU_AVAILABILITY, HANDLE_MENU_CATEGORY, HANDLE_MENU_IMAGE,
     HANDLE_MENU_NAME,
     HANDLE_MENU_PRICE
 } from "./MenuAction";
-import {editDataMenu, submitDataMenu} from "./MenuService";
+import {editDataMenu, submitDataMenu} from "../../../services/MenuService";
 
 const Input = styled.input`
     display: block;

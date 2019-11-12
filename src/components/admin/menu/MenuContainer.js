@@ -2,7 +2,7 @@ import React from "react";
 import styled, {css} from 'styled-components'
 import MenuForm from "./MenuForm";
 import {connect} from "react-redux";
-import {deleteMenu, fetchDataMenu, getDataMenuById} from "./MenuService";
+import {deleteMenu, fetchDataMenu, getDataMenuById} from "../../../services/MenuService";
 import {EDIT_DATA_MENU, FETCH_MENU_SUCCESS} from "./MenuAction";
 
 const Button = styled.button`

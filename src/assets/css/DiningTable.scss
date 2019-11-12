@@ -1,4 +1,4 @@
-.FoodItemBox {
+.diningTableBox {
     width: calc( (100% / 3) - 30px);
     height: 210px;
     border-radius: 20px;
@@ -34,7 +34,7 @@
         object-fit: cover;
         border-radius: 18px;
     }
-    .priceTag {
+    .capacity {
         position: absolute;
         top: 5%;
         z-index: 1;
@@ -48,17 +48,20 @@
         background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to right, #FFC371, #FF5F6D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
-    .itemNameTag {
+    .numberDiningTable {
         position: absolute;
-        top: 20%;
-        padding: 8px 20px;
+        top: 5%;
+        z-index: 1;
+        right: 10%;
+        padding: 5px 15px;
         border-radius: 5px;
-        background: white;
-        color: #404143;
+        color: white;
         font-weight: 800;
         text-align: center;
-        font-size: 11px;
-        z-index: 1;
+        font-size: 12px;
+        background: #FF5F6D;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #FFC371, #FF5F6D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
     label {
         background: #FF5F6D;  /* fallback for old browsers */
