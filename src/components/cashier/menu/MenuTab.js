@@ -16,8 +16,6 @@ const Button = styled.button`
   `}
 `;
 
-
-
 class TabberMenu extends Component {
     render() {
         return (
