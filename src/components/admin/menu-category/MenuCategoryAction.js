@@ -1,4 +1,5 @@
-export const FETCH_MENU_CATEGORY_SUCCESS = {type:'FETCH_MENU_CATEGORY_SUCCESS'};
-export const HANDLE_INPUT_CATEGORY_NAME = {type: 'HANDLE_INPUT_CATEGORY_NAME'};
-export const HANDLE_INPUT_CATEGORY_ID = {type:'HANDLE_INPUT_CATEGORY_ID'};
-export const EDIT_DATA = {type:'EDIT_DATA'};
+export const fetchMenuCategorySuccess = {type:'FETCH_MENU_CATEGORY_SUCCESS'};
+export const handleIdCategoryForm = {type:'HANDLE_ID_CATEGORY_FORM'};
+export const handleCategoryNameForm = {type: 'HANDLE_CATEGORY_NAME_FORM'};
+export const editMenuCategoryForm = {type:'EDIT_MENU_CATEGORY_FORM'};
+export const resetMenuCategoryForm = {type: 'RESET_MENU_CATEGORY_FORM'};

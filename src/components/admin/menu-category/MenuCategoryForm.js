@@ -2,65 +2,47 @@ import React from 'react';
 import '../../../assets/css/DiningTable.scss';
 import '../../../assets/css/Order.scss'
 
-import styled from "styled-components";
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
-import {HANDLE_INPUT_CATEGORY_NAME} from "./MenuCategoryAction";
-import {submitMenuCategory} from "../../../services/MenuCategoryService";
-
-const Input = styled.input`
-    display: block;
-    width: 100%;
-    height: calc(1em + .75rem + 2px);
-    padding-left: 10px;
-    margin-bottom: 10px;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-`;
+import {handleCategoryNameForm} from "./MenuCategoryAction";
 
 class MenuCategoryForm extends React.Component {
     render() {
-
         return (
-                <div className="orderBox">
-                    <div className="title">
-                        <p>Menu Category Form</p>
-                    </div>
-                    <div className="checkoutBox">
-                        <Input type="hidden" placeholder="Generated Id" value={this.props.menuCategoryInput.idMenuCategory} disabled="true"/>
-                        <Input type="text" placeholder="Category Name"
-                               value={this.props.menuCategoryInput.categoryName}
-                               onChange={event => {this.props.dispatch({...HANDLE_INPUT_CATEGORY_NAME, categoryName:event.target.value})}}
-                        />
-                        <div>
-                            <button className="clearBtn" onClick={this.clearOrder}>Edit</button>
-                            <button className="payBtn"
-                                    onClick={this.handleSubmitMenuCategory}>Save</button>
+            <div className="modal fade" id="modalForm" tabIndex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
+                        <form>
+                            <div className="modal-body">
+                                <div className="form-group">
+                                    <label>Category Name</label>
+                                    <input type="text" className="form-control" placeholder="Enter Category Name" value={this.props.menuCategoryForm.categoryName} onChange={this.handleInputCategoryName} required/>
+                                </div>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-primary" onClick={this.props.handleSubmitData} data-dismiss="modal">Save</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
+            </div>
         )
     }
-    handleSubmitMenuCategory=()=>{
-        submitMenuCategory(this.props.menuCategoryInput);
-        this.props.dispatch({type:'RELOAD'})
-    }
+
+    handleInputCategoryName = (event) => {
+        this.props.dispatch({...handleCategoryNameForm, payload: event.target.value})
+    };
 }
 
-const mapStateToProps = store => (
-    {
-        selectedItem: store.selectedItem,
-        foods: store.foods,
-        drinks: store.drinks,
-        menuCategoryInput: store.menuCategoryReducer.menuCategoryInput
-    }
-);
+const mapStateToProps = (state) => {
+    return {...state.menuCategoryReducer}
+};
 
-export default withRouter(connect(mapStateToProps)(MenuCategoryForm))
+export default connect(mapStateToProps)(MenuCategoryForm);
