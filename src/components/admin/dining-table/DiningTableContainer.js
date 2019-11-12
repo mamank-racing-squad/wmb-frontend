@@ -7,7 +7,12 @@ import {
     getDataDiningTableById,
     submitDiningTable
 } from "../../../services/DiningTableService";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import {connect} from "react-redux";
+
+const MySwal = withReactContent(Swal);
+
 
 class DiningTableContainer extends Component {
 
@@ -89,8 +94,20 @@ class DiningTableContainer extends Component {
     };
 
     handleDeleteData = async (id) => {
-        await deleteDiningTableById(id)
-            .then(this.fetchDataDiningTable);
+        MySwal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then( async (result) => {
+            if (result.value) {
+                await deleteDiningTableById(id)
+                    .then(this.fetchDataDiningTable);
+            }
+        })
     }
 
 }

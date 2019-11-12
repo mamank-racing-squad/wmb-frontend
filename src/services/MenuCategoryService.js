@@ -1,3 +1,9 @@
+import React from "react";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal);
+
 export async function fetchMenuCategory() {
     return await fetch(`http://localhost:9090/all-menu-category`, {method: "GET"})
         .then((response) => {
@@ -12,8 +18,13 @@ export async function submitMenuCategory(payload) {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(payload)
         })
-        .then((response) => {
-            return response;
+        .then(() => {
+            MySwal.fire({
+                icon: 'success',
+                title: 'Your data has been saved',
+                showConfirmButton: false,
+                timer: 1500
+            })
         });
 }
 
@@ -27,6 +38,10 @@ export async function getMenuCategoryById(id) {
 export async function deleteMenuCategoryById(id) {
     return await fetch(`http://localhost:9090/menu-category/${id}`, {method: "DELETE"})
         .then((response) => {
-            alert('data dihapus');
+            MySwal.fire(
+                'Deleted!',
+                'Your data has been deleted.',
+                'success'
+            )
         });
 }
