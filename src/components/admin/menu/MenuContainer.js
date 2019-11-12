@@ -1,26 +1,9 @@
 import React from "react";
-import styled, {css} from 'styled-components'
+import { Button } from '../../styled/styles';
 import MenuForm from "./MenuForm";
 import {connect} from "react-redux";
 import {deleteMenu, fetchDataMenu, getDataMenuById} from "./MenuService";
 import {EDIT_DATA_MENU, FETCH_MENU_SUCCESS} from "./MenuAction";
-
-const Button = styled.button`
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
-  margin-bottom:0px;
-  
-  padding: 0.60em 0.50em;
-
-  ${props =>
-    props.primary &&
-    css`
-      background: palevioletred;
-      color: white;
-    `};
-`;
 
 class MenuContainer extends React.Component {
 

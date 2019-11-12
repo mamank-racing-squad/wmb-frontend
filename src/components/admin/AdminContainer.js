@@ -21,7 +21,7 @@ import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import * as action from '../../action/action'
-import '../../assets/css/MenuCategory.scss'
+import '../../assets/css/Table.scss'
 import DiningTableContainer from "./dining-table/DiningTableContainer";
 import MenuCategoryContainer from "./menu-category/MenuCategoryContainer";
 import MenuContainer from "./menu/MenuContainer";

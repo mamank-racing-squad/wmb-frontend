@@ -1,23 +1,8 @@
 import React, {Component} from "react";
-import styled, {css} from 'styled-components'
+import { Button } from '../../styled/styles';
 import DiningTableForm from "./DiningTableForm";
 
-const Button = styled.button`
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
-  margin-bottom:10px;
-  
-  padding: 0.60em 1em;
 
-  ${props =>
-    props.primary &&
-    css`
-      background: palevioletred;
-      color: white;
-    `};
-`;
 
 class DiningTableContainer extends Component {
     render() {

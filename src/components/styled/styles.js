@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 const Input = styled.input`
     display: block;
@@ -22,8 +22,20 @@ const Label = styled.label`
 `;
 
 const Button = styled.button`
-  background: blue;
-  color: white;
+  background: transparent;
+  border-radius: 3px;
+  border: 2px solid palevioletred;
+  color: palevioletred;
+  margin-bottom:10px;
+  
+  padding: 0.60em 1em;
+
+  ${props =>
+    props.primary &&
+    css`
+      background: palevioletred;
+      color: white;
+    `};
 `;
 
 const Select = styled.select`
