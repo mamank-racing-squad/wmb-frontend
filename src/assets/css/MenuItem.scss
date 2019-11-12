@@ -37,6 +37,7 @@
     .priceTag {
         position: absolute;
         top: 5%;
+        left: 5%;
         z-index: 1;
         padding: 5px 15px;
         border-radius: 5px;
@@ -50,6 +51,7 @@
     }
     .itemNameTag {
         position: absolute;
+        left: 5%;
         top: 20%;
         padding: 8px 20px;
         border-radius: 5px;

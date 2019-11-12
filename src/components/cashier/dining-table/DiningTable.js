@@ -1,16 +1,11 @@
 import React from 'react';
 import '../../../assets/css/DiningTable.scss';
 
-import diningTable from '../../assets/images/dining-table.png';
-import tick from '../../assets/images/tick.png'
-import {connect} from 'react-redux'
-import * as action from '../../action/action'
-import {withRouter} from 'react-router-dom'
+import diningTable from '../../../assets/images/dining-table.png';
+import tick from '../../../assets/images/tick.png'
+
 
 class DiningTable extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     handleChange = () => {
     };
@@ -18,30 +13,22 @@ class DiningTable extends React.Component {
     render() {
         return (
             <div onClick={this.props.handleClick}
-                 className={this.props.isSelected ? 'FoodItemBox selected' : 'FoodItemBox'}>
-                <img className="itemImage" src={diningTable} alt={"image"}/>
+                 className={this.props.isSelected ? 'diningTableBox selected' : 'diningTableBox'}>
+                <img className="itemImage" src={diningTable} alt="Dining Table"/>
                 {this.props.isSelected ?
                     <label>
-                        <im src={tick}/>
+                        <img src={tick} alt="check"/>
                     </label>
                     : null
                 }
 
                 <input type="checkbox" checked={this.props.isSelected} value={this.props.isSelected}
                        onChange={this.handleChange}/>
-                <span className="priceTag">{'IDR. ' + this.props.price}</span>
-                <span className="itemNameTag">{this.props.item_name}</span>
+                <span className="capacity">Slot : {this.props.capacity}</span>
+                <span className="numberDiningTable">Nomor : {this.props.numberDiningTable}</span>
             </div>
         )
     }
 }
 
-const mapStateToProps = store => (
-    {
-        selectedItem: store.selectedItem,
-        foods: store.foods,
-        drinks: store.drinks
-    }
-);
-
-export default withRouter(connect(mapStateToProps, action)(DiningTable))
+export default (DiningTable);
