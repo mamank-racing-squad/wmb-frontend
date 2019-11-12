@@ -30,7 +30,7 @@ export function menuReducer(state=initialState, action) {
         case 'EDIT_DATA_MENU':
             return {...state, menuInput: {...action.menuInput}};
         case 'RELOAD_MENU':
-            return {...state, listMenu: [...state.listMenu, state.menuInput]}
+            return {...state}
         default:
             return {...state}
     }
