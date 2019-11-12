@@ -45,17 +45,18 @@ import {fetchDataMenu} from "../admin/menu/MenuService";
 import {menuReducer} from "../admin/menu/MenuReducer";
 import {reducers as state} from "../../reducers/CombineReducers";
 
-class CashierContainer extends Component {
+class CashierContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            search: ''
+            search: '',
+            menuList:[]
         };
+
         this.props.addFoods(
             [
-                {name: "Spaghetti", image: spaghetti, price: 130000, isSelected: false, isAvailable: false},
                 {name: "Pizza", image: pizza, price: 250000, isSelected: false, isAvailable: false},
-                {name: "French-Frices", image: frenchFries, price: 8000, isSelected: false, isAvailable: true},
+                {name: "French-Fries", image: frenchFries, price: 8000, isSelected: false, isAvailable: true},
                 {name: "Cola", image: cola, price: 4000, isSelected: false, isAvailable: true},
                 {name: "Coffee", image: coffee, price: 10000, isSelected: false, isAvailable: true},
                 {name: "Milk Tea", image: milkTea, price: 90, isSelected: false, isAvailable: false},
@@ -68,7 +69,6 @@ class CashierContainer extends Component {
             ]
         );
     }
-
     handleFoodItemSelect = (type, key) => {
         const {foods, drinks} = this.props;
         const id = key;
@@ -124,6 +124,9 @@ class CashierContainer extends Component {
     };
 
     render() {
+        console.log(this.props);
+        console.log(this.state);
+
         const {foods, drinks} = this.props;
         return (
             <div>
@@ -226,7 +229,7 @@ class CashierContainer extends Component {
         const data = await fetchDataMenu();
         console.log(data);
         if (!(data === undefined)) {
-            // this.props.dispatch({...FETCH_MENU_SUCCESS, payload: data})
+
         }
     };
 }
@@ -235,9 +238,8 @@ const mapStateToProps = (state) => (
      {
         selectedItem: state.selectedItem,
         foods: state.foods,
-        drinks: state.drinks,
-        menuReducer:{...state.menuReducer}
+        drinks: state.drinks
     }
 );
 
-export default withRouter(connect(mapStateToProps, action)(CashierContainer))
+export default connect(mapStateToProps, action)(CashierContainer)
