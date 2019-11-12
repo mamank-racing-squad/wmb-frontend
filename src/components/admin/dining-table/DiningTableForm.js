@@ -5,7 +5,7 @@ import '../../../assets/css/Order.scss'
 import {connect} from 'react-redux'
 import {
     handleCapacityDiningTableForm,
-    handleNumberDiningTableForm
+    handleNumberDiningTableForm, resetDiningTableForm
 } from "./DiningTableAction";
 
 
@@ -34,7 +34,7 @@ class DiningTableForm extends React.Component {
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-secondary" onClick={() => {this.props.dispatch(resetDiningTableForm)}} data-dismiss="modal">Cancel</button>
                                 <button type="button" className="btn btn-primary" onClick={this.props.handleSubmitData} data-dismiss="modal">Save</button>
                             </div>
                         </form>
