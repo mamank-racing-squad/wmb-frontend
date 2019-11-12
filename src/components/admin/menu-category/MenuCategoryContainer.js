@@ -26,7 +26,6 @@ class MenuCategoryContainer extends Component {
 
     deleteData = (id) =>{
         deleteMenuCategory(id);
-        this.props.dispatch({type:'RELOAD'});
     };
 
     editData = async (id) =>{
