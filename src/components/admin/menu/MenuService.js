@@ -45,6 +45,7 @@ export async function editDataMenu(menu) {
         {method:"POST", headers:{'Content-Type': 'application/json'}, body: menuInput})
         .then((response)=>{
             alert('save data success');
+            window.location.reload();
             return response.json()
         }).catch(reason => console.log(reason));
     console.log(data);
