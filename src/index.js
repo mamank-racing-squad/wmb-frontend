@@ -17,7 +17,7 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
                 <Route exact path="/" component={CashierContainer} />
-                <Route path="/:type(foods|drinks|dining-table|menu-category)" component={CashierContainer} />
+                <Route path="/:type(foods|drinks|dining-table|menu-category|menu-test|payment)" component={CashierContainer} />
                 <Route path="/admin" component={AdminContainer}/>
             </div>
         </BrowserRouter>

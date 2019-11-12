@@ -37,6 +37,8 @@ import {connect} from 'react-redux'
 
 import * as action from '../../action/action'
 import MenuCategory from './MenuCategory';
+import MenuContainer from "../cashier/menu/MenuContainer";
+import PaymentContainer from "./payment/PaymentContainer";
 
 class CashierContainer extends Component {
     constructor(props) {
@@ -121,7 +123,7 @@ class CashierContainer extends Component {
         return (
             <div>
                 <div className="Nav">
-                    <NavLink exact to="/dining-table" activeClassName="active"  className="dining-table">
+                    <NavLink exact to="/dining-table" activeClassName="active" className="dining-table">
                         {
                             this.props.match && this.props.match.params.type === 'dining-table' ?
                                 <img src={diningTable}/> :
@@ -136,7 +138,7 @@ class CashierContainer extends Component {
                                 <img src={food}/> :
                                 <img src={foodGray}/>
                         }
-                        <span>Foods</span>
+                        <span>Menu</span>
                     </NavLink>
                     <NavLink to="/drinks" activeClassName="active" className="drinks">
                         {
@@ -154,10 +156,18 @@ class CashierContainer extends Component {
                         }
                         <span>Payment</span>
                     </NavLink>
+                    <NavLink exact to="/menu-test" activeClassName="active" className="menu-test">
+                        {
+                            this.props.match && this.props.match.params.type === 'menu-test' ?
+                                <img src={food}/> :
+                                <img src={foodGray}/>
+                        }
+                        <span>Menu - test</span>
+                    </NavLink>
                     <NavLink to="/admin" activeClassName="active" className="menu-category">
                         {
                             this.props.match && this.props.match.params.type === 'menu-category' ?
-                                <img src={admin}/>:
+                                <img src={admin}/> :
                                 <img src={adminGray}/>
                         }
                         <span>Admin</span>
@@ -178,17 +188,7 @@ class CashierContainer extends Component {
                                 }
                             }
                         )}/>
-                        <Route path="/dining-table" render={() => foods.map((item, key) => {
-                                if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {
-                                    return (
-                                        <FoodItem item_name={item.name} item_image={item.image} price={item.price}
-                                                  isSelected={item.isSelected}
-                                                  handleClick={() => this.handleFoodItemSelect('foods', key)} key={key}
-                                        />
-                                    )
-                                }
-                            }
-                        )}/>
+
                         <Route path="/drinks" render={() => drinks.map((item, key) => {
                                 if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {
                                     return (
@@ -200,11 +200,29 @@ class CashierContainer extends Component {
                                 }
                             }
                         )}/>
-                        <Switch>
-                            <Route path="/admin" >
-                             <MenuCategory/>
-                            </Route>
-                        </Switch>
+
+                        <Route path="/dining-table" render={() => foods.map((item, key) => {
+                                if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {
+                                    return (
+                                        <FoodItem item_name={item.name} item_image={item.image} price={item.price}
+                                                  isSelected={item.isSelected}
+                                                  handleClick={() => this.handleFoodItemSelect('foods', key)} key={key}
+                                        />
+                                    )
+                                }
+                            }
+                        )}/>
+                        <Route path="/payment" component={PaymentContainer}>
+                            <PaymentContainer/>
+                        </Route>
+
+                        <Route path="/menu-test" component={MenuContainer}>
+                            <MenuContainer/>
+                        </Route>
+
+                        <Route path="/admin" component={MenuCategory}>
+                            <MenuCategory/>
+                        </Route>
                     </div>
                     <Order/>
                 </div>
