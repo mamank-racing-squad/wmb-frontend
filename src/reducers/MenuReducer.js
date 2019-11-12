@@ -1,38 +1,33 @@
 const initialState = {
     listMenu:[],
-    menuInput: {
+    menuForm: {
         idMenu:"",
         menuName: "",
         price: "",
-        availability: "",
+        availability: true,
         idMenuCategoryTransient: ""
     },
-    image:{},
-    menuCategory: []
+    menuImage: {}
 };
 
 export function menuReducer(state=initialState, action) {
     switch (action.type) {
         case 'FETCH_MENU_SUCCESS':
-            return {...state, listMenu: action.payload}
-        case 'FETCH_MENU_CATEGORY_SUCCESS_IN_MENU':
-            return {...state, menuCategory: action.payload};
-        case 'HANDLE_MENU_NAME':
-            return {...state, menuInput: {...state.menuInput, menuName: action.menuName}};
-        case 'HANDLE_MENU_PRICE':
-            return {...state, menuInput: {...state.menuInput, price: action.price}};
-        case 'HANDLE_MENU_AVAILABILITY':
-            return {...state, menuInput: {...state.menuInput, availability: action.availability}};
-        case 'HANDLE_MENU_CATEGORY':
-            return {...state, menuInput: {...state.menuInput, idMenuCategoryTransient:action.category}};
-        case 'HANDLE_MENU_IMAGE':
-            return {...state, image: action.image};
-        case 'EDIT_DATA_MENU':
-            return {...state, menuInput: {...action.menuInput}};
-        case 'RELOAD_MENU':
-            return {...state}
-        default:
-            return {...state}
+            return {...state, listMenu: action.payload};
+        case 'EDIT_MENU_FORM':
+            return {...state,  menuForm: action.payload};
+        case 'HANDLE_MENU_NAME_FORM':
+            return {...state, menuForm: {...state.menuForm, menuName: action.payload}};
+        case 'HANDLE_MENU_PRICE_FORM':
+            return {...state, menuForm: {...state.menuForm, price: action.payload}};
+        case 'HANDLE_MENU_AVAILABILITY_FORM':
+            return {...state, menuForm: {...state.menuForm, availability: action.payload}};
+        case 'HANDLE_MENU_CATEGORY_FORM':
+            return {...state, menuForm: {...state.menuForm, idMenuCategoryTransient:action.payload}};
+        case 'HANDLE_MENU_IMAGE_FORM':
+            return {...state, menuImage: action.payload};
+        case 'RESET_MENU_FORM':
+            return {...state, menuForm: {...state.menuForm, idMenu: "", menuName: "", price: "", availability: "", idMenuCategoryTransient: ""}, menuImage: {}};
+        default: return {...state}
     }
-
 }

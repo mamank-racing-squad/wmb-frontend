@@ -22,11 +22,12 @@ import diningTable from '../../assets/images/table.png';
 import diningTableGray from '../../assets/images/table-gray.png';
 import payment from '../../assets/images/payment.png'
 import paymentGray from '../../assets/images/payment-gray.png'
-import {FETCH_MENU_SUCCESS} from "../admin/menu/MenuAction";
+import {fetchMenuSuccess} from "../admin/menu/MenuAction";
 import MenuItem from "./MenuItem";
 import DiningTable from "./dining-table/DiningTable";
 import {fetchDiningTable} from "../../services/DiningTableService";
 import {fetchDiningTableSuccess} from "../admin/dining-table/DiningTableAction";
+import {fetchMenu} from "./menu/MenuService";
 
 class CashierContainer extends React.Component {
 
@@ -115,9 +116,9 @@ class CashierContainer extends React.Component {
     }
 
     fetchDataMenu = async () => {
-        const data = await fetchDataMenu();
+        const data = await fetchMenu();
         if (!(data === undefined)) {
-            this.props.dispatch({...FETCH_MENU_SUCCESS, payload: data})
+            this.props.dispatch({...fetchMenuSuccess, payload: data})
         }
     };
 

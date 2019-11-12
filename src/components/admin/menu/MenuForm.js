@@ -3,130 +3,112 @@ import '../../../assets/css/DiningTable.scss';
 import '../../../assets/css/Order.scss'
 
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
-import styled from "styled-components";
+
+import {handleMenuAvailabilityForm, handleMenuCategoryForm, handleMenuImageForm, handleMenuNameForm, handleMenuPriceForm} from "./MenuAction";
 import {fetchMenuCategory} from "../../../services/MenuCategoryService";
-import {
-    FETCH_MENU_CATEGORY_SUCCESS_IN_MENU,
-    HANDLE_MENU_AVAILABILITY, HANDLE_MENU_CATEGORY, HANDLE_MENU_IMAGE,
-    HANDLE_MENU_NAME,
-    HANDLE_MENU_PRICE
-} from "./MenuAction";
-import {editDataMenu, submitDataMenu} from "../../../services/MenuService";
+import {fetchMenuCategorySuccess} from "../menu-category/MenuCategoryAction";
 
-const Input = styled.input`
-    display: block;
-    width: 100%;
-    height: calc(1em + .75rem + 2px);
-    padding-left: 10px;
-    margin-bottom: 10px;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-`;
-
-const Select = styled.select`
-    display: block;
-    width: 100%;
-    height: calc(1em + .75rem + 2px);
-    padding-left: 10px;
-    margin-bottom: 10px;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-`;
 
 class MenuForm extends React.Component {
+
     render() {
-        const menuCategory = this.props.menuCategory.map((element) => {
-            return <option value={element.idMenuCategory}>{element.categoryName}</option>
-        });
+        console.log(this.props)
+
         return (
-            <div className="orderBox">
-                <div className="title">
-                    <p>Menu Form</p>
-                </div>
-                <div className="checkoutBox">
-                    <Input type="text" placeholder="Generated ID" disabled="true" onChange={event =>{this.handleInputMenuId(event)}}
-                           value={this.props.menuInput.idMenu}
-                    />
-                    <Input type="text" placeholder="Menu Name" onChange={event =>{this.handleInputName(event)}}
-                           value={this.props.menuInput.menuName}
-                    />
-                    <Input type="text" placeholder="Price" onChange={event =>{this.handleInputPrice(event)}}
-                           value={this.props.menuInput.price}
-                    />
-                    <label>Upload Image</label>
-                    <Input type="file" accept="image/*" onChange={event =>{this.handleInputImage(event)}}/>
-                    <label>Availability</label>
-                    <Select onChange={event => this.handleInputAvailability(event)}>
-                        <option value="">Choose Availability</option>
-                        <option value="true">Tersedia</option>
-                        <option value="false">Tidak Tersedia</option>
-                    </Select>
-                    <label>Menu Category</label>
-                    <Select onChange={this.handleInputCategory}>
-                        <option value="">Choose Menu Category</option>
-                        {menuCategory}
-                    </Select>
-                    <div>
-                        <button className="clearBtn" onClick={this.handleEdit}>Edit</button>
-                        <button className="payBtn" onClick={this.handleSubmit}>Save</button>
+            <div className="modal fade" id="modalForm" tabIndex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form>
+                            <div className="modal-body">
+                                <div className="form-group">
+                                    <label>Menu Name</label>
+                                    <input type="text" className="form-control" placeholder="Enter Menu Name" value={this.props.menuForm.menuName} onChange={this.handleInputName} required/>
+                                </div>
+                                <div className="form-group">
+                                    <label>Price</label>
+                                    <input type="text" className="form-control" placeholder="Enter Input Price" value={this.props.menuForm.price} onChange={this.handleInputPrice} required/>
+                                </div>
+                                <div className="form-group">
+                                    <label>Image</label>
+                                    <div className="custom-file">
+                                        <input type="file" className="custom-file-input" onChange={this.handleInputImage} required/>
+                                            <label className="custom-file-label" htmlFor="customFile">Choose file</label>
+                                    </div>
+                                </div>
+                                <div className="form-group">
+                                    <label>Menu Category</label>
+                                    <select className="form-control" onChange={this.handleInputCategory} required>
+                                        <option value="" selected disabled>Choose Menu Category</option>
+                                        {
+                                            this.props.menuCategories.map((item, key) => {
+                                                return (
+                                                    <option key={key} value={item.idMenuCategory}>{item.categoryName}</option>
+                                                )
+                                            })
+                                        }
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <label>Availability</label>
+                                    <select className="form-control" onChange={this.handleInputAvailability} required>
+                                        <option value="" selected disabled>Choose Availability</option>
+                                        <option value="true">Tersedia</option>
+                                        <option value="false">Tidak Tersedia</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-primary" onClick={this.props.handleSubmitData} data-dismiss="modal">Save</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        )
+        );
     }
-    handleEdit=()=>{
-        editDataMenu(this.props.menuInput)
+
+    componentDidMount() {
+        this.fetchDataCategoryMenu();
+    }
+
+    fetchDataCategoryMenu = async () => {
+        const data = await fetchMenuCategory();
+        if (!(data === undefined)) {
+            this.props.dispatch({...fetchMenuCategorySuccess, payload:data})
+        }
     };
 
     handleInputName = (event) => {
-        this.props.dispatch({...HANDLE_MENU_NAME, menuName: event.target.value})
+        this.props.dispatch({...handleMenuNameForm, payload: event.target.value})
     };
     handleInputPrice = (event) => {
-        this.props.dispatch({...HANDLE_MENU_PRICE, price: event.target.value})
+        this.props.dispatch({...handleMenuPriceForm, payload: event.target.value})
     };
     handleInputAvailability = (event) => {
-        this.props.dispatch({...HANDLE_MENU_AVAILABILITY, availability: event.target.value})
+        this.props.dispatch({...handleMenuAvailabilityForm, payload: event.target.value})
     };
     handleInputCategory = (event) => {
-        this.props.dispatch({...HANDLE_MENU_CATEGORY, category: event.target.value})
+        this.props.dispatch({...handleMenuCategoryForm, payload: event.target.value})
     };
     handleInputImage = (event) => {
-        this.props.dispatch({...HANDLE_MENU_IMAGE, image: event.target.files[0]})
+        this.props.dispatch({...handleMenuImageForm, payload: event.target.files[0]})
     };
 
-    handleSubmit=()=>{
-        submitDataMenu(this.props.menuInput, this.props.image)
-    };
-
-    componentDidMount() {
-        this.fetchDataMenuCategory();
-    }
-
-    fetchDataMenuCategory = async () => {
-        const data = await fetchMenuCategory();
-        if (!(data === undefined)) {
-            this.props.dispatch({...FETCH_MENU_CATEGORY_SUCCESS_IN_MENU, payload: data})
-        }
-    };
 }
 
 const mapStateToProps = (state) => {
-    return {...state.menuReducer}
+    return {
+        ...state.menuReducer,
+        ...state.menuCategoryReducer
+    }
 };
 
-export default withRouter(connect(mapStateToProps)(MenuForm))
+export default connect(mapStateToProps)(MenuForm);

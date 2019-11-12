@@ -20,7 +20,6 @@ import backGray from '../../assets/images/back-gray.png'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import * as action from '../../action/action'
 import DiningTableContainer from "./dining-table/DiningTableContainer";
 import MenuCategoryContainer from "./menu-category/MenuCategoryContainer";
 import MenuContainer from "./menu/MenuContainer";
@@ -73,7 +72,6 @@ class AdminContainer extends Component {
                     <Route path="/admin/dining-table" component={DiningTableContainer}/>
                     <Route path="/admin/menu-category" component={MenuCategoryContainer}/>
                 </div>
-
             </div>
         );
     }
@@ -87,4 +85,4 @@ const mapStateToProps = state => (
     }
 );
 
-export default withRouter(connect(mapStateToProps, action)(AdminContainer))
+export default withRouter(connect(mapStateToProps)(AdminContainer))

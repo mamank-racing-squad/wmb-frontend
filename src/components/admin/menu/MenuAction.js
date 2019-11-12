@@ -1,8 +1,8 @@
-export const FETCH_MENU_SUCCESS={type:'FETCH_MENU_SUCCESS'};
-export const FETCH_MENU_CATEGORY_SUCCESS_IN_MENU={type:'FETCH_MENU_CATEGORY_SUCCESS_IN_MENU'};
-export const HANDLE_MENU_NAME = {type:'HANDLE_MENU_NAME'};
-export const HANDLE_MENU_PRICE = {type:'HANDLE_MENU_PRICE'};
-export const HANDLE_MENU_AVAILABILITY = {type:'HANDLE_MENU_AVAILABILITY'};
-export const HANDLE_MENU_CATEGORY = {type:'HANDLE_MENU_CATEGORY'};
-export const HANDLE_MENU_IMAGE = {type:'HANDLE_MENU_IMAGE'};
-export const EDIT_DATA_MENU = {type:'EDIT_DATA_MENU'};
+export const fetchMenuSuccess = {type: 'FETCH_MENU_SUCCESS'};
+export const editMenuForm = {type: 'EDIT_MENU_FORM'};
+export const handleMenuNameForm = {type: 'HANDLE_MENU_NAME_FORM'};
+export const handleMenuPriceForm = {type: 'HANDLE_MENU_PRICE_FORM'};
+export const handleMenuAvailabilityForm = {type: 'HANDLE_MENU_AVAILABILITY_FORM'};
+export const handleMenuCategoryForm = {type: 'HANDLE_MENU_CATEGORY_FORM'};
+export const handleMenuImageForm = {type: 'HANDLE_MENU_IMAGE_FORM'};
+export const resetMenuForm = {type: 'RESET_MENU_FORM'};
