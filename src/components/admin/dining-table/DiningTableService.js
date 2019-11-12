@@ -16,3 +16,17 @@ export async function submitDiningTable(payload) {
             return response.json()
         }).catch(reason => console.log(reason));
 }
+
+export async function getDataDiningTableById(id){
+    return await fetch(`http://localhost:9090/dining-table/${id}`, {method: "GET"})
+        .then((response) => {
+            return response.json()
+        });
+}
+
+export async function deleteDiningTableById(id){
+    return await fetch(`http://localhost:9090/dining-table/${id}`, {method: "DELETE"})
+        .then((response) => {
+            alert('data dihapus');
+        });
+}
