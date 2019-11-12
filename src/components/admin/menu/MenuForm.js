@@ -15,7 +15,6 @@ import {editDataMenu, submitDataMenu} from "./MenuService";
 
 class MenuForm extends React.Component {
     render() {
-        console.log(this.props.menuInput)
         const menuCategory = this.props.menuCategory.map((element) => {
             return <option value={element.idMenuCategory}>{element.categoryName}</option>
         });
@@ -77,7 +76,8 @@ class MenuForm extends React.Component {
 
     handleSubmit=()=>{
         submitDataMenu(this.props.menuInput, this.props.image)
-    }
+    };
+
     componentDidMount() {
         this.fetchDataMenuCategory();
     }
