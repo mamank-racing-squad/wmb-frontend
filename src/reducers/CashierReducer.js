@@ -39,7 +39,7 @@ export function dealFoods(state = [], action) {
             }
         case 'UPDATE_SELECTED_FOOD':
             {
-                state.map((item) => {
+                return state.map((item) => {
                     if(action.payload.name === item.name)
                     item.isSelected = action.payload.isSelected
 
@@ -70,7 +70,7 @@ export function dealDrinks(state = [], action) {
         }
         case 'UPDATE_SELECTED_DRINK':
             {
-                state.map((item) => {
+                return state.map((item) => {
                     if(action.payload.name === item.name)
                     item.isSelected = action.payload.isSelected
 
@@ -80,7 +80,7 @@ export function dealDrinks(state = [], action) {
         case 'SET_DEFAULT_DRINKS':
             {
                 return state.map((item) => {
-                    item.isSelected = false
+                    item.isSelected = false;
                     return item
                 })
             }

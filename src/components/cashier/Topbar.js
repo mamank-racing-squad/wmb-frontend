@@ -20,11 +20,12 @@ class Topbar extends React.Component {
                 case 'drinks':
                     return {
                         title: 'Select Drinks'
-                    }
+                    };
                 case 'dining-table':
                     return {
                         title: 'Select Dining Table'
-                    }
+                    };
+                default: return null;
             }
         }
         return null
@@ -35,7 +36,7 @@ class Topbar extends React.Component {
             <div className="topbar">
                 <span className="title">{this.state.title}</span>
                 <div className="searchBox">
-                    <img src={searchIcon} />
+                    <img src={searchIcon}  alt="Search Bar"/>
                     <input type="text" className="searchInput"
                         value={this.props.search}
                         placeholder={'Search for items'}

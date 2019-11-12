@@ -20,7 +20,7 @@ class Topbar extends React.Component {
                 case 'drinks':
                     return {
                         title: 'Drinks'
-                    }
+                    };
                 default :
                     return {
                         title:'Admin Panel'
@@ -34,7 +34,7 @@ class Topbar extends React.Component {
         return (
             <div className="topbar">
                 <div className="searchBox">
-                    <img src={adminGray} />
+                    <img src={adminGray} alt="Top Bar"/>
                     <span style={{fontSize:"24px"}} className="title">{this.state.title}</span>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {NavLink, Route, Switch} from "react-router-dom";
+import {NavLink, Route} from "react-router-dom";
 
 import food from '../../assets/images/salad.png';
 import foodGray from '../../assets/images/salad-gray.png';
@@ -46,7 +46,6 @@ class CashierContainer extends Component {
         this.state = {
             search: ''
         };
-        console.log(this.props)
         this.props.addFoods(
             [
                 {name: "Spaghetti", image: spaghetti, price: 130000, isSelected: false, isAvailable: false},
@@ -126,8 +125,8 @@ class CashierContainer extends Component {
                     <NavLink exact to="/dining-table" activeClassName="active" className="dining-table">
                         {
                             this.props.match && this.props.match.params.type === 'dining-table' ?
-                                <img src={diningTable}/> :
-                                <img src={diningTableGray}/>
+                                <img src={diningTable} alt="Cashier"/> :
+                                <img src={diningTableGray} alt="Cashier"/>
                         }
                         <span>Dining</span>
                         <span style={{paddingTop: "5px"}}>Table</span>
@@ -135,40 +134,40 @@ class CashierContainer extends Component {
                     <NavLink exact to="/foods" activeClassName="active" className="foods">
                         {
                             this.props.match && this.props.match.params.type === 'foods' ?
-                                <img src={food}/> :
-                                <img src={foodGray}/>
+                                <img src={food} alt="Cashier"/> :
+                                <img src={foodGray} alt="Cashier"/>
                         }
                         <span>Menu</span>
                     </NavLink>
                     <NavLink to="/drinks" activeClassName="active" className="drinks">
                         {
                             this.props.match && this.props.match.params.type === 'drinks' ?
-                                <img src={drink}/> :
-                                <img src={drinkGray}/>
+                                <img src={drink} alt="Cashier"/> :
+                                <img src={drinkGray} alt="Cashier"/>
                         }
                         <span>Drinks</span>
                     </NavLink>
                     <NavLink to="/payment" activeClassName="active" className="payment">
                         {
                             this.props.match && this.props.match.params.type === 'payment' ?
-                                <img src={payment}/> :
-                                <img src={paymentGray}/>
+                                <img src={payment} alt="Cashier"/> :
+                                <img src={paymentGray} alt="Cashier"/>
                         }
                         <span>Payment</span>
                     </NavLink>
                     <NavLink exact to="/menu-test" activeClassName="active" className="menu-test">
                         {
                             this.props.match && this.props.match.params.type === 'menu-test' ?
-                                <img src={food}/> :
-                                <img src={foodGray}/>
+                                <img src={food} alt="Cashier"/> :
+                                <img src={foodGray} alt="Cashier"/>
                         }
                         <span>Menu - test</span>
                     </NavLink>
                     <NavLink to="/admin" activeClassName="active" className="menu-category">
                         {
                             this.props.match && this.props.match.params.type === 'menu-category' ?
-                                <img src={admin}/> :
-                                <img src={adminGray}/>
+                                <img src={admin} alt="Cashier"/> :
+                                <img src={adminGray} alt="Cashier"/>
                         }
                         <span>Admin</span>
                     </NavLink>

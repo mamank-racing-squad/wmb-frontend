@@ -24,6 +24,10 @@ const Input = styled.input`
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 `;
 
+const Label = styled.label`
+    padding-bottom: 5px;
+`;
+
 class DiningTableForm extends React.Component {
     render() {
         return (
@@ -32,13 +36,17 @@ class DiningTableForm extends React.Component {
                     <p>Input Menu Category</p>
                 </div>
                 <div className="checkoutBox">
-                    <Input type="text" placeholder="ID"/>
-
-                    <Input type="text" placeholder="Category Name"/>
-                    <div>
-                        <button className="clearBtn" onClick={this.clearOrder}>Clear</button>
-                        <button className="payBtn" onClick={this.checkout}>Save</button>
-                    </div>
+                    <form>
+                        <Input type="hidden" placeholder="ID"/>
+                        <Label>Number Dining Table</Label>
+                        <Input type="text" placeholder="Input Dining Table"/>
+                        <Label>Capacity</Label>
+                        <Input type="number" min={1} placeholder="1"/>
+                        <div>
+                            <button className="clearBtn">Clear</button>
+                            <button className="payBtn">Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         )

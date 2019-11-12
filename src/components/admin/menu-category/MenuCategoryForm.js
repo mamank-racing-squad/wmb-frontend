@@ -2,13 +2,11 @@ import React from 'react';
 import '../../../assets/css/DiningTable.scss';
 import '../../../assets/css/Order.scss'
 
-import OrderList from '../OrderList'
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import * as action from '../../../action/action'
 import {HANDLE_INPUT_CATEGORY_NAME} from "./MenuCategoryAction";
-import {fetchMenuCategory, submitMenuCategory} from "./MenuCategoryService";
+import {submitMenuCategory} from "./MenuCategoryService";
 
 const Input = styled.input`
     display: block;

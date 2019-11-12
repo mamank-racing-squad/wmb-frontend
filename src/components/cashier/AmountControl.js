@@ -9,8 +9,8 @@ class AmountControl extends React.Component {
             <div className="numberSpinnerBox">
                 <span>{this.props.number}</span>
                 <div className="btn_wrapper">
-                    <button className="up" onClick={this.props.handleUpClick}><img src={upIcon} /></button>
-                    <button className="down" onClick={this.props.handleDownClick}><img src={downIcon} /></button>
+                    <button className="up" onClick={this.props.handleUpClick}><img src={upIcon}  alt="Increase"/></button>
+                    <button className="down" onClick={this.props.handleDownClick}><img src={downIcon}  alt="Decrease"/></button>
                 </div>
             </div>
         )

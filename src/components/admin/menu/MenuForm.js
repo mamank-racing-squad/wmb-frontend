@@ -4,7 +4,6 @@ import '../../../assets/css/Order.scss'
 
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import * as action from '../../../action/action'
 import styled from "styled-components";
 import {fetchMenuCategory} from "../menu-category/MenuCategoryService";
 import {

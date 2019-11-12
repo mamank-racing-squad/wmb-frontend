@@ -8,9 +8,6 @@ import * as action from '../../action/action'
 import { connect } from 'react-redux'
 
 class OrderList extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     handleIncreaseAmount = () => {
         let number = this.props.number;
         this.props.updateSelectedItemQuantity(
@@ -40,7 +37,7 @@ class OrderList extends React.Component {
             <div className="orderList">
                 <div>
                     <button className="deleteBtn" onClick={this.props.handleDelete}>
-                        <img src={deleteIcon} />
+                        <img src={deleteIcon}  alt="Order List"/>
                     </button>
                     <div className="column-1">
                         <p className="item_name">{this.props.name}</p>
@@ -55,13 +52,5 @@ class OrderList extends React.Component {
         )
     }
 }
-
-const mapStateToProps = store => (
-  {
-    selectedItem: store.selectedItem,
-    foods: store.foods,
-    drinks: store.drinks
-  }
-);
 
 export default withRouter(connect(null, action)(OrderList))

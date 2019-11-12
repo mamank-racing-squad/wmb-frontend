@@ -6,7 +6,7 @@ import CashierContainer from './components/cashier/CashierContainer';
 import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux'
-import {combineReducers, createStore} from 'redux'
+import {createStore} from 'redux'
 import AdminContainer from "./components/admin/AdminContainer";
 import {reducers} from "./reducers/CombineReducers";
 

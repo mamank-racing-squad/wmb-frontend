@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {NavLink, Route, Switch} from "react-router-dom";
+import {NavLink, Route} from "react-router-dom";
 
 
 import '../../assets/css/App.scss';
@@ -28,10 +28,6 @@ import MenuContainer from "./menu/MenuContainer";
 
 class AdminContainer extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div>
@@ -39,8 +35,8 @@ class AdminContainer extends Component {
                     <NavLink exact to="/admin/dining-table" activeClassName="active" className="dining-table">
                         {
                             this.props.match && this.props.match.params.type === 'dining-table' ?
-                                <img src={diningTable}/> :
-                                <img src={diningTableGray}/>
+                                <img src={diningTable} alt="Admin Panel"/> :
+                                <img src={diningTableGray} alt="Admin Panel"/>
                         }
                         <span>Dining</span>
                         <span style={{paddingTop: "5px"}}>Table</span>
@@ -48,24 +44,24 @@ class AdminContainer extends Component {
                     <NavLink exact to="/admin/menu" activeClassName="active" className="foods">
                         {
                             this.props.match && this.props.match.params.type === 'foods' ?
-                                <img src={menu}/> :
-                                <img src={menuGray}/>
+                                <img src={menu} alt="Admin Panel"/> :
+                                <img src={menuGray} alt="Admin Panel"/>
                         }
                         <span>Menu</span>
                     </NavLink>
                     <NavLink to="/admin/menu-category" activeClassName="active" className="drinks">
                         {
                             this.props.match && this.props.match.params.type === 'menu-category' ?
-                                <img src={menuCategory}/> :
-                                <img src={menuCategoryGray}/>
+                                <img src={menuCategory} alt="Admin Panel"/> :
+                                <img src={menuCategoryGray} alt="Admin Panel"/>
                         }
                         <span>Menu Category</span>
                     </NavLink>
                     <NavLink to="/" activeClassName="active" className="menu-category">
                         {
                             this.props.match && this.props.match.params.type === 'menu-category' ?
-                                <img src={backGray}/> :
-                                <img src={back}/>
+                                <img src={backGray} alt="Admin Panel"/> :
+                                <img src={back} alt="Admin Panel"/>
 
                         }
                         <span>Back</span>
