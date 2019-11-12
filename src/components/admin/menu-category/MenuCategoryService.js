@@ -26,7 +26,6 @@ export async function submitMenuCategory(menuCategory) {
         alert('data tidak boleh kosong');
     }else{
         alert('save data success');
-        window.location.reload();
     }
     return data;
 }
