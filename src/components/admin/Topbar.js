@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../assets/css/Topbar.scss';
-import searchIcon from '../../assets/images/search.png';
+import adminGray from '../../assets/images/admin-gray.png';
 
 class Topbar extends React.Component {
     constructor(props) {
@@ -23,7 +23,7 @@ class Topbar extends React.Component {
                     }
                 default :
                     return {
-                        title:'ADMIN'
+                        title:'Admin Panel'
                     }
             }
         }
@@ -33,15 +33,10 @@ class Topbar extends React.Component {
     render() {
         return (
             <div className="topbar">
-                <span className="title">{this.state.title}</span>
-                {/*<div className="searchBox">
-                    <img src={searchIcon} />
-                    <input type="text" className="searchInput"
-                        value={this.props.search}
-                        placeholder={'Search for items'}
-                        onChange={this.props.handleSearch}
-                    />
-                </div>*/}
+                <div className="searchBox">
+                    <img src={adminGray} />
+                    <span style={{fontSize:"24px"}} className="title">{this.state.title}</span>
+                </div>
             </div>
         )
     }

@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import styled, {css} from 'styled-components'
 import MenuCategoryForm from "./MenuCategoryForm";
-import {fetchMenuCategory} from "./MenuCategoryService";
-import {FETCH_MENU_CATEGORY_SUCCESS} from "../AdminAction";
+import {deleteMenuCategory, fetchMenuCategory, getMenuCategoryById} from "./MenuCategoryService";
+import {EDIT_DATA, FETCH_MENU_CATEGORY_SUCCESS} from "./MenuCategoryAction";
 import {connect} from 'react-redux';
+import {NavLink} from "react-router-dom";
 
 const Button = styled.button`
   background: transparent;
@@ -23,19 +24,34 @@ const Button = styled.button`
 `;
 
 class MenuCategoryContainer extends Component {
+
+    deleteData = (id) =>{
+        deleteMenuCategory(id);
+        this.props.dispatch({type:'RELOAD'});
+    };
+
+    editData = async (id) =>{
+        const data = await getMenuCategoryById(id);
+        console.log(data);
+        if (!(data === undefined)) {
+            this.props.dispatch({...EDIT_DATA, menuCategoryInput:data})
+        }
+    };
+
     render() {
         console.log(this.props);
         const dataCategory = this.props.menuCategory.map((element, index)=>{
             return <tr>
                 <td>{index+1}</td>
                 <td>{element.categoryName}</td>
-                <td style={{textAlign: "center"}}><Button>Edit</Button>|<Button>Delete</Button></td>
+                <td style={{textAlign: "center"}}><Button onClick={()=>{this.editData(element.idMenuCategory)}}>Edit</Button>|
+                    <Button onClick={ () => {this.deleteData(element.idMenuCategory)}}>Delete</Button></td>
             </tr>
         });
         return (
             <div className="right-wrapper">
                 <div className="items_wrapper mt-0">
-                    <div className="container">
+                    <div className="orderBox container">
                         <table id="customers">
                             <tr>
                                 <th>No</th>
