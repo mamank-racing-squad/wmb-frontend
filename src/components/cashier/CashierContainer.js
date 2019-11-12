@@ -36,9 +36,14 @@ import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import * as action from '../../action/action'
-import MenuCategory from './MenuCategory';
+import MenuCategory from "./MenuCategory";
 import MenuContainer from "../cashier/menu/MenuContainer";
 import PaymentContainer from "./payment/PaymentContainer";
+import MenuTab from "./menu/MenuTab";
+import {FETCH_MENU_SUCCESS} from "../admin/menu/MenuAction";
+import {fetchDataMenu} from "../admin/menu/MenuService";
+import {menuReducer} from "../admin/menu/MenuReducer";
+import {reducers as state} from "../../reducers/CombineReducers";
 
 class CashierContainer extends Component {
     constructor(props) {
@@ -50,15 +55,16 @@ class CashierContainer extends Component {
             [
                 {name: "Spaghetti", image: spaghetti, price: 130000, isSelected: false, isAvailable: false},
                 {name: "Pizza", image: pizza, price: 250000, isSelected: false, isAvailable: false},
-                {name: "French-Frices", image: frenchFries, price: 8000, isSelected: false, isAvailable: true}
-            ]
-        );
-        this.props.addDrinks(
-            [
+                {name: "French-Frices", image: frenchFries, price: 8000, isSelected: false, isAvailable: true},
                 {name: "Cola", image: cola, price: 4000, isSelected: false, isAvailable: true},
                 {name: "Coffee", image: coffee, price: 10000, isSelected: false, isAvailable: true},
                 {name: "Milk Tea", image: milkTea, price: 90, isSelected: false, isAvailable: false},
                 {name: "Black Tea", image: blackTea, price: 30, isSelected: false, isAvailable: true}
+            ]
+        );
+        this.props.addDrinks(
+            [
+
             ]
         );
     }
@@ -139,14 +145,14 @@ class CashierContainer extends Component {
                         }
                         <span>Menu</span>
                     </NavLink>
-                    <NavLink to="/drinks" activeClassName="active" className="drinks">
-                        {
-                            this.props.match && this.props.match.params.type === 'drinks' ?
-                                <img src={drink} alt="Cashier"/> :
-                                <img src={drinkGray} alt="Cashier"/>
-                        }
-                        <span>Drinks</span>
-                    </NavLink>
+                    {/*<NavLink to="/drinks" activeClassName="active" className="drinks">*/}
+                    {/*    {*/}
+                    {/*        this.props.match && this.props.match.params.type === 'drinks' ?*/}
+                    {/*            <img src={drink} alt="Cashier"/> :*/}
+                    {/*            <img src={drinkGray} alt="Cashier"/>*/}
+                    {/*    }*/}
+                    {/*    <span>Drinks</span>*/}
+                    {/*</NavLink>*/}
                     <NavLink to="/payment" activeClassName="active" className="payment">
                         {
                             this.props.match && this.props.match.params.type === 'payment' ?
@@ -154,14 +160,6 @@ class CashierContainer extends Component {
                                 <img src={paymentGray} alt="Cashier"/>
                         }
                         <span>Payment</span>
-                    </NavLink>
-                    <NavLink exact to="/menu-test" activeClassName="active" className="menu-test">
-                        {
-                            this.props.match && this.props.match.params.type === 'menu-test' ?
-                                <img src={food} alt="Cashier"/> :
-                                <img src={foodGray} alt="Cashier"/>
-                        }
-                        <span>Menu - test</span>
                     </NavLink>
                     <NavLink to="/admin" activeClassName="active" className="menu-category">
                         {
@@ -188,17 +186,17 @@ class CashierContainer extends Component {
                             }
                         )}/>
 
-                        <Route path="/drinks" render={() => drinks.map((item, key) => {
-                                if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {
-                                    return (
-                                        <FoodItem item_name={item.name} item_image={item.image} price={item.price}
-                                                  isSelected={item.isSelected}
-                                                  handleClick={() => this.handleFoodItemSelect('drinks', key)} key={key}
-                                        />
-                                    )
-                                }
-                            }
-                        )}/>
+                        {/*<Route path="/drinks" render={() => drinks.map((item, key) => {*/}
+                        {/*        if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {*/}
+                        {/*            return (*/}
+                        {/*                <FoodItem item_name={item.name} item_image={item.image} price={item.price}*/}
+                        {/*                          isSelected={item.isSelected}*/}
+                        {/*                          handleClick={() => this.handleFoodItemSelect('drinks', key)} key={key}*/}
+                        {/*                />*/}
+                        {/*            )*/}
+                        {/*        }*/}
+                        {/*    }*/}
+                        {/*)}/>*/}
 
                         <Route path="/dining-table" render={() => foods.map((item, key) => {
                                 if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {
@@ -214,27 +212,31 @@ class CashierContainer extends Component {
                         <Route path="/payment" component={PaymentContainer}>
                             <PaymentContainer/>
                         </Route>
-
-                        <Route path="/menu-test" component={MenuContainer}>
-                            <MenuContainer/>
-                        </Route>
-
-                        <Route path="/admin" component={MenuCategory}>
-                            <MenuCategory/>
-                        </Route>
                     </div>
                     <Order/>
                 </div>
             </div>
         );
     }
+    componentDidMount() {
+        this.fetchDataMenu();
+    }
+
+    fetchDataMenu = async () => {
+        const data = await fetchDataMenu();
+        console.log(data);
+        if (!(data === undefined)) {
+            // this.props.dispatch({...FETCH_MENU_SUCCESS, payload: data})
+        }
+    };
 }
 
-const mapStateToProps = state => (
-    {
+const mapStateToProps = (state) => (
+     {
         selectedItem: state.selectedItem,
         foods: state.foods,
-        drinks: state.drinks
+        drinks: state.drinks,
+        menuReducer:{...state.menuReducer}
     }
 );
 
