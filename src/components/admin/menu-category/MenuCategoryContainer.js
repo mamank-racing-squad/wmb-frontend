@@ -4,7 +4,6 @@ import MenuCategoryForm from "./MenuCategoryForm";
 import {deleteMenuCategory, fetchMenuCategory, getMenuCategoryById} from "./MenuCategoryService";
 import {EDIT_DATA, FETCH_MENU_CATEGORY_SUCCESS} from "./MenuCategoryAction";
 import {connect} from 'react-redux';
-import {NavLink} from "react-router-dom";
 
 const Button = styled.button`
   background: transparent;

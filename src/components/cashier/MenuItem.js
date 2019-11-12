@@ -5,12 +5,8 @@ import tick from '../../assets/images/tick.png'
 import {connect} from 'react-redux'
 import * as action from '../../action/action'
 import {withRouter} from 'react-router-dom'
-import TabberMenu from "./menu/TabberMenu";
 
 class MenuItem extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     handleChange = () => {
     };
@@ -18,14 +14,13 @@ class MenuItem extends React.Component {
     render() {
         return (
             <div onClick={this.props.handleClick} className={this.props.isSelected ? 'FoodItemBox selected' : 'FoodItemBox'}>
-                <img className="itemImage" src={this.props.item_image} alt={"image"}/>
+                <img className="itemImage" src={this.props.item_image} alt="Menu Item Images"/>
                 {this.props.isSelected ?
                     <label>
-                        <img src={tick}/>
+                        <img src={tick} alt="Menu Item"/>
                     </label>
                     : null
                 }
-
 
                 <input type="checkbox" checked={this.props.isSelected} value={this.props.isSelected}
                        onChange={this.handleChange}/>

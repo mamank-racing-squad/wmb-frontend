@@ -1,9 +1,6 @@
-import React, {Component} from "react";
+import React from "react";
 import styled, {css} from 'styled-components'
 import MenuForm from "./MenuForm";
-import pizza from '../../../assets/images/Pizza.jpg'
-import {deleteMenuCategory, fetchMenuCategory, getMenuCategoryById} from "../menu-category/MenuCategoryService";
-import {EDIT_DATA, FETCH_MENU_CATEGORY_SUCCESS} from "../menu-category/MenuCategoryAction";
 import {connect} from "react-redux";
 import {deleteMenu, fetchDataMenu, getDataMenuById} from "./MenuService";
 import {EDIT_DATA_MENU, FETCH_MENU_SUCCESS} from "./MenuAction";
@@ -53,7 +50,7 @@ class MenuContainer extends React.Component {
             return <tr>
                 {/*<td>{index+1}</td>*/}
                 <td>{element.menuName}</td>
-                <td><img src={`http://localhost/menu-img/${element.idMenu}.jpg`} width="200px" height="200px"/></td>
+                <td><img src={`http://localhost/menu-img/${element.idMenu}.jpg`} width="200px" height="200px" alt="menu"/></td>
                 <td>IDR. {element.price}</td>
                 <td>{element.menuCategory.categoryName}</td>
                 <td>{avail()}</td>

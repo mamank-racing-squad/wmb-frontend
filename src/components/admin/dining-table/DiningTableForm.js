@@ -41,7 +41,7 @@ class DiningTableForm extends React.Component {
                         <Label>Number Dining Table</Label>
                         <Input type="text" placeholder="Input Dining Table"/>
                         <Label>Capacity</Label>
-                        <Input type="number" min={1} placeholder="0"/>
+                        <Input type="number" min={1} placeholder="1"/>
                         <div>
                             <button className="clearBtn">Clear</button>
                             <button className="payBtn">Save</button>
