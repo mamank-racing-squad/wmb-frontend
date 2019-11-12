@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import {dealDrinks, dealFoods, dealSelectedItem } from "./CashierReducer";
+import {cashierComponent, dealDrinks, dealFoods, dealSelectedItem} from "./CashierReducer";
 import {menuCategoryReducer} from "../components/admin/menu-category/MenuCategoryReducer";
 import {menuReducer} from "../components/admin/menu/MenuReducer";
 

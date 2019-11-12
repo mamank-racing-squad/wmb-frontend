@@ -36,7 +36,7 @@ class OrderList extends React.Component {
         return (
             <div className="orderList">
                 <div>
-                    <button className="deleteBtn" onClick={this.props.handleDelete}>
+                    <button  className="deleteBtn" onClick={this.props.handleDelete}>
                         <img src={deleteIcon}  alt="Order List"/>
                     </button>
                     <div className="column-1">
