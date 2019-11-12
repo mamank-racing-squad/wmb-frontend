@@ -7,7 +7,7 @@ import styled, {css} from "styled-components";
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import * as action from '../../../action/action'
-import {HANDLE_INPUT_CATEGORY_NAME} from "../AdminAction";
+import {HANDLE_INPUT_CATEGORY_NAME} from "./MenuCategoryAction";
 import {fetchMenuCategory, submitMenuCategory} from "./MenuCategoryService";
 
 const Input = styled.input`
@@ -29,14 +29,15 @@ const Input = styled.input`
 
 class MenuCategoryForm extends React.Component {
     render() {
+
         return (
                 <div className="orderBox">
                     <div className="title">
-                        <p>Input Menu Category</p>
+                        <p>Menu Category Form</p>
                     </div>
                     <div className="checkoutBox">
-                        <input type="text" placeholder="ID" disabled="true"/>
-                        <input type="text" placeholder="Category Name"
+                        <Input type="text" placeholder="Generated Id" value={this.props.menuCategoryInput.idMenuCategory} disabled="true"/>
+                        <Input type="text" placeholder="Category Name"
                                value={this.props.menuCategoryInput.categoryName}
                                onChange={event => {this.props.dispatch({...HANDLE_INPUT_CATEGORY_NAME, categoryName:event.target.value})}}
                         />
@@ -51,7 +52,7 @@ class MenuCategoryForm extends React.Component {
     }
     handleSubmitMenuCategory=()=>{
         submitMenuCategory(this.props.menuCategoryInput);
-        this.props.dispatch({type:'RELOAD', payload:this.props.menuCategoryInput})
+        this.props.dispatch({type:'RELOAD'})
     }
 }
 

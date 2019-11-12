@@ -24,17 +24,44 @@ const Input = styled.input`
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 `;
 
+const Select = styled.select`
+    display: block;
+    width: 100%;
+    height: calc(1em + .75rem + 2px);
+    padding-left: 10px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+`;
 class MenuForm extends React.Component {
     render() {
         return (
             <div className="orderBox">
                 <div className="title">
-                    <p>Input Menu Category</p>
+                    <p>Menu Form</p>
                 </div>
                 <div className="checkoutBox">
-                    <Input type="text" placeholder="ID"/>
-
-                    <Input type="text" placeholder="Category Name"/>
+                    <Input type="text" placeholder="Generated ID" disabled="true"/>
+                    <Input type="text" placeholder="Menu Name"/>
+                    <Input type="text" placeholder="Price"/>
+                    <label>Upload Image</label>
+                    <Input type="file" />
+                    <label>Availability</label>
+                    <Select>
+                        <option value="">Tersedia</option>
+                        <option value="">Tidak Tersedia</option>
+                    </Select>
+                    <label>Menu Category</label>
+                    <Select>
+                        <option value="">dari database</option>
+                    </Select>
                     <div>
                         <button className="clearBtn" onClick={this.clearOrder}>Clear</button>
                         <button className="payBtn" onClick={this.checkout}>Save</button>
