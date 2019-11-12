@@ -4,7 +4,14 @@ import '../../../assets/css/Order.scss'
 
 import {connect} from 'react-redux'
 
-import {handleMenuAvailabilityForm, handleMenuCategoryForm, handleMenuImageForm, handleMenuNameForm, handleMenuPriceForm} from "./MenuAction";
+import {
+    handleMenuAvailabilityForm,
+    handleMenuCategoryForm,
+    handleMenuImageForm,
+    handleMenuNameForm,
+    handleMenuPriceForm,
+    resetMenuForm
+} from "./MenuAction";
 import {fetchMenuCategory} from "../../../services/MenuCategoryService";
 import {fetchMenuCategorySuccess} from "../menu-category/MenuCategoryAction";
 
@@ -65,7 +72,7 @@ class MenuForm extends React.Component {
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-secondary" onClick={ () => {this.props.dispatch(resetMenuForm)}} data-dismiss="modal">Cancel</button>
                                 <button type="button" className="btn btn-primary" onClick={this.props.handleSubmitData} data-dismiss="modal">Save</button>
                             </div>
                         </form>
