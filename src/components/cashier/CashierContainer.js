@@ -3,11 +3,23 @@ import {NavLink, Route, Switch} from "react-router-dom";
 
 import food from '../../assets/images/salad.png';
 import foodGray from '../../assets/images/salad-gray.png';
+
+import admin from '../../assets/images/admin.png';
+import adminGray from '../../assets/images/admin-gray.png';
+
 import drink from '../../assets/images/cheers.png';
 import drinkGray from '../../assets/images/cheers-gray.png';
+
+import diningTable from '../../assets/images/table.png';
+import diningTableGray from '../../assets/images/table-gray.png';
+
+import payment from '../../assets/images/payment.png'
+import paymentGray from '../../assets/images/payment-gray.png'
+
 import '../../assets/css/App.scss';
 import Topbar from './Topbar'
 
+//imgDummy
 import FoodItem from './MenuItem'
 import spaghetti from '../../assets/images/spaghetti.jpg';
 import pizza from '../../assets/images/Pizza.jpg'
@@ -16,8 +28,8 @@ import cola from '../../assets/images/cola.jpg'
 import coffee from '../../assets/images/coffee.JPG'
 import milkTea from '../../assets/images/milk-tea.jpg'
 import blackTea from '../../assets/images/black-tea.jpg'
-import category from '../../assets/images/category.png'
-import payment from '../../assets/images/payment.png'
+
+
 import Order from './Order'
 
 import {withRouter} from 'react-router-dom'
@@ -112,8 +124,8 @@ class CashierContainer extends Component {
                     <NavLink exact to="/dining-table" activeClassName="active"  className="dining-table">
                         {
                             this.props.match && this.props.match.params.type === 'dining-table' ?
-                                <img src={food}/> :
-                                <img src={foodGray}/>
+                                <img src={diningTable}/> :
+                                <img src={diningTableGray}/>
                         }
                         <span>Dining</span>
                         <span style={{paddingTop: "5px"}}>Table</span>
@@ -134,19 +146,19 @@ class CashierContainer extends Component {
                         }
                         <span>Drinks</span>
                     </NavLink>
-                    <NavLink to="/payment" activeClassName="active" className="drinks">
+                    <NavLink to="/payment" activeClassName="active" className="payment">
                         {
-                            this.props.match && this.props.match.params.type === 'drinks' ?
+                            this.props.match && this.props.match.params.type === 'payment' ?
                                 <img src={payment}/> :
-                                <img src={payment}/>
+                                <img src={paymentGray}/>
                         }
                         <span>Payment</span>
                     </NavLink>
                     <NavLink to="/admin" activeClassName="active" className="menu-category">
                         {
                             this.props.match && this.props.match.params.type === 'menu-category' ?
-                                <img src={category}/>: 
-                                <img src={category}/>
+                                <img src={admin}/>:
+                                <img src={adminGray}/>
                         }
                         <span>Admin</span>
                     </NavLink>
