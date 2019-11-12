@@ -8,7 +8,7 @@ export async function fetchMenuCategory() {
 export async function submitMenuCategory(payload) {
     return await fetch("http://localhost:9090/menu-category",
         {
-            method: payload.idDiningTable !== "" ? "POST" : "PUT",
+            method: payload.idMenuCategory !== "" ? "POST" : "PUT",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(payload)
         })
