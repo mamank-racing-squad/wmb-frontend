@@ -12,7 +12,7 @@ export function dealSelectedItem(state = [], action) {
         case 'UPDATE_QUANTITY':
             {
                 return state.map((item) => {
-                    if(action.payload.name == item.name) {
+                    if(action.payload.name === item.name) {
                         return Object.assign({}, item, {quantity: action.payload.quantity})
                     }
                     return item
@@ -40,7 +40,7 @@ export function dealFoods(state = [], action) {
         case 'UPDATE_SELECTED_FOOD':
             {
                 state.map((item) => {
-                    if(action.payload.name == item.name)
+                    if(action.payload.name === item.name)
                     item.isSelected = action.payload.isSelected
 
                     return Object.assign(state.filter(foods => foods.name !== action.payload.name), item)
@@ -71,7 +71,7 @@ export function dealDrinks(state = [], action) {
         case 'UPDATE_SELECTED_DRINK':
             {
                 state.map((item) => {
-                    if(action.payload.name == item.name)
+                    if(action.payload.name === item.name)
                     item.isSelected = action.payload.isSelected
 
                     return Object.assign(state.filter(drinks => drinks.name !== action.payload.name), item)
