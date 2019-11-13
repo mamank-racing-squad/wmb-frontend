@@ -100,9 +100,6 @@ class CashierContainer extends React.Component {
                                 )
                             }
                         )}/>
-                        <Route path="/payment" component={PaymentContainer}>
-                            <PaymentContainer/>
-                        </Route>
                     </div>
                     <Order/>
                 </div>
