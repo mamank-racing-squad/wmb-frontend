@@ -1,77 +1,71 @@
-import React, {Component} from "react";
-import styled, {css} from 'styled-components'
+import React, {Component} from "react"
 import DiningTableForm from "./DiningTableForm";
-import {editDiningTableForm, fetchDiningTableSuccess} from "./DiningTableAction";
-import {deleteDiningTableById, fetchDiningTable, getDataDiningTableById} from "./DiningTableService";
+import {editDiningTableForm, fetchDiningTableSuccess, resetDiningTableForm} from "./DiningTableAction";
+import {
+    deleteDiningTableById,
+    fetchDiningTable,
+    getDataDiningTableById,
+    submitDiningTable
+} from "../../../services/DiningTableService";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import {connect} from "react-redux";
 
-const Button = styled.button`
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
-  margin-bottom:10px;
-  
-  padding: 0.60em 1em;
+const MySwal = withReactContent(Swal);
 
-  ${props =>
-    props.primary &&
-    css`
-      background: palevioletred;
-      color: white;
-    `};
-`;
 
 class DiningTableContainer extends Component {
 
-    handleAvailability(payload){
-        if (payload){
+    handleAvailability(payload) {
+        if (payload) {
             return "Available";
         }
         return "Not Available"
     }
 
     render() {
-        console.log(this.props);
         return (
-            <div className="right-wrapper">
-                <div className="items_wrapper mt-0">
-                    <div className="container">
-                        <table id="customers">
-                            <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Number Dining Table</th>
-                                <th>Capacity</th>
-                                <th>Status</th>
-                                <th style={{textAlign: "center"}}>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {
-                                this.props.diningTables.map((element, index) => {
-                                    return (
-                                        <tr>
-                                            <td>{index +1}</td>
-                                            <td>{element.numberDiningTable}</td>
-                                            <td>{element.capacity}</td>
-                                            <td>{this.handleAvailability(element.availability)}
-                                            </td>
-                                            <td style={{textAlign: "center"}}>
-                                                <Button onClick={() => {this.handleEditData(element.idDiningTable)}}>Edit</Button>
-                                                <Button onClick={() => {this.handleDeleteData(element.idDiningTable)}}>Delete</Button>
-                                            </td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <DiningTableForm/>
+            <div className="container">
+                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#modalForm">
+                    Add New
+                </button>
+                <br/><br/>
+                <table className="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nomor Dining Table</th>
+                        <th scope="col">Capacity</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        this.props.diningTables.map((element, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td>{element.numberDiningTable}</td>
+                                    <td>{element.capacity}</td>
+                                    <td>{this.handleAvailability(element.availability)}</td>
+                                    <td>
+                                        <a href="#" onClick={() => {
+                                            this.handleEditData(element.idDiningTable)
+                                        }} data-toggle="modal" data-target="#modalForm">Edit</a>
+                                        |
+                                        <a href="#" onClick={() => {
+                                            this.handleDeleteData(element.idDiningTable)
+                                        }}>Delete</a>
+                                    </td>
+                                </tr>
+                            )
+                        })
+                    }
+                    </tbody>
+                </table>
+                <DiningTableForm fetchData={() => {this.fetchDataDiningTable()}} handleSubmitData={() => {this.handleSubmitData()}}/>
             </div>
-
         );
     }
 
@@ -86,6 +80,12 @@ class DiningTableContainer extends Component {
         }
     };
 
+    handleSubmitData = () => {
+        submitDiningTable(this.props.diningTableForm)
+            .then(this.fetchDataDiningTable)
+            .then(this.props.dispatch({...resetDiningTableForm}));
+    };
+
     handleEditData = async (id) => {
         const data = await getDataDiningTableById(id);
         if (!(data === undefined)) {
@@ -94,7 +94,20 @@ class DiningTableContainer extends Component {
     };
 
     handleDeleteData = async (id) => {
-        await deleteDiningTableById(id).then(fetchDiningTable);
+        MySwal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then( async (result) => {
+            if (result.value) {
+                await deleteDiningTableById(id)
+                    .then(this.fetchDataDiningTable);
+            }
+        })
     }
 
 }

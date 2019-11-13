@@ -1,85 +1,107 @@
 import React, {Component} from "react";
-import styled, {css} from 'styled-components'
 import MenuCategoryForm from "./MenuCategoryForm";
-import {deleteMenuCategory, fetchMenuCategory, getMenuCategoryById} from "./MenuCategoryService";
-import {EDIT_DATA, FETCH_MENU_CATEGORY_SUCCESS} from "./MenuCategoryAction";
+import {
+    deleteMenuCategoryById,
+    fetchMenuCategory,
+    getMenuCategoryById,
+    submitMenuCategory
+} from "../../../services/MenuCategoryService";
+import {editMenuCategoryForm, fetchMenuCategorySuccess} from "./MenuCategoryAction";
 import {connect} from 'react-redux';
+import {resetDiningTableForm} from "../dining-table/DiningTableAction";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
-const Button = styled.button`
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
-  margin-bottom:10px;
-  
-  padding: 0.60em 1em;
-
-  ${props =>
-    props.primary &&
-    css`
-      background: palevioletred;
-      color: white;
-    `};
-`;
+const MySwal = withReactContent(Swal);
 
 class MenuCategoryContainer extends Component {
 
-    deleteData = (id) =>{
-        deleteMenuCategory(id);
-    };
-
-    editData = async (id) =>{
-        const data = await getMenuCategoryById(id);
-        console.log(data);
-        if (!(data === undefined)) {
-            this.props.dispatch({...EDIT_DATA, menuCategoryInput:data})
-        }
-    };
-
     render() {
-        console.log(this.props);
-        const dataCategory = this.props.menuCategory.map((element, index)=>{
-            return <tr>
-                <td>{index+1}</td>
-                <td>{element.categoryName}</td>
-                <td style={{textAlign: "center"}}><Button onClick={()=>{this.editData(element.idMenuCategory)}}>Edit</Button>|
-                    <Button onClick={ () => {this.deleteData(element.idMenuCategory)}}>Delete</Button></td>
-            </tr>
-        });
         return (
-            <div className="right-wrapper">
-                <div className="items_wrapper mt-0">
-                    <div className="orderBox container">
-                        <table id="customers">
-                            <tr>
-                                <th>No</th>
-                                <th>Category Name</th>
-                                <th style={{textAlign: "center"}}>Action</th>
-                            </tr>
-                            {dataCategory}
-                        </table>
-                    </div>
-                </div>
-                <MenuCategoryForm/>
+            <div className="container">
+                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#modalForm">
+                    Add New
+                </button>
+                <br/><br/>
+                <table className="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Category Name</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        this.props.menuCategories.map((element, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td>{element.categoryName}</td>
+                                    <td>
+                                        <a href="#" onClick={() => {
+                                            this.handleEditData(element.idMenuCategory)
+                                        }} data-toggle="modal" data-target="#modalForm">Edit</a>
+                                        |
+                                        <a href="#" onClick={() => {
+                                            this.handleDeleteData(element.idMenuCategory)
+                                        }}>Delete</a>
+                                    </td>
+                                </tr>
+                            )
+                        })
+                    }
+                    </tbody>
+                </table>
+                <MenuCategoryForm fetchData={() => {this.fetchDataCategoryMenu()}} handleSubmitData={() => {this.handleSubmitData()}}/>
             </div>
         );
     }
 
     componentDidMount() {
-        this.fetchData();
+        this.fetchDataCategoryMenu();
     }
 
-    fetchData = async () => {
+    fetchDataCategoryMenu = async () => {
         const data = await fetchMenuCategory();
-        console.log(data);
         if (!(data === undefined)) {
-            this.props.dispatch({...FETCH_MENU_CATEGORY_SUCCESS, payload:data})
+            this.props.dispatch({...fetchMenuCategorySuccess, payload:data})
         }
     };
+
+    handleSubmitData = () => {
+        submitMenuCategory(this.props.menuCategoryForm)
+            .then(this.fetchDataCategoryMenu)
+            .then(this.props.dispatch({...resetDiningTableForm}));
+    };
+
+    handleEditData = async (id) => {
+        const data = await getMenuCategoryById(id);
+        if (!(data === undefined)) {
+            this.props.dispatch({...editMenuCategoryForm, payload: data})
+        }
+    };
+
+    handleDeleteData = async (id) => {
+        MySwal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then( async (result) => {
+            if (result.value){
+                await deleteMenuCategoryById(id)
+                    .then(this.fetchDataCategoryMenu);
+            }
+        })
+    }
 
 }
 const mapStateToProps = (state) =>{
     return {...state.menuCategoryReducer}
-}
+};
 
 export default connect(mapStateToProps)(MenuCategoryContainer);

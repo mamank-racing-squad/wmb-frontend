@@ -1,133 +1,41 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {NavLink, Route} from "react-router-dom";
-
-import food from '../../assets/images/salad.png';
-import foodGray from '../../assets/images/salad-gray.png';
-
-import admin from '../../assets/images/admin.png';
-import adminGray from '../../assets/images/admin-gray.png';
-
-import drink from '../../assets/images/cheers.png';
-import drinkGray from '../../assets/images/cheers-gray.png';
-
-import diningTable from '../../assets/images/table.png';
-import diningTableGray from '../../assets/images/table-gray.png';
-
-import payment from '../../assets/images/payment.png'
-import paymentGray from '../../assets/images/payment-gray.png'
 
 import '../../assets/css/App.scss';
 import Topbar from './Topbar'
 
-//imgDummy
-import FoodItem from './MenuItem'
-import spaghetti from '../../assets/images/spaghetti.jpg';
-import pizza from '../../assets/images/Pizza.jpg'
-import frenchFries from '../../assets/images/french-fries.jpg'
-import cola from '../../assets/images/cola.jpg'
-import coffee from '../../assets/images/coffee.JPG'
-import milkTea from '../../assets/images/milk-tea.jpg'
-import blackTea from '../../assets/images/black-tea.jpg'
-
-
 import Order from './Order'
 
-import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import * as action from '../../action/action'
-import MenuCategory from "./MenuCategory";
-import MenuContainer from "../cashier/menu/MenuContainer";
 import PaymentContainer from "./payment/PaymentContainer";
-import MenuTab from "./menu/MenuTab";
-import {FETCH_MENU_SUCCESS} from "../admin/menu/MenuAction";
-import {fetchDataMenu} from "../admin/menu/MenuService";
-import {menuReducer} from "../admin/menu/MenuReducer";
-import {reducers as state} from "../../reducers/CombineReducers";
+
+import {fetchDataMenu} from "../../services/MenuService";
+
+//imgDummy
+
+import food from '../../assets/images/salad.png';
+import foodGray from '../../assets/images/salad-gray.png';
+import admin from '../../assets/images/admin.png';
+import adminGray from '../../assets/images/admin-gray.png';
+import diningTable from '../../assets/images/table.png';
+import diningTableGray from '../../assets/images/table-gray.png';
+import payment from '../../assets/images/payment.png'
+import paymentGray from '../../assets/images/payment-gray.png'
+import {fetchMenuSuccess} from "../admin/menu/MenuAction";
+import MenuItem from "./MenuItem";
+import DiningTable from "./dining-table/DiningTable";
+import {fetchDiningTable} from "../../services/DiningTableService";
+import {fetchDiningTableSuccess} from "../admin/dining-table/DiningTableAction";
+import {fetchMenu} from "./menu/MenuService";
 
 class CashierContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            search: '',
-            menuList:[]
-        };
 
-        this.props.addFoods(
-            [
-                {name: "Pizza", image: pizza, price: 250000, isSelected: false, isAvailable: false},
-                {name: "French-Fries", image: frenchFries, price: 8000, isSelected: false, isAvailable: true},
-                {name: "Cola", image: cola, price: 4000, isSelected: false, isAvailable: true},
-                {name: "Coffee", image: coffee, price: 10000, isSelected: false, isAvailable: true},
-                {name: "Milk Tea", image: milkTea, price: 90, isSelected: false, isAvailable: false},
-                {name: "Black Tea", image: blackTea, price: 30, isSelected: false, isAvailable: true}
-            ]
-        );
-        this.props.addDrinks(
-            [
-
-            ]
-        );
-    }
-    handleFoodItemSelect = (type, key) => {
-        const {foods, drinks} = this.props;
-        const id = key;
-        if (type === 'foods') {
-            let food = foods;
-            food[id].isSelected = !foods[id].isSelected;
-            this.props.updateFood(food);
-            if (foods[id].isSelected) {
-                this.props.onItemSelected(
-                    {
-                        name: foods[id].name,
-                        price: foods[id].price,
-                        quantity: 1,
-                        type: 'food'
-                    })
-            } else {
-                this.props.onItemUnselected({
-                    name: foods[id].name
-                })
-            }
-
-        } else {
-            let drink = drinks;
-            drink[id].isSelected = !drinks[id].isSelected;
-            this.props.updateDrink(drink);
-
-            if (drinks[id].isSelected) {
-                this.props.onItemSelected(
-                    {
-                        name: drinks[id].name,
-                        price: drinks[id].price,
-                        quantity: 1,
-                        type: 'drink'
-                    })
-            } else {
-                this.props.onItemUnselected({
-                    name: drinks[id].name
-                })
-            }
-
-        }
-    };
-
-    handleSearch = (e) => {
-        if (e.target instanceof HTMLInputElement) {
-            this.setState({search: e.target.value})
-        }
-    };
-
-    check = (str) => {
-        if (str.includes('ne'))
-            return str;
+    handleClearListMenu = () => {
+        this.props.dispatch({type: "CLEAR_LIST_MENU"});
     };
 
     render() {
-        console.log(this.props);
-        console.log(this.state);
-
-        const {foods, drinks} = this.props;
         return (
             <div>
                 <div className="Nav">
@@ -148,14 +56,6 @@ class CashierContainer extends React.Component {
                         }
                         <span>Menu</span>
                     </NavLink>
-                    {/*<NavLink to="/drinks" activeClassName="active" className="drinks">*/}
-                    {/*    {*/}
-                    {/*        this.props.match && this.props.match.params.type === 'drinks' ?*/}
-                    {/*            <img src={drink} alt="Cashier"/> :*/}
-                    {/*            <img src={drinkGray} alt="Cashier"/>*/}
-                    {/*    }*/}
-                    {/*    <span>Drinks</span>*/}
-                    {/*</NavLink>*/}
                     <NavLink to="/payment" activeClassName="active" className="payment">
                         {
                             this.props.match && this.props.match.params.type === 'payment' ?
@@ -164,7 +64,7 @@ class CashierContainer extends React.Component {
                         }
                         <span>Payment</span>
                     </NavLink>
-                    <NavLink to="/admin" activeClassName="active" className="menu-category">
+                    <NavLink to="/admin" activeClassName="active" className="menu-category" onClick={this.handleClearListMenu}>
                         {
                             this.props.match && this.props.match.params.type === 'menu-category' ?
                                 <img src={admin} alt="Cashier"/> :
@@ -175,41 +75,29 @@ class CashierContainer extends React.Component {
                 </div>
 
                 <div className="right-wrapper">
-                    <Topbar {...this.props} search={this.state.search} handleSearch={this.handleSearch}/>
+                    <Topbar {...this.props}/>
                     <div className="items_wrapper">
-                        <Route path="/foods" render={() => foods.map((item, key) => {
-                                if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {
-                                    return (
-                                        <FoodItem item_name={item.name} item_image={item.image} price={item.price}
-                                                  isSelected={item.isSelected}
-                                                  handleClick={() => this.handleFoodItemSelect('foods', key)} key={key}
-                                        />
-                                    )
-                                }
+                        <Route path="/foods" render={() => this.props.listMenu.map((item, key) => {
+                                return (
+                                    <MenuItem
+                                        key={key}
+                                        idMenu={item.idMenu}
+                                        menuName={item.menuName}
+                                        price={item.price}
+                                    />
+                                )
                             }
                         )}/>
 
-                        {/*<Route path="/drinks" render={() => drinks.map((item, key) => {*/}
-                        {/*        if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {*/}
-                        {/*            return (*/}
-                        {/*                <FoodItem item_name={item.name} item_image={item.image} price={item.price}*/}
-                        {/*                          isSelected={item.isSelected}*/}
-                        {/*                          handleClick={() => this.handleFoodItemSelect('drinks', key)} key={key}*/}
-                        {/*                />*/}
-                        {/*            )*/}
-                        {/*        }*/}
-                        {/*    }*/}
-                        {/*)}/>*/}
-
-                        <Route path="/dining-table" render={() => foods.map((item, key) => {
-                                if (item.name.toLowerCase().includes(this.state.search.toLowerCase())) {
-                                    return (
-                                        <FoodItem item_name={item.name} item_image={item.image} price={item.price}
-                                                  isSelected={item.isSelected}
-                                                  handleClick={() => this.handleFoodItemSelect('foods', key)} key={key}
-                                        />
-                                    )
-                                }
+                        <Route path="/dining-table" render={() => this.props.diningTables.map((item, key) => {
+                                return (
+                                    <DiningTable
+                                        key={key}
+                                        idDiningTable={item.idDiningTable}
+                                        numberDiningTable={item.numberDiningTable}
+                                        capacity={item.capacity}
+                                    />
+                                )
                             }
                         )}/>
                         <Route path="/payment" component={PaymentContainer}>
@@ -221,25 +109,32 @@ class CashierContainer extends React.Component {
             </div>
         );
     }
+
     componentDidMount() {
         this.fetchDataMenu();
+        this.fetchDataDiningTable();
     }
 
     fetchDataMenu = async () => {
-        const data = await fetchDataMenu();
-        console.log(data);
+        const data = await fetchMenu();
         if (!(data === undefined)) {
-
+            this.props.dispatch({...fetchMenuSuccess, payload: data})
         }
     };
+
+    fetchDataDiningTable = async () => {
+        const data = await fetchDiningTable();
+        if (!(data === undefined)) {
+            this.props.dispatch({...fetchDiningTableSuccess, payload: data})
+        }
+    }
 }
 
 const mapStateToProps = (state) => (
-     {
-        selectedItem: state.selectedItem,
-        foods: state.foods,
-        drinks: state.drinks
+    {
+        listMenu: state.menuReducer.listMenu,
+        diningTables: state.diningTableReducer.diningTables,
     }
 );
 
-export default connect(mapStateToProps, action)(CashierContainer)
+export default connect(mapStateToProps)(CashierContainer)
