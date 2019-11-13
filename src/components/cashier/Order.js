@@ -4,28 +4,38 @@ import '../../assets/css/Order.scss';
 import {connect} from 'react-redux'
 import styled from "styled-components";
 import OrderList from "./OrderList";
-const Input = styled.input`
-    display: block;
-    width: 100%;
-    height: calc(1em + .75rem + 2px);
-    padding-left: 10px;
-    margin-bottom: 10px;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-`;
-
+import {handleNumberFormatCurrency} from "../admin/menu/MenuAction";
+import {submitOrder} from "../../services/OrderService";
+import {handleCostumerNameOrder, handleNumberDiningTable, handleTotalCostumerName,resetOrder} from "./OrderAction";
 
 class Order extends React.Component {
 
     handleClearListMenu = () => {
         this.props.dispatch({type: "CLEAR_LIST_MENU"});
+    };
+    
+    handleTotalPrice = () => {
+        let totalPrice = 0;
+        for(let orderDetail of this.props.orderDetails){
+            totalPrice += orderDetail.price * orderDetail.amount;
+        }
+        return handleNumberFormatCurrency(totalPrice);
+    }
+
+    handleSubmitData = () => {
+        submitOrder(this.props.orderForm, this.props.orderDetails)
+            .then(this.props.dispatch({...resetOrder}));
+
+    }
+
+    handleCostumerName = (event) => {
+        this.props.dispatch({...handleCostumerNameOrder, payload: event.target.value})
+    };
+    handleTotalCostumer = (event) => {
+        this.props.dispatch({...handleTotalCostumerName, payload: event.target.value})
+    };
+    handleDiningNumber = (event) => {
+        this.props.dispatch({...handleNumberDiningTable, payload: event.target.value})
     };
 
     render() {
@@ -38,25 +48,28 @@ class Order extends React.Component {
                 </div>
                 <div className="customerBox">
                 <div className="form-group">
-                <input type="text" className="form-control" placeholder="Input PIC" required/>
+                <input type="text" className="form-control" value={this.props.orderForm.costumerName} onChange={this.handleCostumerName} placeholder="Input PIC" required/>
                 </div>
-                <div className="form-group">
-                <input type="number" className="form-control" placeholder="Input Number of Customers" required/>
+                    <div className="form-group">
+                <input type="number" className="form-control" value={this.props.orderForm.totalCostumer} onChange={this.handleTotalCostumer} placeholder="Input Number of Customers" required/>
+                    </div>
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="No Tables" onChange={this.handleDiningNumber} disabled required value={this.props.orderForm.numberDiningTable}/>
                     </div>
                 </div>
                 {
                     this.props.orderDetails.map((element, index) => {
-                        return <OrderList key={index} menuName={element.menuName} price={element.price} amount={element.amount} idMenu={element.idMenu} index={index}/>
+                        return <OrderList key={index} menuName={element.menuName} price={element.price} amount={element.amount} idMenu={element.idMenu} numberDiningTable={element.numberDiningTable}  index={index}/>
                     })
                 }
                 <div className="checkoutBox">
                     <div>
                         <span>Total</span>
-                        <span className="red">Totalnya</span>
+                        <span className="red">Rp. {this.handleTotalPrice()}</span>
                     </div>
                     <div>
                         <button className="clearBtn" onClick={this.handleClearListMenu}>Clear</button>
-                        <button className="payBtn" onClick={this.checkout}>Checkout</button>
+                        <button className="payBtn" onClick={this.handleSubmitData}>Order</button>
                     </div>
                 </div>
             </div>
@@ -66,6 +79,7 @@ class Order extends React.Component {
 
 const mapStateToProps = (state) => (
     {
+        orderForm: {...state.orderReducer.orderForm},
         orderDetails: [...state.orderReducer.orderDetails],
     }
 );

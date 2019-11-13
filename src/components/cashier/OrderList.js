@@ -30,6 +30,7 @@ class OrderList extends React.Component {
                         <img src={deleteIcon}  alt="Order List"/>
                     </button>
                     <div className="column-1">
+                        <p className="item_name">{this.props.numberDiningTable}</p>
                         <p className="item_name">{this.props.menuName}</p>
                         <p className="unit_price">IDR. {handleNumberFormatCurrency(this.props.price)}</p>
                     </div>
