@@ -4,6 +4,7 @@ import pizza from '../../assets/images/Pizza.jpg';
 
 import tick from '../../assets/images/tick.png'
 import {connect} from "react-redux";
+import {handleNumberFormatCurrency} from "../admin/menu/MenuAction";
 
 class MenuItem extends React.Component {
 
@@ -23,7 +24,7 @@ class MenuItem extends React.Component {
                     </label>
                     : null
                 }
-                <span className="priceTag">{'IDR. ' + this.props.price}</span>
+                <span className="priceTag">{'IDR. ' + handleNumberFormatCurrency(this.props.price)}</span>
                 <span className="itemNameTag">{this.props.menuName}</span>
             </div>
         )

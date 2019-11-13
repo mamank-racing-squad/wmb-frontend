@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route} from "react-router-dom";
 import './index.css';
 import CashierContainer from './components/cashier/CashierContainer';
 import * as serviceWorker from './serviceWorker';
