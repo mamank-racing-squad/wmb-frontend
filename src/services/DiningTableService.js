@@ -18,13 +18,22 @@ export async function submitDiningTable(payload) {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(payload)
         })
-        .then(() => {
-            MySwal.fire({
-                icon: 'success',
-                title: 'Your data has been saved',
-                showConfirmButton: false,
-                timer: 1500
-            })
+        .then( async (response) => {
+            if (response.status === 200) {
+                await MySwal.fire({
+                    icon: 'success',
+                    title: 'Your data has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            } else {
+                response = await response.json()
+                await MySwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: response.message,
+                })
+            }
         })
 }
 
