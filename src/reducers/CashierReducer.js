@@ -1,14 +1,27 @@
 const initialState = {
-    costumerName: "",
-    totalCostumer: "",
-    idDiningTable: "",
-    orderDetails: [],
+    orderForm: {
+        costumerName: "",
+        totalCostumer: "",
+        idDiningTable: "",
+        numberDiningTable: "",
+    },
+    orderDetails: []
+
 };
 
 export function menuOrderReducer(state=initialState, action) {
+    console.log(action,"ini action")
     switch (action.type) {
         case 'ADD_SELECTED_MENU':
             return {...state, orderDetails: state.orderDetails.concat([{...action.payload}])};
+        case 'ADD_SELECTED_TABLE':
+            return {...state, orderForm: {...state.orderForm, numberDiningTable: action.payload.numberDiningTable, idDiningTable: action.payload.idDiningTable}};
+        case 'HANDLE_COSTUMER_NAME_ORDER':
+            return {...state, orderForm: {...state.orderForm, costumerName: action.payload}};
+        case 'HANDLE_TOTAL_COSTUMER_ORDER':
+            return {...state, orderForm: {...state.orderForm, totalCostumer: action.payload}};
+        case 'HANDLE_NUMBER_DINING_TABLE_ORDER':
+            return {...state, orderForm: {...state.orderForm, totalCostumer: action.payload}};
         case 'REMOVE_SELECTED_MENU':
             return {...state, orderDetails: state.orderDetails.filter(element => element.idMenu !== action.idMenu)};
         case 'CLEAR_LIST_MENU':
