@@ -84,6 +84,7 @@ class CashierContainer extends React.Component {
                                         idMenu={item.idMenu}
                                         menuName={item.menuName}
                                         price={item.price}
+                                        orderDetails={this.props.orderDetails}
                                     />
                                 )
                             }
@@ -130,6 +131,7 @@ class CashierContainer extends React.Component {
 
 const mapStateToProps = (state) => (
     {
+        orderDetails: state.orderReducer.orderDetails,
         listMenu: state.menuReducer.listMenu,
         diningTables: state.diningTableReducer.diningTables,
     }
