@@ -14,8 +14,7 @@ import diningTableGray from '../../assets/images/table-gray.png';
 import menuGray from '../../assets/images/menu-gray.png'
 import menu from '../../assets/images/menu.png'
 
-import back from '../../assets/images/back.png'
-import backGray from '../../assets/images/back-gray.png'
+import cashierGray from '../../assets/images/cashier-gray.png'
 
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'

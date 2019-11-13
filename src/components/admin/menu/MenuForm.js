@@ -1,9 +1,7 @@
 import React from 'react';
 import '../../../assets/css/DiningTable.scss';
 import '../../../assets/css/Order.scss'
-
 import {connect} from 'react-redux'
-
 import {
     handleMenuAvailabilityForm,
     handleMenuCategoryForm,
