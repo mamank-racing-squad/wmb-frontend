@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import '../../assets/css/MenuCategory.scss'
+import '../../assets/css/Table.scss'
 import '../../assets/css/Order.scss';
 import styled, { css } from 'styled-components'
 

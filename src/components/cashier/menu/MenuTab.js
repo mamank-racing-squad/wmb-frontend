@@ -3,7 +3,7 @@ import styled, {css} from "styled-components";
 import {connect} from "react-redux";
 const Button = styled.button`
   background: transparent;
-  border-radius: 3px;
+  border-radius: 6px;
   font-size: 15px;
   font-weight: bolder;
   border: 2px solid palevioletred;

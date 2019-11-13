@@ -1,9 +1,7 @@
 import React from 'react';
 import '../../../assets/css/DiningTable.scss';
 import '../../../assets/css/Order.scss'
-
 import {connect} from 'react-redux'
-
 import {
     handleMenuAvailabilityForm,
     handleMenuCategoryForm,
@@ -19,8 +17,6 @@ import {fetchMenuCategorySuccess} from "../menu-category/MenuCategoryAction";
 class MenuForm extends React.Component {
 
     render() {
-        console.log(this.props)
-
         return (
             <div className="modal fade" id="modalForm" tabIndex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
