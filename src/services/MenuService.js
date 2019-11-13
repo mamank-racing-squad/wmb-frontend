@@ -18,7 +18,9 @@ export async function submitMenu(payload, image) {
     return await fetch("http://localhost:9090/menu/upload",
         {
             method: payload.idMenu !== "" ? "POST" : "PUT",
-            body: formData})
+            body: formData
+
+        })
         .then(()=>{
             MySwal.fire({
                 icon: 'success',
