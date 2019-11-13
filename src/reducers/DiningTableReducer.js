@@ -4,7 +4,7 @@ const initialState = {
     diningTableForm : {
         idDiningTable: "",
         numberDiningTable: "",
-        capacity: ""
+        capacity: 1
     }
 };
 
@@ -21,7 +21,7 @@ export function diningTableReducer(state=initialState, action) {
         case 'HANDLE_CAPACITY_DINING_TABLE_FORM':
             return {...state, diningTableForm: {...state.diningTableForm, capacity: action.payload}};
         case 'RESET_DINING_TABLE_FORM':
-            return {...state, diningTableForm: {...state.diningTableForm, idDiningTable: "", numberDiningTable: "", capacity: ""}};
+            return {...state, diningTableForm: {...state.diningTableForm, idDiningTable: "", numberDiningTable: "", capacity: 1}};
         default: return {...state};
     }
 }
