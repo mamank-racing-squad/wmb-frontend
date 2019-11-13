@@ -24,7 +24,7 @@ class Topbar extends React.Component {
                     return {
                         title: 'Select Dining Table'
                     };
-                default: return {title:'Warung Makan Bahari'};
+                default: return {title:'Payment'};
             }
         }
         return null
@@ -33,7 +33,7 @@ class Topbar extends React.Component {
     render() {
         return (
             <div className="topbar">
-                <span className="title">{this.state.title}</span>
+                <span style={{fontSize:"24px"}} className="title">{this.state.title}</span>
             </div>
         )
     }

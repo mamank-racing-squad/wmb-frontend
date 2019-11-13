@@ -37,8 +37,12 @@ class Order extends React.Component {
                     <p>New Order</p>
                 </div>
                 <div className="customerBox">
-                    <Input type="text" placeholder="Nama PIC"/>
-                    <Input type="number" placeholder="Jumlah Customer"/>
+                <div className="form-group">
+                <input type="text" className="form-control" placeholder="Input PIC" required/>
+                </div>
+                <div className="form-group">
+                <input type="number" className="form-control" placeholder="Input Number of Customers" required/>
+                    </div>
                 </div>
                 {
                     this.props.orderDetails.map((element, index) => {

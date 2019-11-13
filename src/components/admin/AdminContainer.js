@@ -14,8 +14,7 @@ import diningTableGray from '../../assets/images/table-gray.png';
 import menuGray from '../../assets/images/menu-gray.png'
 import menu from '../../assets/images/menu.png'
 
-import back from '../../assets/images/back.png'
-import backGray from '../../assets/images/back-gray.png'
+import cashierGray from '../../assets/images/cashier-gray.png'
 
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
@@ -55,14 +54,10 @@ class AdminContainer extends Component {
                         }
                         <span>Menu Category</span>
                     </NavLink>
-                    <NavLink to="/dining-table" className="active">
-                        {
-                            this.props.match && this.props.match.params.type === '/admin' ?
-                                <img src={backGray} alt="Admin Panel"/> :
-                                <img src={back} alt="Admin Panel"/>
-
-                        }
-                        <span>Back</span>
+                    <NavLink to="/dining-table" activeClassName="active" className="dining-table">
+                      
+                                <img src={cashierGray} alt="Admin Panel"/>
+                        <span>Cashier</span>
                     </NavLink>
                 </div>
 

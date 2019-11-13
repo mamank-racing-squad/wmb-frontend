@@ -64,7 +64,7 @@ class CashierContainer extends React.Component {
                         }
                         <span>Payment</span>
                     </NavLink>
-                    <NavLink to="/admin" activeClassName="active" className="menu-category" onClick={this.handleClearListMenu}>
+                    <NavLink to="/admin/dining-table" activeClassName="active" className="menu-category" onClick={this.handleClearListMenu}>
                         {
                             this.props.match && this.props.match.params.type === '/admin' ?
                                 <img src={admin} alt="Cashier"/> :

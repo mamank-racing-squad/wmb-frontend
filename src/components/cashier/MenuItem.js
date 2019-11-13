@@ -17,7 +17,7 @@ class MenuItem extends React.Component {
             <div onClick={() => {this.handleClick(this.props)}}
                  className={this.props.isSelected ? 'FoodItemBox selected' : 'FoodItemBox'}
             >
-                <img className="itemImage" src={pizza} alt="Menu Item Images"/>
+                <img className="itemImage" src={`http://localhost/menu-image/${this.props.idMenu}.jpg`} alt="Menu Item Images"/>
                 {this.props.isSelected ?
                     <label>
                         <img src={tick} alt="Menu Item"/>
