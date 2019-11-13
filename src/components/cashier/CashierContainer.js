@@ -48,14 +48,6 @@ class CashierContainer extends React.Component {
                         <span>Dining</span>
                         <span style={{paddingTop: "5px"}}>Table</span>
                     </NavLink>
-                    <NavLink exact to="/menu-test" activeClassName="active" className="menu-test">
-                        {
-                            this.props.match && this.props.match.params.type === 'menu-test' ?
-                                <img src={food} alt="Cashier"/> :
-                                <img src={foodGray} alt="Cashier"/>
-                        }
-                        <span>Menu - test</span>
-                    </NavLink>
                     <NavLink exact to="/foods" activeClassName="active" className="foods">
                         {
                             this.props.match && this.props.match.params.type === 'foods' ?
