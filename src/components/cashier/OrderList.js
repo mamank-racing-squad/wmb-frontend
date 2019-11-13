@@ -4,6 +4,7 @@ import deleteIcon from '../../assets/images/garbage.png';
 
 import AmountControl from './AmountControl'
 import {connect} from "react-redux";
+import {handleNumberFormatCurrency} from "../admin/menu/MenuAction";
 
 class OrderList extends React.Component {
     handleIncreaseAmount = () => {
@@ -30,13 +31,13 @@ class OrderList extends React.Component {
                     </button>
                     <div className="column-1">
                         <p className="item_name">{this.props.menuName}</p>
-                        <p className="unit_price">IDR. {this.props.price}</p>
+                        <p className="unit_price">IDR. {handleNumberFormatCurrency(this.props.price)}</p>
                     </div>
                     <div className="column-2">
                         <AmountControl number={this.props.amount} handleUpClick={this.handleIncreaseAmount} handleDownClick={this.handleDecreaseAmount} />
                     </div>
                 </div>
-                <div className="subtotal">IDR. {this.props.price * this.props.amount}</div>
+                <div className="subtotal">IDR. {handleNumberFormatCurrency(this.props.price * this.props.amount)}</div>
             </div>
         )
     }

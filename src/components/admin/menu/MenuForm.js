@@ -16,6 +16,10 @@ import {fetchMenuCategorySuccess} from "../menu-category/MenuCategoryAction";
 
 class MenuForm extends React.Component {
 
+    handleTitle = () => {
+        return this.props.menuForm.idMenu === "" ? "Add New Data" : "Edit Data";
+    };
+
     render() {
         return (
             <div className="modal fade" id="modalForm" tabIndex="-1" role="dialog"
@@ -23,8 +27,8 @@ class MenuForm extends React.Component {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <h5 className="modal-title" id="exampleModalLabel">{this.handleTitle()}</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => {this.props.dispatch(resetMenuForm)}}>
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -36,8 +40,7 @@ class MenuForm extends React.Component {
                                 </div>
                                 <div className="form-group">
                                     <label>Price</label>
-                                    <input type="text" className="form-control" placeholder="Enter Input Price" value={this.props.menuForm.price} onChange={this.handleInputPrice} required/>
-                                </div>
+                                    <input type="text" className="form-control" placeholder="Enter Input Price" value={this.props.menuForm.price} onChange={this.handleInputPrice} required/>                                </div>
                                 <div className="form-group">
                                     <label>Image</label>
                                     <div className="custom-file">
