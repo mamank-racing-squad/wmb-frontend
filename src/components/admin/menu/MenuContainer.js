@@ -2,7 +2,7 @@ import React from "react";
 import MenuForm from "./MenuForm";
 import {connect} from "react-redux";
 import {deleteMenuById, fetchMenu, getMenuById, submitMenu} from "../../../services/MenuService";
-import {editMenuForm, fetchMenuSuccess, resetMenuForm} from "./MenuAction";
+import {editMenuForm, fetchMenuSuccess, handleNumberFormatCurrency, resetMenuForm} from "./MenuAction";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
@@ -34,7 +34,7 @@ class MenuContainer extends React.Component {
                                 <tr key={index}>
                                     <td>{index + 1}</td>
                                     <td>{element.menuName}</td>
-                                    <td>{element.price}</td>
+                                    <td>Rp. {handleNumberFormatCurrency(element.price)}</td>
                                     <td>{element.menuCategory.categoryName}</td>
                                     <td>
                                         <a href="#" onClick={() => {
