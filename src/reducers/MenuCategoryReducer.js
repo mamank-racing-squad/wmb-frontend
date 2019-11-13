@@ -17,7 +17,7 @@ export function menuCategoryReducer(state=initialState, action) {
         case 'HANDLE_CATEGORY_NAME_FORM':
             return {...state, menuCategoryForm: {...state.menuCategoryForm, categoryName: action.payload}};
         case 'RESET_MENU_CATEGORY_FORM':
-            return {...state, diningTableForm: {...state.diningTableForm, idMenuCategory: "", categoryName: ""}};
+            return {...state, menuCategoryForm: {...state.diningTableForm, idMenuCategory: "", categoryName: ""}};
         default: return {...state}
     }
 }

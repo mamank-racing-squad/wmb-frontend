@@ -26,7 +26,7 @@ class DiningTableContainer extends Component {
     render() {
         return (
             <div className="container">
-                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#modalForm">
+                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#modalForm" data-backdrop="static" data-keyboard="false">
                     Add New
                 </button>
                 <br/><br/>
@@ -52,7 +52,7 @@ class DiningTableContainer extends Component {
                                     <td>
                                         <a href="#" onClick={() => {
                                             this.handleEditData(element.idDiningTable)
-                                        }} data-toggle="modal" data-target="#modalForm">Edit</a>
+                                        }} data-toggle="modal" data-target="#modalForm" data-backdrop="static" data-keyboard="false">Edit</a>
                                         |
                                         <a href="#" onClick={() => {
                                             this.handleDeleteData(element.idDiningTable)

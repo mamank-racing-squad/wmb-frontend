@@ -2,7 +2,7 @@ import React from "react";
 import MenuForm from "./MenuForm";
 import {connect} from "react-redux";
 import {deleteMenuById, fetchMenu, getMenuById, submitMenu} from "../../../services/MenuService";
-import {editMenuForm, fetchMenuSuccess, resetMenuForm} from "./MenuAction";
+import {editMenuForm, fetchMenuSuccess, handleNumberFormatCurrency, resetMenuForm} from "./MenuAction";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
@@ -13,7 +13,7 @@ class MenuContainer extends React.Component {
     render() {
         return (
             <div className="container">
-                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#modalForm">
+                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#modalForm" data-backdrop="static" data-keyboard="false">
                     Add New
                 </button>
                 <br/><br/>
@@ -34,12 +34,12 @@ class MenuContainer extends React.Component {
                                 <tr key={index}>
                                     <td>{index + 1}</td>
                                     <td>{element.menuName}</td>
-                                    <td>{element.price}</td>
+                                    <td>Rp. {handleNumberFormatCurrency(element.price)}</td>
                                     <td>{element.menuCategory.categoryName}</td>
                                     <td>
                                         <a href="#" onClick={() => {
                                             this.handleEditData(element.idMenu)
-                                        }} data-toggle="modal" data-target="#modalForm">Edit</a>
+                                        }} data-toggle="modal" data-target="#modalForm" data-backdrop="static" data-keyboard="false">Edit</a>
                                         |
                                         <a href="#" onClick={() => {
                                             this.handleDeleteData(element.idMenu)

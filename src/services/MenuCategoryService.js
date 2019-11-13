@@ -29,9 +29,9 @@ export async function submitMenuCategory(payload) {
 }
 
 export async function getMenuCategoryById(id) {
-    return await fetch(`http://localhost:9090/menu-category/${id}`, {method: "GET"})
+    return await fetch(`http://localhost:9090/menu-category/${id}`, {method: "GET", mode: "no-cors"})
         .then((response) => {
-            return response.json()
+            console.log(response)
         });
 }
 
