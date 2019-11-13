@@ -2,7 +2,6 @@ import React from 'react';
 import '../../assets/css/Order.scss';
 
 import {connect} from 'react-redux'
-import styled from "styled-components";
 import OrderList from "./OrderList";
 import {handleNumberFormatCurrency} from "../admin/menu/MenuAction";
 import {submitOrder} from "../../services/OrderService";
@@ -11,7 +10,7 @@ import {handleCostumerNameOrder, handleNumberDiningTable, handleTotalCostumerNam
 class Order extends React.Component {
 
     handleClearListMenu = () => {
-        this.props.dispatch({type: "CLEAR_LIST_MENU"});
+        this.props.dispatch(resetOrder);
     };
     
     handleTotalPrice = () => {
@@ -20,13 +19,13 @@ class Order extends React.Component {
             totalPrice += orderDetail.price * orderDetail.amount;
         }
         return handleNumberFormatCurrency(totalPrice);
-    }
+    };
 
     handleSubmitData = () => {
         submitOrder(this.props.orderForm, this.props.orderDetails)
-            .then(this.props.dispatch({...resetOrder}));
+            .then(this.props.dispatch(resetOrder));
 
-    }
+    };
 
     handleCostumerName = (event) => {
         this.props.dispatch({...handleCostumerNameOrder, payload: event.target.value})
@@ -39,8 +38,6 @@ class Order extends React.Component {
     };
 
     render() {
-        console.log("ini props", this.props);
-
         return (
             <div className="orderBox">
                 <div className="title">
