@@ -8,27 +8,31 @@ import pizza from '../../assets/images/Pizza.jpg';
 
 class MenuItem extends React.Component {
 
+    isTrue = false;
+
     handleClick = (data) => {
         if (this.props.orderDetails.length === 0) {
             return this.props.dispatch({type: "ADD_SELECTED_MENU", payload: {...data, amount: 1}});
         } else {
-            let idMenu = this.props.idMenu;
-            let isExist = false;
+            let idMenu = data.idMenu;
+            let isExist = this.isTrue;
             this.props.orderDetails.forEach(function (element) {
                if (element.idMenu === idMenu) isExist = true;
             });
             if (!isExist) return this.props.dispatch({type: "ADD_SELECTED_MENU", payload: {...data, amount: 1}});
+            else {
+                this.props.dispatch({type: "REMOVE_SELECTED_MENU", idMenu: data.idMenu});
+            }
         }
     };
 
     render() {
         return (
             <div onClick={() => {this.handleClick(this.props)}}
-                 className={this.props.isSelected ? 'FoodItemBox selected' : 'FoodItemBox'}
-            >
+                 className={this.isTrue ? 'FoodItemBox selected' : 'FoodItemBox'}>
                 <img className="itemImage" src={pizza} alt="Menu Item Images"/>
                 {/*<img className="itemImage" src={`http://localhost/menu-image/${this.props.idMenu}.jpg`} alt="Menu Item Images"/>*/}
-                {this.props.isSelected ?
+                {this.isTrue ?
                     <label>
                         <img src={tick} alt="Menu Item"/>
                     </label>
