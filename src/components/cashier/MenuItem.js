@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../assets/css/MenuItem.scss';
-import pizza from '../../assets/images/Pizza.jpg';
 
 import tick from '../../assets/images/tick.png'
 import {connect} from "react-redux";
