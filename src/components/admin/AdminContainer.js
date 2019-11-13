@@ -55,9 +55,9 @@ class AdminContainer extends Component {
                         }
                         <span>Menu Category</span>
                     </NavLink>
-                    <NavLink to="/" activeClassName="active" className="menu-category">
+                    <NavLink to="/dining-table" className="active">
                         {
-                            this.props.match && this.props.match.params.type === 'menu-category' ?
+                            this.props.match && this.props.match.params.type === '/admin' ?
                                 <img src={backGray} alt="Admin Panel"/> :
                                 <img src={back} alt="Admin Panel"/>
 
