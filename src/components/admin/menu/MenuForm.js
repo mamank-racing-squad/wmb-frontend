@@ -18,17 +18,19 @@ import {fetchMenuCategorySuccess} from "../menu-category/MenuCategoryAction";
 
 class MenuForm extends React.Component {
 
-    render() {
-        console.log(this.props)
+    handleTitle = () => {
+        return this.props.menuForm.idMenu === "" ? "Add New Data" : "Edit Data";
+    };
 
+    render() {
         return (
             <div className="modal fade" id="modalForm" tabIndex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <h5 className="modal-title" id="exampleModalLabel">{this.handleTitle()}</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => {this.props.dispatch(resetMenuForm)}}>
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>

@@ -10,6 +10,11 @@ import {
 
 
 class DiningTableForm extends React.Component {
+
+    handleTitle = () => {
+        return this.props.diningTableForm.idDiningTable === "" ? "Add New Data" : "Edit Data";
+    };
+
     render() {
         return (
             <div className="modal fade" id="modalForm" tabIndex="-1" role="dialog"
@@ -17,8 +22,8 @@ class DiningTableForm extends React.Component {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <h5 className="modal-title" id="exampleModalLabel">{this.handleTitle()}</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => {this.props.dispatch(resetDiningTableForm)}}>
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
