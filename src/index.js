@@ -9,6 +9,7 @@ import { Provider } from 'react-redux'
 import {createStore} from 'redux'
 import AdminContainer from "./components/admin/AdminContainer";
 import {reducers} from "./reducers/CombineReducers";
+import PaymentContainer from "./components/cashier/payment/PaymentContainer";
 
 const store = createStore(reducers);
 
@@ -17,8 +18,9 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
                 <Route exact path="/" component={CashierContainer} />
-                <Route path="/:type(foods|drinks|dining-table|menu-category|payment)" component={CashierContainer} />
+                <Route path="/:type(foods|drinks|dining-table|menu-category)" component={CashierContainer} />
                 <Route path="/admin" component={AdminContainer}/>
+                <Route path="/payment" component={PaymentContainer}/>
             </div>
         </BrowserRouter>
     </Provider>,
