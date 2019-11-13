@@ -1,90 +1,22 @@
-export function dealSelectedItem(state = [], action) {
+const initialState = {
+    costumerName: "",
+    totalCostumer: "",
+    idDiningTable: "",
+    orderDetails: [],
+};
 
+export function menuOrderReducer(state=initialState, action) {
     switch (action.type) {
-        case 'ADD_SELECTED_ITEM':
-            {
-                return [action.payload, ...state]
-            }
-        case 'DEL_SELECTED_ITEM':
-            {
-                return state.filter(selectedItem => selectedItem.name !== action.payload.name)
-            }
-        case 'UPDATE_QUANTITY':
-            {
-                return state.map((item) => {
-                    if(action.payload.name === item.name) {
-                        return Object.assign({}, item, {quantity: action.payload.quantity})
-                    }
-                    return item
-                })
-            }
-            case 'CLEAR_SELECTED_ITEMS':
-            {
-                return []
-            }
-        default:
-            return state
-    }
-}
-
-export function dealFoods(state = [], action) {
-    switch (action.type) {
-        case 'ADD_FOODS':
-            {
-                return action.payload
-            }
-        case 'UPDATE_FOOD':
-            {
-                return action.payload
-            }
-        case 'UPDATE_SELECTED_FOOD':
-            {
-                return state.map((item) => {
-                    if(action.payload.name === item.name)
-                    item.isSelected = action.payload.isSelected
-
-                    return Object.assign(state.filter(foods => foods.name !== action.payload.name), item)
-                })
-            }
-        case 'SET_DEFAULT_FOODS':
-            {
-                return state.map((item) => {
-                    item.isSelected = false;
-                    return item
-                })
-            }
-        default:
-            return state
-    }
-}
-
-export function dealDrinks(state = [], action) {
-    switch (action.type) {
-        case 'ADD_DRINKS':
-            {
-                return action.payload
-            }
-        case 'UPDATE_DRINK':
-        {
-            return action.payload
-        }
-        case 'UPDATE_SELECTED_DRINK':
-            {
-                return state.map((item) => {
-                    if(action.payload.name === item.name)
-                    item.isSelected = action.payload.isSelected
-
-                    return Object.assign(state.filter(drinks => drinks.name !== action.payload.name), item)
-                })
-            }
-        case 'SET_DEFAULT_DRINKS':
-            {
-                return state.map((item) => {
-                    item.isSelected = false;
-                    return item
-                })
-            }
-        default:
-            return state
+        case 'ADD_SELECTED_MENU':
+            return {...state, orderDetails: state.orderDetails.concat([{...action.payload}])};
+        case 'REMOVE_SELECTED_MENU':
+            return {...state, orderDetails: state.orderDetails.filter(element => element.idMenu !== action.idMenu)};
+        case 'CLEAR_LIST_MENU':
+            return {...state, orderDetails: []};
+        case 'INCREMENT_AMOUNT_MENU':
+            return {...state, orderDetails: state.orderDetails.map((element, index) => index===action.index ? {...element, element: element.amount += 1} : element)};
+        case 'DECREMENT_AMOUNT_MENU':
+            return {...state, orderDetails: state.orderDetails.map((element, index) => index===action.index ? {...element, element: element.amount -= 1} : element)};
+        default: return {...state};
     }
 }

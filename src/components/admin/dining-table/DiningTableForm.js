@@ -3,42 +3,57 @@ import '../../../assets/css/DiningTable.scss';
 import '../../../assets/css/Order.scss'
 
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
-import * as action from '../../../action/action'
-import { Input, Label } from '../../styled/styles';
+import {
+    handleCapacityDiningTableForm,
+    handleNumberDiningTableForm, resetDiningTableForm
+} from "./DiningTableAction";
 
 
 class DiningTableForm extends React.Component {
     render() {
         return (
-            <div className="orderBox">
-                <div className="title">
-                    <p>Input Menu Category</p>
-                </div>
-                <div className="checkoutBox">
-                    <form>
-                        <Input type="hidden" placeholder="ID"/>
-                        <Label>Number Dining Table</Label>
-                        <Input type="text" placeholder="Input Dining Table"/>
-                        <Label>Capacity</Label>
-                        <Input type="number" min={1} placeholder="1"/>
-                        <div>
-                            <button className="clearBtn">Clear</button>
-                            <button className="payBtn">Save</button>
+            <div className="modal fade" id="modalForm" tabIndex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                    </form>
+                        <form>
+                            <div className="modal-body">
+                                <div className="form-group">
+                                    <label>Number Dining Table</label>
+                                    <input type="text" className="form-control" placeholder="Enter Number Dining Table" value={this.props.diningTableForm.numberDiningTable} onChange={this.handleInputNumberDiningTable} required/>
+                                </div>
+                                <div className="form-group">
+                                    <label>Capacity</label>
+                                    <input type="number" min="1" className="form-control" placeholder="Enter Number Dining Table" value={this.props.diningTableForm.capacity} onChange={this.handleInputCapacity} required/>
+                                </div>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" onClick={() => {this.props.dispatch(resetDiningTableForm)}} data-dismiss="modal">Cancel</button>
+                                <button type="button" className="btn btn-primary" onClick={this.props.handleSubmitData} data-dismiss="modal">Save</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         )
     }
+
+    handleInputNumberDiningTable = (event) => {
+        this.props.dispatch({...handleNumberDiningTableForm, payload: event.target.value})
+    };
+    handleInputCapacity = (event) => {
+        this.props.dispatch({...handleCapacityDiningTableForm, payload: event.target.value})
+    };
 }
 
-const mapStateToProps = store => (
-    {
-        selectedItem: store.selectedItem,
-        foods: store.foods,
-        drinks: store.drinks
-    }
-);
+const mapStateToProps = (state) => {
+    return {...state.diningTableReducer}
+};
 
-export default withRouter(connect(mapStateToProps, action)(DiningTableForm))
+export default connect(mapStateToProps)(DiningTableForm);

@@ -48,3 +48,16 @@ body{
 .mt-0 {
   margin-top: 0 !important;
 }
+
+.container {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  margin: 20px;
+  max-width: 1360px;
+  padding: 40px 20px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
