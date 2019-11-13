@@ -7,32 +7,30 @@ import {handleNumberFormatCurrency} from "../admin/menu/MenuAction";
 import pizza from '../../assets/images/Pizza.jpg';
 
 class MenuItem extends React.Component {
-
-    isTrue = false;
-
     handleClick = (data) => {
         if (this.props.orderDetails.length === 0) {
             return this.props.dispatch({type: "ADD_SELECTED_MENU", payload: {...data, amount: 1}});
         } else {
-            let idMenu = data.idMenu;
-            let isExist = this.isTrue;
-            this.props.orderDetails.forEach(function (element) {
-               if (element.idMenu === idMenu) isExist = true;
-            });
-            if (!isExist) return this.props.dispatch({type: "ADD_SELECTED_MENU", payload: {...data, amount: 1}});
-            else {
-                this.props.dispatch({type: "REMOVE_SELECTED_MENU", idMenu: data.idMenu});
-            }
+            if (!this.handleMenuIsExist(data.idMenu)) return this.props.dispatch({type: "ADD_SELECTED_MENU", payload: {...data, amount: 1}});
+            else this.props.dispatch({type: "REMOVE_SELECTED_MENU", idMenu: data.idMenu});
         }
+    };
+
+    handleMenuIsExist (value) {
+        let isExist = false;
+        this.props.orderDetails.forEach(function (element) {
+            if (element.idMenu === value) isExist = true;
+        });
+        return isExist
     };
 
     render() {
         return (
             <div onClick={() => {this.handleClick(this.props)}}
-                 className={this.isTrue ? 'FoodItemBox selected' : 'FoodItemBox'}>
+                 className={this.handleMenuIsExist(this.props.idMenu) ? 'FoodItemBox selected' : 'FoodItemBox'}>
                 <img className="itemImage" src={pizza} alt="Menu Item Images"/>
                 {/*<img className="itemImage" src={`http://localhost/menu-image/${this.props.idMenu}.jpg`} alt="Menu Item Images"/>*/}
-                {this.isTrue ?
+                {this.handleMenuIsExist(this.props.idMenu) ?
                     <label>
                         <img src={tick} alt="Menu Item"/>
                     </label>
