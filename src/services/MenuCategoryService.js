@@ -30,6 +30,7 @@ export async function submitMenuCategory(payload) {
 
 export async function getMenuCategoryById(id) {
     return await fetch(`http://localhost:9090/menu-category/${id}`, {method: "GET"})
+
         .then((response) => {
             return response.json()
         });
