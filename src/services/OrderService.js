@@ -25,7 +25,7 @@ export async function submitOrder(payload, orderDetails) {
                 await MySwal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: response.message,
+                    text: "Please Complete the data first",
                 })
             }
         })
