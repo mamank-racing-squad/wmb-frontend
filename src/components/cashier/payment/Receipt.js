@@ -44,7 +44,7 @@ class Receipt extends React.Component{
     }
 
     fetchDataOrder = async () => {
-        const data = await getTrxById("8a8a8d2c6e682327016e682f6b4e0005");
+        const data = await getTrxById(this.props.match.params.id);
         if (!(data === undefined)) {
             this.props.dispatch({...fetchingOrderDetailSuccess, payload: data})
         }

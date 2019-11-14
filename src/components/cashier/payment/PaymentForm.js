@@ -6,7 +6,6 @@ import {connect} from 'react-redux'
 import {handleInputPay, resetPaymentForm} from "./PaymentAction";
 import {submitPayment} from "./PaymentService";
 import {handleNumberFormatCurrency} from "../../admin/menu/MenuAction";
-import ReactToPrint from "react-to-print";
 
 export const printIframe = (id) => {
     const iframe = document.frames ? document.frames[id] : document.getElementById(id);
@@ -17,7 +16,6 @@ export const printIframe = (id) => {
 
     return false;
 };
-
 class PaymentForm extends React.Component {
 
     render() {

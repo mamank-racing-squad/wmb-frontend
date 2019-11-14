@@ -27,12 +27,19 @@ class MenuCategoryForm extends React.Component {
                             <div className="modal-body">
                                 <div className="form-group">
                                     <label>Category Name</label>
-                                    <input type="text" className="form-control" placeholder="Enter Category Name" value={this.props.menuCategoryForm.categoryName} onChange={this.handleInputCategoryName} required/>
+                                    <input type="text" className="form-control" placeholder="Enter Category Name"
+                                           value={this.props.menuCategoryForm.categoryName}
+                                           onChange={this.handleInputCategoryName} required/>
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" onClick={ () => {this.props.dispatch(resetMenuCategoryForm)}} data-dismiss="modal">Cancel</button>
-                                <button type="button" className="btn btn-primary" onClick={this.props.handleSubmitData} data-dismiss="modal">Save</button>
+                                <button type="button" className="btn btn-secondary" onClick={() => {
+                                    this.props.dispatch(resetMenuCategoryForm)
+                                }} data-dismiss="modal">Cancel
+                                </button>
+                                <button type="button" className="btn btn-primary" onClick={this.props.handleSubmitData}
+                                        data-dismiss="modal">Save
+                                </button>
                             </div>
                         </form>
                     </div>

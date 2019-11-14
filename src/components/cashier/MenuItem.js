@@ -4,11 +4,27 @@ import '../../assets/css/MenuItem.scss';
 import tick from '../../assets/images/tick.png'
 import {connect} from "react-redux";
 import {handleNumberFormatCurrency} from "../admin/menu/MenuAction";
+import pizza from '../../assets/images/Pizza.jpg';
 
 class MenuItem extends React.Component {
-
     handleClick = (data) => {
-        this.props.dispatch({type: "ADD_SELECTED_MENU", payload: {...data, amount: 1}});
+        if (this.props.orderDetails.length === 0) {
+            return this.props.dispatch({type: "ADD_SELECTED_MENU", payload: {...data, amount: 1}});
+        } else {
+            if (!this.handleMenuIsExist(data.idMenu)) return this.props.dispatch({
+                type: "ADD_SELECTED_MENU",
+                payload: {...data, amount: 1}
+            });
+            else this.props.dispatch({type: "REMOVE_SELECTED_MENU", idMenu: data.idMenu});
+        }
+    };
+
+    handleMenuIsExist(value) {
+        let isExist = false;
+        this.props.orderDetails.forEach(function (element) {
+            if (element.idMenu === value) isExist = true;
+        });
+        return isExist
     };
 
     render() {
