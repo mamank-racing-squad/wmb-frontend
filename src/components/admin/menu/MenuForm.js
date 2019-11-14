@@ -41,7 +41,7 @@ class MenuForm extends React.Component {
                                 </div>
                                 <div className="form-group">
                                     <label>Price</label>
-                                    <input type="text" className="form-control" placeholder="Enter Input Price" value={this.props.menuForm.price} onChange={this.handleInputPrice} required/>                                </div>
+                                    <input type="number" className="form-control" placeholder="Enter Input Price" value={this.props.menuForm.price} onChange={this.handleInputPrice} required/>                                </div>
                                 <div className="form-group">
                                     <label>Image</label>
                                     <div className="custom-file">
