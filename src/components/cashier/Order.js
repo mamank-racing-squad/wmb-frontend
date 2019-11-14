@@ -1,21 +1,27 @@
 import React from 'react';
 import '../../assets/css/Order.scss';
-
 import {connect} from 'react-redux'
 import OrderList from "./OrderList";
 import {handleNumberFormatCurrency} from "../admin/menu/MenuAction";
 import {submitOrder} from "../../services/OrderService";
-import {handleCostumerNameOrder, handleNumberDiningTable, handleTotalCostumerName,resetOrder} from "./OrderAction";
+import {handleCostumerNameOrder, handleNumberDiningTable, handleTotalCostumerName, resetOrder} from "./OrderAction";
 
 class Order extends React.Component {
 
-    handleClearListMenu = () => {
-        this.props.dispatch(resetOrder);
+    handleCostumerName = (event) => {
+        this.props.dispatch({...handleCostumerNameOrder, payload: event.target.value})
     };
-    
+
+    handleTotalCostumer = (event) => {
+        this.props.dispatch({...handleTotalCostumerName, payload: event.target.value})
+    };
+
+    handleDiningNumber = (event) => {
+        this.props.dispatch({...handleNumberDiningTable, payload: event.target.value})
+    };
     handleTotalPrice = () => {
         let totalPrice = 0;
-        for(let orderDetail of this.props.orderDetails){
+        for (let orderDetail of this.props.orderDetails) {
             totalPrice += orderDetail.price * orderDetail.amount;
         }
         return handleNumberFormatCurrency(totalPrice);
@@ -26,15 +32,8 @@ class Order extends React.Component {
             .then(this.props.dispatch(resetOrder));
 
     };
-
-    handleCostumerName = (event) => {
-        this.props.dispatch({...handleCostumerNameOrder, payload: event.target.value})
-    };
-    handleTotalCostumer = (event) => {
-        this.props.dispatch({...handleTotalCostumerName, payload: event.target.value})
-    };
-    handleDiningNumber = (event) => {
-        this.props.dispatch({...handleNumberDiningTable, payload: event.target.value})
+    handleClearListMenu = () => {
+        this.props.dispatch(resetOrder);
     };
 
     render() {
@@ -44,19 +43,25 @@ class Order extends React.Component {
                     <p>New Order</p>
                 </div>
                 <div className="customerBox">
-                <div className="form-group">
-                <input type="text" className="form-control" value={this.props.orderForm.costumerName} onChange={this.handleCostumerName} placeholder="Input PIC" required/>
-                </div>
                     <div className="form-group">
-                <input type="number" className="form-control" value={this.props.orderForm.totalCostumer} onChange={this.handleTotalCostumer} placeholder="Input Number of Customers" required/>
+                        <input type="text" className="form-control" value={this.props.orderForm.costumerName}
+                               onChange={this.handleCostumerName} placeholder="Input PIC" required/>
                     </div>
                     <div className="form-group">
-                        <input type="text" className="form-control" placeholder="No Tables" onChange={this.handleDiningNumber} disabled required value={this.props.orderForm.numberDiningTable}/>
+                        <input type="number" className="form-control" value={this.props.orderForm.totalCostumer}
+                               onChange={this.handleTotalCostumer} placeholder="Input Number of Customers" required/>
+                    </div>
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="No Tables"
+                               onChange={this.handleDiningNumber} disabled required
+                               value={this.props.orderForm.numberDiningTable}/>
                     </div>
                 </div>
                 {
                     this.props.orderDetails.map((element, index) => {
-                        return <OrderList key={index} menuName={element.menuName} price={element.price} amount={element.amount} idMenu={element.idMenu} numberDiningTable={element.numberDiningTable}  index={index}/>
+                        return <OrderList key={index} menuName={element.menuName} price={element.price}
+                                          amount={element.amount} idMenu={element.idMenu}
+                                          numberDiningTable={element.numberDiningTable} index={index}/>
                     })
                 }
                 <div className="checkoutBox">

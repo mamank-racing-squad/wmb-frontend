@@ -71,7 +71,9 @@ class DiningTableContainer extends Component {
 
     componentDidMount() {
         this.fetchDataDiningTable();
+        console.log(fetchDiningTable(),"ini adalah fetch")
     }
+
 
     fetchDataDiningTable = async () => {
         const data = await fetchDiningTable();

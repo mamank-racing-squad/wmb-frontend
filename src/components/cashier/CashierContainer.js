@@ -28,6 +28,13 @@ import DiningTable from "./dining-table/DiningTable";
 import {fetchDiningTable} from "../../services/DiningTableService";
 import {fetchDiningTableSuccess} from "../admin/dining-table/DiningTableAction";
 import {fetchMenu} from "./menu/MenuService";
+import {
+    RealTimeProvider,
+    RealTimeChannel,
+    useRealTimeEventListener,
+    useRealTimeEventTrigger,
+    useRealTimeConnectionEventListener,
+} from 'react-realtime'
 
 class CashierContainer extends React.Component {
 
@@ -64,7 +71,8 @@ class CashierContainer extends React.Component {
                         }
                         <span>Payment</span>
                     </NavLink>
-                    <NavLink to="/admin/dining-table" activeClassName="active" className="menu-category" onClick={this.handleClearListMenu}>
+                    <NavLink to="/admin/dining-table" activeClassName="active" className="menu-category"
+                             onClick={this.handleClearListMenu}>
                         {
                             this.props.match && this.props.match.params.type === '/admin' ?
                                 <img src={admin} alt="Cashier"/> :
@@ -121,8 +129,10 @@ class CashierContainer extends React.Component {
         }
     };
 
+
     fetchDataDiningTable = async () => {
         const data = await fetchDiningTable();
+        console.log(useRealTimeEventTrigger, "ini events")
         if (!(data === undefined)) {
             this.props.dispatch({...fetchDiningTableSuccess, payload: data})
         }
