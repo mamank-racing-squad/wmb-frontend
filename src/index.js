@@ -10,6 +10,7 @@ import {createStore} from 'redux'
 import AdminContainer from "./components/admin/AdminContainer";
 import {reducers} from "./reducers/CombineReducers";
 import PaymentContainer from "./components/cashier/payment/PaymentContainer";
+import Receipt from "./components/cashier/payment/Receipt";
 
 const store = createStore(reducers);
 
@@ -21,6 +22,7 @@ ReactDOM.render(
                 <Route path="/:type(foods|drinks|dining-table|menu-category)" component={CashierContainer} />
                 <Route path="/admin" component={AdminContainer}/>
                 <Route path="/payment" component={PaymentContainer}/>
+                <Route path="/receipt/:id" component={Receipt}/>
             </div>
         </BrowserRouter>
     </Provider>,

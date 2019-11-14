@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import '../../../assets/css/DiningTable.scss';
 import '../../../assets/css/Order.scss'
 
@@ -7,10 +7,24 @@ import {handleInputPay, resetPaymentForm} from "./PaymentAction";
 import {submitPayment} from "./PaymentService";
 import {handleNumberFormatCurrency} from "../../admin/menu/MenuAction";
 
+export const printIframe = (id) => {
+    const iframe = document.frames ? document.frames[id] : document.getElementById(id);
+    const iframeWindow = iframe.contentWindow || iframe;
+
+    iframe.focus();
+    iframeWindow.print();
+
+    return false;
+};
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2b9db13f1d34756c4e3c75f4f295cfe208974b54
 class PaymentForm extends React.Component {
 
     render() {
         const orderDetail = this.props.orderDetail;
+        console.log(this.props.orderDetail);
         return (
             <div className="modal fade" id="modalForm" tabIndex="-" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -26,7 +40,7 @@ class PaymentForm extends React.Component {
                             <div className="modal-body">
                                 PIC Name
                                 <div className="form-group">
-                                    <input type="text" className="form-control" value={orderDetail.costumerName} disabled={true}/>
+                                    <input type="text" className="form-control" value={this.props.orderDetail.costumerName} disabled={true}/>
                                 </div>
                                 <div className="form-group">
                                     Total Costumer
@@ -44,6 +58,7 @@ class PaymentForm extends React.Component {
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={()=>{this.handleCheckout(orderDetail)}}>Checkout</button>
+                                <iframe id="receipt" src={`/receipt/${orderDetail.idOrder}`} style={{display: 'none'}} title="Receipt" />
                             </div>
                         </form>
                     </div>
@@ -59,10 +74,13 @@ class PaymentForm extends React.Component {
     handleCheckout(orderDetail) {
         submitPayment(orderDetail.idOrder, this.props.paymentInput, orderDetail.totalPrice).then(this.props.fetchData).then(this.props.dispatch(resetPaymentForm))
     }
+
+
 }
 
 const mapStateToProp=(state)=>{
     return {...state.paymentReducer}
 };
+
 
 export default connect(mapStateToProp)(PaymentForm);

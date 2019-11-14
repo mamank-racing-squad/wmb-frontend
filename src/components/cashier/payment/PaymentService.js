@@ -1,6 +1,7 @@
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import {handleNumberFormatCurrency} from "../../admin/menu/MenuAction";
+import {printIframe} from "./PaymentForm";
 
 const MySwal = withReactContent(Swal);
 
@@ -33,6 +34,7 @@ export async function submitPayment(id, payment, totalPrice) {
                     title: 'Transaction Success',
                     text: 'Change : Rp. '+ handleNumberFormatCurrency(change)
                 })
+                printIframe('receipt');
             } else {
                 response = await response.json();
                 await MySwal.fire({
