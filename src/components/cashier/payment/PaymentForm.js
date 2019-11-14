@@ -3,9 +3,9 @@ import '../../../assets/css/DiningTable.scss';
 import '../../../assets/css/Order.scss'
 
 import {connect} from 'react-redux'
-import {handleInputPay, resetPaymentForm} from "./PaymentAction";
-import {submitPayment} from "./PaymentService";
-import {handleNumberFormatCurrency} from "../../admin/menu/MenuAction";
+import {handleInputPay, resetPaymentForm} from "../../../actions/PaymentAction";
+import {submitPayment} from "../../../services/PaymentService";
+import {handleNumberFormatCurrency} from "../../../actions/MenuAction";
 
 export const printIframe = (id) => {
     const iframe = document.frames ? document.frames[id] : document.getElementById(id);
@@ -20,7 +20,6 @@ class PaymentForm extends React.Component {
 
     render() {
         const orderDetail = this.props.orderDetail;
-        console.log(this.props);
         return (
             <div className="modal fade" id="modalForm" tabIndex="-" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -73,8 +72,6 @@ class PaymentForm extends React.Component {
     handleCheckout(orderDetail) {
         submitPayment(orderDetail.idOrder, this.props.paymentInput, orderDetail.totalPrice).then(this.props.fetchData).then(this.props.dispatch(resetPaymentForm))
     }
-
-
 }
 
 const mapStateToProp=(state)=>{

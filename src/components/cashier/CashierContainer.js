@@ -1,19 +1,6 @@
 import React from 'react';
 import {NavLink, Route} from "react-router-dom";
-
 import '../../assets/css/App.scss';
-import Topbar from './Topbar'
-
-import Order from './Order'
-
-import {connect} from 'react-redux'
-
-import PaymentContainer from "./payment/PaymentContainer";
-
-import {fetchDataMenu} from "../../services/MenuService";
-
-//imgDummy
-
 import food from '../../assets/images/salad.png';
 import foodGray from '../../assets/images/salad-gray.png';
 import admin from '../../assets/images/admin.png';
@@ -22,26 +9,17 @@ import diningTable from '../../assets/images/table.png';
 import diningTableGray from '../../assets/images/table-gray.png';
 import payment from '../../assets/images/payment.png'
 import paymentGray from '../../assets/images/payment-gray.png'
-import {fetchMenuSuccess} from "../admin/menu/MenuAction";
-import MenuItem from "./MenuItem";
-import DiningTable from "./dining-table/DiningTable";
+import Topbar from './Topbar'
+import Order from './order/OrderContainer'
+import {connect} from 'react-redux'
+import MenuItem from "./menu/MenuItemContainer";
+import DiningTable from "./dining-table/DiningTableContainer";
 import {fetchDiningTable} from "../../services/DiningTableService";
-import {fetchDiningTableSuccess} from "../admin/dining-table/DiningTableAction";
-import {fetchMenu} from "./menu/MenuService";
-import {
-    RealTimeProvider,
-    RealTimeChannel,
-    useRealTimeEventListener,
-    useRealTimeEventTrigger,
-    useRealTimeConnectionEventListener,
-} from 'react-realtime'
+import {fetchDiningTableSuccess} from "../../actions/DiningTableAction";
+import {fetchMenu} from "./../../services/MenuService";
+import {fetchMenuSuccess} from "../../actions/MenuAction";
 
 class CashierContainer extends React.Component {
-
-    handleClearListMenu = () => {
-        this.props.dispatch({type: "CLEAR_LIST_MENU"});
-    };
-
     render() {
         return (
             <div>
@@ -122,6 +100,10 @@ class CashierContainer extends React.Component {
         this.fetchDataDiningTable();
     }
 
+    handleClearListMenu = () => {
+        this.props.dispatch({type: "CLEAR_LIST_MENU"});
+    };
+
     fetchDataMenu = async () => {
         const data = await fetchMenu();
         if (!(data === undefined)) {
@@ -132,7 +114,6 @@ class CashierContainer extends React.Component {
 
     fetchDataDiningTable = async () => {
         const data = await fetchDiningTable();
-        console.log(useRealTimeEventTrigger, "ini events")
         if (!(data === undefined)) {
             this.props.dispatch({...fetchDiningTableSuccess, payload: data})
         }
