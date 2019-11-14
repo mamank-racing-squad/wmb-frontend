@@ -16,6 +16,10 @@ export const printIframe = (id) => {
 
     return false;
 };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2b9db13f1d34756c4e3c75f4f295cfe208974b54
 class PaymentForm extends React.Component {
 
     render() {
