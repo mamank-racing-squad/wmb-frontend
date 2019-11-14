@@ -5,6 +5,7 @@ import OrderList from "./OrderList";
 import {handleNumberFormatCurrency} from "../../../actions/MenuAction";
 import {submitOrder} from "../../../services/OrderService";
 import {handleCostumerNameOrder, handleNumberDiningTable, handleTotalCostumerName, resetOrder} from "../../../actions/OrderAction";
+import NavLink from "react-router-dom/NavLink";
 
 class OrderContainer extends React.Component {
 
@@ -28,6 +29,15 @@ class OrderContainer extends React.Component {
                                onChange={this.handleDiningNumber} disabled required
                                value={this.props.orderForm.numberDiningTable}/>
                     </div>
+                    <div className="form-group">
+                        <textarea
+                            className="form-control"
+                            rows="2"
+                        />
+                    </div>
+                    <NavLink exact to="/foods">
+                        <button className="addMenu">Add Menu</button>
+                    </NavLink>
                 </div>
                 {
                     this.props.orderDetails.map((element, index) => {
