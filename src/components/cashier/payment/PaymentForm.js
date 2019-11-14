@@ -22,6 +22,7 @@ class PaymentForm extends React.Component {
 
     render() {
         const orderDetail = this.props.orderDetail;
+        console.log(this.props.orderDetail);
         return (
             <div className="modal fade" id="modalForm" tabIndex="-" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -37,7 +38,7 @@ class PaymentForm extends React.Component {
                             <div className="modal-body">
                                 PIC Name
                                 <div className="form-group">
-                                    <input type="text" className="form-control" value={orderDetail.costumerName} disabled={true}/>
+                                    <input type="text" className="form-control" value={this.props.orderDetail.costumerName} disabled={true}/>
                                 </div>
                                 <div className="form-group">
                                     Total Costumer
