@@ -12,8 +12,7 @@ class MenuContainer extends React.Component {
         return (
             <div onClick={() => {this.handleClick(this.props)}}
                  className={this.handleMenuIsExist(this.props.idMenu) ? 'FoodItemBox selected' : 'FoodItemBox'}>
-                <img className="itemImage" src={pizza} alt="Menu Item Images"/>
-                {/*<img className="itemImage" src={`http://localhost/menu-image/${this.props.idMenu}.jpg`} alt="Menu Item Images"/>*/}
+                <img className="itemImage" src={`http://localhost/menu-image/${this.props.idMenu}.jpg`} alt="Menu Item Images"/>
                 {this.handleMenuIsExist(this.props.idMenu) ?
                     <label>
                         <img src={tick} alt="Menu Item"/>
