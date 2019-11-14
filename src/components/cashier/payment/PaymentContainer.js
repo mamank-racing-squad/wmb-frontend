@@ -30,7 +30,8 @@ class PaymentContainer extends Component {
                 idDiningTable={element.diningTable.idDiningTable}
                 numberDiningTable={element.diningTable.numberDiningTable}
                 isSelected={element.diningTable.availability}
-                unpaidOrder={element}
+                idOrder={element.idOrder}
+                costumerName={element.costumerName}
                 fetchData={this.fetchDataPayment}
             />;
         });

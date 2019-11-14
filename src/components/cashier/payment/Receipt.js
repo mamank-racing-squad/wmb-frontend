@@ -1,6 +1,6 @@
 import React from "react";
-import {getTrxById, getUnpaidOrder} from "./PaymentService";
-import {fetchingOrderDetailSuccess, fetchingOrderSuccess} from "./PaymentAction";
+import {getTrxById} from "./PaymentService";
+import {fetchingOrderDetailSuccess} from "./PaymentAction";
 import {connect} from "react-redux";
 class Receipt extends React.Component{
     render() {
