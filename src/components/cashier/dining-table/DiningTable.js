@@ -11,7 +11,7 @@ class DiningTable extends React.Component {
 
     handleClick = (data) => {
         if (data.isSelected) {
-            this.props.dispatch({type: "ADD_SELECTED_TABLE", payload : data})
+            this.props.dispatch({type: "ADD_SELECTED_TABLE", payload: data})
         } else {
             Swal.fire({
                 icon: 'error',
@@ -21,14 +21,22 @@ class DiningTable extends React.Component {
         }
     };
 
+
     render() {
         return (
-            <div onClick={()=> {this.handleClick(this.props)}}
-                 className={this.props.isSelected ? 'diningTableBox' :  'diningTableBox selected'}>
+            <div onClick={() => {
+                this.handleClick(this.props)
+            }}
+                 className={this.props.isSelected ? 'diningTableBox' : 'diningTableBox table-selected'}>
                 <img className="itemImage" src={diningTable} alt="Dining Table"/>
-
+                {/*{this.props.isSelected ?*/}
+                {/*    <label>*/}
+                {/*        <img src={tick}/>*/}
+                {/*    </label>*/}
+                {/*    : null*/}
+                {/*}*/}
                 <span className="capacity">Slot : {this.props.capacity}</span>
-                <span className="numberDiningTable">Nomor : {this.props.numberDiningTable}</span>
+                <span className="numberDiningTable">Number : {this.props.numberDiningTable}</span>
             </div>
         )
     }

@@ -4,7 +4,7 @@ import withReactContent from 'sweetalert2-react-content'
 
 const MySwal = withReactContent(Swal);
 
-export async function fetchMenu(){
+export async function fetchMenu() {
     return await fetch(`http://localhost:9090/list-menu`, {method: "GET"})
         .then((response) => {
             return response.json()
@@ -21,7 +21,7 @@ export async function submitMenu(payload, image) {
             body: formData
 
         })
-        .then(()=>{
+        .then(() => {
             MySwal.fire({
                 icon: 'success',
                 title: 'Your data has been saved',
@@ -32,7 +32,7 @@ export async function submitMenu(payload, image) {
         .catch(reason => console.log(reason));
 }
 
-export async function deleteMenuById(id){
+export async function deleteMenuById(id) {
     return await fetch(`http://localhost:9090/menu/${id}`, {method: "DELETE"})
         .then(() => {
             MySwal.fire(
@@ -43,7 +43,7 @@ export async function deleteMenuById(id){
         });
 }
 
-export async function getMenuById(id){
+export async function getMenuById(id) {
     return await fetch(`http://localhost:9090/menu/${id}`, {method: "GET"})
         .then((response) => {
             return response.json()

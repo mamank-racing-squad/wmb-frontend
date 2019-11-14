@@ -11,12 +11,15 @@ class MenuItem extends React.Component {
         if (this.props.orderDetails.length === 0) {
             return this.props.dispatch({type: "ADD_SELECTED_MENU", payload: {...data, amount: 1}});
         } else {
-            if (!this.handleMenuIsExist(data.idMenu)) return this.props.dispatch({type: "ADD_SELECTED_MENU", payload: {...data, amount: 1}});
+            if (!this.handleMenuIsExist(data.idMenu)) return this.props.dispatch({
+                type: "ADD_SELECTED_MENU",
+                payload: {...data, amount: 1}
+            });
             else this.props.dispatch({type: "REMOVE_SELECTED_MENU", idMenu: data.idMenu});
         }
     };
 
-    handleMenuIsExist (value) {
+    handleMenuIsExist(value) {
         let isExist = false;
         this.props.orderDetails.forEach(function (element) {
             if (element.idMenu === value) isExist = true;
