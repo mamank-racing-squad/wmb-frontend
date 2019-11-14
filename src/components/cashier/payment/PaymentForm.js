@@ -7,7 +7,6 @@ import {handleInputPay, resetPaymentForm} from "./PaymentAction";
 import {submitPayment} from "./PaymentService";
 import {handleNumberFormatCurrency} from "../../admin/menu/MenuAction";
 
-
 class PaymentForm extends React.Component {
 
     render() {
