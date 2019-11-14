@@ -1,5 +1,5 @@
 import React from "react";
-import {getTrxById} from "../../../services/PaymentService";
+import {getOrderById} from "../../../services/PaymentService";
 import {fetchingOrderDetailSuccess} from "../../../actions/PaymentAction";
 import {connect} from "react-redux";
 class Receipt extends React.Component{
@@ -43,7 +43,7 @@ class Receipt extends React.Component{
     }
 
     fetchDataOrder = async () => {
-        const data = await getTrxById(this.props.match.params.id);
+        const data = await getOrderById(this.props.match.params.id);
         if (!(data === undefined)) {
             this.props.dispatch({...fetchingOrderDetailSuccess, payload: data})
         }

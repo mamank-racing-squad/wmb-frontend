@@ -1,11 +1,4 @@
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-import {handleNumberFormatCurrency} from "../actions/MenuAction";
-import {printIframe} from "../components/cashier/payment/PaymentForm";
-
-const MySwal = withReactContent(Swal);
-
-export async function getTrxById(id){
+export async function getOrderById(id){
     return await fetch(`http://localhost:9090/order/${id}`, {method: "GET"})
         .then((response) => {
             return response.json()
@@ -18,8 +11,7 @@ export async function getUnpaidOrder(){
         });
 }
 
-export async function submitPayment(id, payment, totalPrice) {
-    const change = payment.pay-totalPrice;
+export async function submitPayment(id, payment) {
     const paymentInput = JSON.stringify(payment);
     return await fetch(`http://localhost:9090/payment/${id}`,
         {
@@ -27,21 +19,7 @@ export async function submitPayment(id, payment, totalPrice) {
             headers: {'Content-Type': 'application/json'},
             body: paymentInput
         })
-        .then( async (response) => {
-            if (response.status === 200) {
-                await MySwal.fire({
-                    icon: 'success',
-                    title: 'Transaction Success',
-                    text: 'Change : Rp. '+ handleNumberFormatCurrency(change)
-                });
-                printIframe('receipt');
-            } else {
-                response = await response.json();
-                await MySwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: response.message,
-                })
-            }
+        .then((response) => {
+           return response.json();
         })
 }
