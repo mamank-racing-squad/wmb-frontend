@@ -46,7 +46,7 @@ class DiningTableForm extends React.Component {
     };
 
     handleInputNumberDiningTable = (event) => {
-        this.props.dispatch({...handleNumberDiningTableForm, payload: event.target.value})
+        this.props.dispatch({...handleNumberDiningTableForm, payload: event.target.value.toUpperCase()})
     };
     handleInputCapacity = (event) => {
         this.props.dispatch({...handleCapacityDiningTableForm, payload: event.target.value})

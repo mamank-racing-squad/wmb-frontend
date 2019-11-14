@@ -3,7 +3,9 @@ import MenuForm from "./MenuForm";
 import {connect} from "react-redux";
 import Swal from 'sweetalert2'
 import {deleteMenuById, fetchMenu, getMenuById, submitMenu} from "../../../services/MenuService";
-import {editMenuForm, fetchMenuSuccess, handleNumberFormatCurrency, resetMenuForm} from "../../../actions/MenuAction";
+import {editMenuForm, fetchMenuSuccess, resetMenuForm} from "../../../actions/MenuAction";
+import {handleNumberFormatCurrency} from "../../../constants/Constanta";
+import {handleRespond} from "../../../constants/Alert";
 
 class MenuContainer extends React.Component {
 
@@ -62,8 +64,12 @@ class MenuContainer extends React.Component {
 
     handleSubmitData = () => {
         submitMenu(this.props.menuForm, this.props.menuImage)
+            .then((respond)=>{
+                if (respond.status !== 200) handleRespond(respond.status,respond.message);
+                if (respond.status === undefined) handleRespond(200, "Your data has been saved")
+                    .then(this.props.dispatch({...resetMenuForm}));
+            })
             .then(this.fetchDataMenu)
-            .then(this.props.dispatch({...resetMenuForm}));
     };
 
     handleEditData = async (id) => {
@@ -85,6 +91,9 @@ class MenuContainer extends React.Component {
         }).then( async (result) => {
             if (result.value){
                 await deleteMenuById(id)
+                    .then((respond)=>{
+                        handleRespond(respond.status, "Your data has been deleted");
+                    })
                     .then(this.fetchDataMenu);
             }
         })

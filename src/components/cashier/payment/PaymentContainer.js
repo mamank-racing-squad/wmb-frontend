@@ -15,6 +15,8 @@ import {fetchingOrderSuccess} from "../../../actions/PaymentAction";
 import DiningTableToPaid from "./DiningTableToPaid";
 import {getUnpaidOrder, submitPayment} from "../../../services/PaymentService";
 import {resetMenuForm} from "../../../actions/MenuAction";
+import {handleRespond} from "../../../constants/Alert";
+import {resetOrder} from "../../../actions/OrderAction";
 
 class PaymentContainer extends Component {
 
@@ -24,7 +26,7 @@ class PaymentContainer extends Component {
                 key={index}
                 idDiningTable={element.diningTable.idDiningTable}
                 numberDiningTable={element.diningTable.numberDiningTable}
-                isSelected={element.diningTable.availability}
+                isSelected={element.diningTable.isAvailable}
                 idOrder={element.idOrder}
                 costumerName={element.costumerName}
                 fetchData={this.fetchDataPayment}
@@ -91,15 +93,10 @@ class PaymentContainer extends Component {
         }
     };
 
-    handleSubmitData = (orderDetail) => {
-        submitPayment(orderDetail.idOrder, this.props.paymentInput)
-            .then(this.fetchDataPayment)
-            .then(this.props.dispatch(resetMenuForm));
-    }
 }
 
 const mapStateToProps = (state) => {
     return {...state.paymentReducer}
-}
+};
 
 export default withRouter(connect(mapStateToProps)(PaymentContainer));

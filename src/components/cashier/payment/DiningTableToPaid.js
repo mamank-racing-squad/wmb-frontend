@@ -3,7 +3,7 @@ import '../../../assets/css/DiningTableToPaid.scss';
 
 import diningTable from '../../../assets/images/dining-table.png';
 import PaymentForm from "./PaymentForm";
-import {getTrxById} from "../../../services/PaymentService";
+import {getOrderById} from "../../../services/PaymentService";
 import {fetchingOrderDetailSuccess} from "../../../actions/PaymentAction";
 import {connect} from "react-redux";
 
@@ -26,7 +26,7 @@ class DiningTableToPaid extends React.Component {
     }
 
     handleClick = async (id) => {
-        const data = await getTrxById(id);
+        const data = await getOrderById(id);
         if (!(data === undefined)) {
             this.props.dispatch({...fetchingOrderDetailSuccess, payload: data})
         }

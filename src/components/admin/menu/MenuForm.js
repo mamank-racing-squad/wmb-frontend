@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {handleMenuAvailabilityForm,handleMenuCategoryForm,handleMenuImageForm,handleMenuNameForm,handleMenuPriceForm,resetMenuForm} from "../../../actions/MenuAction";
 import {fetchMenuCategory} from "../../../services/MenuCategoryService";
 import {fetchMenuCategorySuccess} from "../../../actions/MenuCategoryAction";
-
+import CurrencyFormat from "react-currency-format";
 class MenuForm extends React.Component {
 
     render() {
@@ -26,7 +26,12 @@ class MenuForm extends React.Component {
                                 </div>
                                 <div className="form-group">
                                     <label>Price</label>
-                                    <input type="text" className="form-control" placeholder="Enter Input Price" value={this.props.menuForm.price} onChange={this.handleInputPrice}/>
+                                    <div className="input-group mb-2">
+                                        <div className="input-group-prepend">
+                                            <div className="input-group-text">Rp.</div>
+                                        </div>
+                                        <CurrencyFormat decimalSeparator="," thousandSeparator="." className="form-control" placeholder="Enter Input Price" value={this.props.menuForm.price} onChange={this.handleInputPrice}/>
+                                    </div>
                                 </div>
                                 <div className="form-group">
                                     <label>Image</label>
@@ -40,21 +45,21 @@ class MenuForm extends React.Component {
                                 </div>
                                 <div className="form-group">
                                     <label>Menu Category</label>
-                                    <select className="form-control" onChange={this.handleInputCategory}>
-                                        <option defaultValue={this.props.menuForm.idMenuCategory} selected disabled>Choose Menu Category</option>
+                                    <select className="form-control" defaultValue={this.props.menuForm.idMenuCategory} onChange={this.handleInputCategory}>
+                                        <option value="" disabled>Choose Menu Category</option>
                                         {
                                             this.props.menuCategories.map((item, key) => {
                                                 return (
                                                     <option key={key} value={item.idMenuCategory}>{item.categoryName}</option>
                                                 )
                                             })
-                                        }
+                                        }co
                                     </select>
                                 </div>
                                 <div className="form-group">
                                     <label>Availability</label>
-                                    <select className="form-control" onChange={this.handleInputAvailability}>
-                                        <option defaultValue={this.props.menuForm.availability} selected disabled>Choose Availability</option>
+                                    <select className="form-control" defaultValue={this.props.menuForm.isAvailable} onChange={this.handleInputAvailability}>
+                                        <option value="" disabled>Choose Availability</option>
                                         <option value="true">Tersedia</option>
                                         <option value="false">Tidak Tersedia</option>
                                     </select>

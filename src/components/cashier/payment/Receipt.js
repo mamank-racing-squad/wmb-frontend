@@ -1,8 +1,8 @@
 import React from "react";
-import {getTrxById} from "../../../services/PaymentService";
+import {getOrderById} from "../../../services/PaymentService";
 import {fetchingOrderDetailSuccess} from "../../../actions/PaymentAction";
 import {connect} from "react-redux";
-import {handleNumberFormatCurrency} from "../../../actions/MenuAction";
+import {handleNumberFormatCurrency} from "../../../constants/Constanta";
 class Receipt extends React.Component{
     render() {
         const orderDetails = this.props.orderDetails.map((element)=>{
@@ -75,7 +75,7 @@ class Receipt extends React.Component{
     }
 
     fetchDataOrder = async () => {
-        const data = await getTrxById(this.props.match.params.id);
+        const data = await getOrderById(this.props.match.params.id);
         if (!(data === undefined)) {
             this.props.dispatch({...fetchingOrderDetailSuccess, payload: data})
         }

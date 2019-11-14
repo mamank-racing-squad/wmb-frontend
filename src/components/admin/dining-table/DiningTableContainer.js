@@ -1,10 +1,12 @@
 import React, {Component} from "react"
-import Swal from 'sweetalert2'
 import {connect} from "react-redux";
 import DiningTableForm from "./DiningTableForm";
+import Swal from 'sweetalert2'
 
 import {editDiningTableForm, fetchDiningTableSuccess, resetDiningTableForm} from "../../../actions/DiningTableAction";
 import {deleteDiningTableById,fetchDiningTable,getDataDiningTableById,submitDiningTable} from "../../../services/DiningTableService";
+import {handleRespond} from "../../../constants/Alert";
+import {handleAvailability} from "../../../constants/Constanta";
 
 class DiningTableContainer extends Component {
 
@@ -33,7 +35,7 @@ class DiningTableContainer extends Component {
                                     <td>{index + 1}</td>
                                     <td>{element.numberDiningTable}</td>
                                     <td>{element.capacity}</td>
-                                    <td>{this.handleAvailability(element.availability)}</td>
+                                    <td>{handleAvailability(element.isAvailable)}</td>
                                     <td>
                                         <a href="#" onClick={() => {this.handleEditData(element.idDiningTable)}} data-toggle="modal" data-target="#modalForm" data-backdrop="static" data-keyboard="false">Edit</a>
                                         |
@@ -54,11 +56,6 @@ class DiningTableContainer extends Component {
         this.fetchDataDiningTable();
     }
 
-    handleAvailability(payload) {
-        if (payload) return "Available";
-        return "Not Available"
-    }
-
     fetchDataDiningTable = async () => {
         const data = await fetchDiningTable();
         if (!(data === undefined)) {
@@ -68,8 +65,13 @@ class DiningTableContainer extends Component {
 
     handleSubmitData = () => {
         submitDiningTable(this.props.diningTableForm)
+            .then((respond)=>{
+                if (respond.status !== 200) handleRespond(respond.status,respond.message);
+                if (respond.status === undefined) handleRespond(200, "Your data has been saved")
+                    .then(this.props.dispatch({...resetDiningTableForm}));
+
+            })
             .then(this.fetchDataDiningTable)
-            .then(this.props.dispatch({...resetDiningTableForm}));
     };
 
     handleEditData = async (id) => {
@@ -91,7 +93,10 @@ class DiningTableContainer extends Component {
         }).then( async (result) => {
             if (result.value) {
                 await deleteDiningTableById(id)
-                    .then(this.fetchDataDiningTable);
+                    .then((respond)=>{
+                        handleRespond(respond.status, "Your data has been deleted");
+                    })
+                    .then(this.fetchDataDiningTable)
             }
         })
     }

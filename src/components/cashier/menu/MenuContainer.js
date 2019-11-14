@@ -3,24 +3,24 @@ import '../../../assets/css/MenuItem.scss';
 
 import tick from '../../../assets/images/tick.png'
 import {connect} from "react-redux";
-import {handleNumberFormatCurrency} from "../../../actions/MenuAction";
 import pizza from '../../../assets/images/Pizza.jpg';
+import {handleNumberFormatCurrency} from "../../../constants/Constanta";
 
-class MenuItemContainer extends React.Component {
+class MenuContainer extends React.Component {
 
     render() {
         return (
             <div onClick={() => {this.handleClick(this.props)}}
                  className={this.handleMenuIsExist(this.props.idMenu) ? 'FoodItemBox selected' : 'FoodItemBox'}>
-                {/*<img className="itemImage" src={pizza} alt="Menu Item Images"/>*/}
-                <img className="itemImage" src={`http://localhost/menu-image/${this.props.idMenu}.jpg`} alt="Menu Item Images"/>
+                <img className="itemImage" src={pizza} alt="Menu Item Images"/>
+                {/*<img className="itemImage" src={`http://localhost/menu-image/${this.props.idMenu}.jpg`} alt="Menu Item Images"/>*/}
                 {this.handleMenuIsExist(this.props.idMenu) ?
                     <label>
                         <img src={tick} alt="Menu Item"/>
                     </label>
                     : null
                 }
-                <span className="priceTag">{'IDR. ' + handleNumberFormatCurrency(this.props.price)}</span>
+                <span className="priceTag">{'Rp. ' + handleNumberFormatCurrency(this.props.price)}</span>
                 <span className="itemNameTag">{this.props.menuName}</span>
             </div>
         )
@@ -44,4 +44,4 @@ class MenuItemContainer extends React.Component {
     };
 }
 
-export default connect()(MenuItemContainer);
+export default connect()(MenuContainer);
