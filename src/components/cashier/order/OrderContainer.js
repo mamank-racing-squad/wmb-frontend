@@ -3,12 +3,20 @@ import '../../../assets/css/Order.scss';
 import {connect} from 'react-redux'
 import OrderList from "./OrderList";
 import {submitOrder} from "../../../services/OrderService";
-import {handleCostumerNameOrder, handleNumberDiningTable, handleTotalCostumerName, resetOrder} from "../../../actions/OrderAction";
-import {handleNumberFormatCurrency} from "../../../constants/Constanta";
+import {
+    handleCostumerNameOrder,
+    handleDescriptionOrder,
+    handleNumberDiningTable,
+    handleTotalCostumerName,
+    resetOrder
+} from "../../../actions/OrderAction";
+import NavLink from "react-router-dom/NavLink";
+import { FaPlusCircle } from 'react-icons/fa';
 
 class OrderContainer extends React.Component {
 
     render() {
+        console.log(this.props,"format payload")
         return (
             <div className="orderBox">
                 <div className="title">
@@ -27,6 +35,19 @@ class OrderContainer extends React.Component {
                         <input type="text" className="form-control" placeholder="No Tables"
                                onChange={this.handleDiningNumber} disabled required
                                value={this.props.orderForm.numberDiningTable}/>
+                    </div>
+                    <div className="form-group">
+                        <textarea
+                            onChange={this.handleDescription}
+                            value={this.props.orderForm.description}
+                            className="form-control"
+                            rows="2"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <NavLink exact to="/foods">
+                            <button className="addMenu"><FaPlusCircle/>    Add Menu</button>
+                        </NavLink>
                     </div>
                 </div>
                 {
@@ -62,6 +83,11 @@ class OrderContainer extends React.Component {
         this.props.dispatch({...handleNumberDiningTable, payload: event.target.value})
     };
 
+    handleDescription = (event) => {
+        this.props.dispatch({...handleDescriptionOrder, payload: event.target.value})
+    };
+
+
     handleTotalPrice = () => {
         let totalPrice = 0;
         for (let orderDetail of this.props.orderDetails) {
@@ -73,7 +99,7 @@ class OrderContainer extends React.Component {
     handleSubmitData = () => {
         submitOrder(this.props.orderForm, this.props.orderDetails)
             .then(this.props.dispatch(resetOrder));
-
+        this.props.handleSubmit();
     };
 
     handleClearListMenu = () => {

@@ -89,7 +89,7 @@ class CashierContainer extends React.Component {
                             }
                         )}/>
                     </div>
-                    <Order/>
+                    <Order handleSubmit={this.fetchDataDiningTable}/>
                 </div>
             </div>
         );
