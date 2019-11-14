@@ -48,7 +48,7 @@ class PaymentForm extends React.Component {
                                 </div>
                                 <div className="form-group">
                                     Pay
-                                    <input type="text" className="form-control" value={this.props.paymentInput.pay} autoFocus={true} onChange={(event)=>this.handleInput(event)}/>
+                                    <input type="number" className="form-control" value={this.props.paymentInput.pay} autoFocus={true} onChange={(event)=>this.handleInput(event)} required/>
                                 </div>
                             </div>
                             <div className="modal-footer">

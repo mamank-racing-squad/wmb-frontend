@@ -28,6 +28,7 @@ class DiningTableToPaid extends React.Component {
                     <img className="itemImage" src={diningTable} alt="Dining Table"/>
                     <span value={this.props.isSelected}
                           onChange={this.handleChange}/>
+                    <span className="capacity">{this.props.costumerName}</span>
                     <span className="numberDiningTable">Nomor : {this.props.numberDiningTable}</span>
                 </div>
                 <PaymentForm orderDetail={this.props.unpaidOrder} fetchData={this.props.fetchData}/>
