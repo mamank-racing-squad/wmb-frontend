@@ -5,6 +5,7 @@
     .title {
         // width: 100%;
         padding: 3px 20px;
+        padding-top: 20px;
         font-size: 20px;
         color: white;
         font-weight: 700;
@@ -58,6 +59,7 @@
     .customerBox {
         background: white;
         color: #a6a8ae;
+        height: 324px;
         padding: 20px;
         div {
             margin-top: 10px;
@@ -65,7 +67,7 @@
     }
 }
 .addMenu {
-    width: 20%;
+    width: 24%;
     border-radius: 8px;
     height: 40px;
     color: white;
