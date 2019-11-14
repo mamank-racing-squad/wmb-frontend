@@ -30,12 +30,12 @@ class Receipt extends React.Component{
                         <td style={{"text-align":"left"}}>Kembalian</td>
                         <td style={{"text-align":"right"}}>{this.props.receipt.change}</td>
                     </tr>
-                </table>
                 ======= DETAIL TRANSAKSI =======
-                {/*<p>nomor meja : {this.props.receipt.diningTable.idDiningTable}</p>*/}
-                {/*<p>{this.props.receipt.orderDetails.map(element=>{*/}
-                {/*    return element.menuName*/}
-                {/*})}</p>*/}
+                    <tr>
+                        <td style={{"text-align":"left"}}>Total</td>
+                        <td style={{"text-align":"right"}}>{this.props.receipt.totalPrice}</td>
+                    </tr>
+                </table>
             </div>
         )
     }
