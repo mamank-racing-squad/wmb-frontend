@@ -1,3 +1,5 @@
+import {handleNumberFormatCurrency} from "../constants/Constanta";
+
 export async function fetchMenu() {
     return await fetch(`http://localhost:9090/menus`, {method: "GET"})
         .then((response) => {
@@ -6,6 +8,7 @@ export async function fetchMenu() {
 }
 
 export async function submitMenu(payload, image) {
+    payload.price = (handleNumberFormatCurrency(payload.price));
     payload.price = payload.price.replace(/\D+/g, '');
     const formData = new FormData();
     formData.append('image', image);
