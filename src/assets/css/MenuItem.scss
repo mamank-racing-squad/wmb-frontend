@@ -1,0 +1,81 @@
+.FoodItemBox {
+    width: calc( (100% / 3) - 30px);
+    height: 210px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    margin-right: 20px; 
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all .2s;
+    &.menu-disabled {
+        cursor: not-allowed;
+    }
+    &.selected {
+        padding: 5px;
+        box-shadow: 10px 15px 30px 7px rgba(0, 0, 0, 0.08);
+        //transition: all .2s;
+    }
+    &.selected::after {
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        bottom: -4px;
+        right: -4px;
+        content: '';
+        z-index: -1;
+        background: linear-gradient(to right, #FFC371, #FF5F6D);
+        //transition: all .2s;
+    }
+    .itemImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 18px;
+    }
+    .priceTag {
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        z-index: 1;
+        padding: 5px 15px;
+        border-radius: 5px;
+        color: white; 
+        font-weight: 800;
+        text-align: center;
+        font-size: 12px;
+        background: #FF5F6D;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #FFC371, #FF5F6D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+    .itemNameTag {
+        position: absolute;
+        left: 5%;
+        top: 20%;
+        padding: 8px 20px;
+        border-radius: 5px;
+        background: white;
+        color: #404143;
+        font-weight: 800;
+        text-align: center;
+        font-size: 11px;
+        z-index: 1;
+    }
+    label {
+        background: #FF5F6D;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);
+        background: linear-gradient(to right, #FFC371, #FF5F6D);
+        position: absolute;
+        padding: 2px 5px;
+        z-index: 1;
+        bottom: -10px;
+        right: 3px;
+        width: 15%;
+        height: 15%;
+        border-radius: 5px;
+        img {
+            width: 100%;
+        }
+    }
+}

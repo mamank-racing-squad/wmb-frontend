@@ -1,0 +1,79 @@
+.orderBox {
+    display: inline-block;
+    width: 35%;
+    vertical-align: top;
+    .title {
+        // width: 100%;
+        padding: 3px 20px;
+        padding-top: 20px;
+        font-size: 20px;
+        color: white;
+        font-weight: 700;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        background: #FF5F6D;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #FFC371, #FF5F6D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+    .checkoutBox {
+        background: white;
+        color: #a6a8ae;
+        padding: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        div {
+            margin-top: 10px;
+        }
+        .red {
+            color: #FF5F6D;
+            float: right;
+            font-weight: 700;
+        }
+        .subtotal {
+            color: #333436;
+            float: right;
+            font-weight: 500;
+        }
+        button {
+            padding: 15px;
+            border-radius: 10px;
+            outline: 0;
+            margin-top: 20px;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+           &.clearBtn {
+                width: 30%;
+                border: 1px solid #FF5F6D;
+                color: #FF5F6D;
+            }
+            &.payBtn {
+                width: 60%;
+                background: #24b056;
+                color: white;
+                border: none;
+                float: right;
+            } 
+        }
+    }
+    .customerBox {
+        background: white;
+        color: #a6a8ae;
+        height: 324px;
+        padding: 20px;
+        div {
+            margin-top: 10px;
+        }
+    }
+}
+.addMenu {
+    width: 24%;
+    border-radius: 8px;
+    height: 40px;
+    color: white;
+    border: none;
+    float: left;
+    background: #FF5F6D;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #FFC371, #FF5F6D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

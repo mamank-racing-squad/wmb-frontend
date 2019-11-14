@@ -1,0 +1,45 @@
+.orderList {
+    border-bottom: 1px solid #eff0f3;
+    .deleteBtn {
+        cursor: pointer;
+        background: none;
+        border: none;
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        vertical-align: middle;
+        outline: 0;
+        img {
+            width: 100%;
+        }
+    }
+    .column-1 {
+        display: inline-block;
+        line-height: 0.8;
+        margin-left: 10px;
+        vertical-align: middle;
+        .item_name {
+            color: #333436;
+            font-weight: 600;
+        }
+        .unit_price {
+            color: #9b9da4;
+            font-size: 12px;
+        }
+    }
+    .column-2 {
+        float: right;
+        display: inline-block;
+        margin-top: 7px;
+        vertical-align: middle;
+    }
+}
+
+.subtotal {
+    color: #333436;
+    font-weight: 600;
+    margin-left: 40px;
+    vertical-align: middle;
+    display: inline-block;
+    text-align: right;
+}

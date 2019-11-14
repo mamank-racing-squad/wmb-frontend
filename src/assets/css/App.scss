@@ -1,0 +1,68 @@
+body{
+  background: #f4f5f8;
+  .Nav {
+    position: fixed;
+    width: 110px;
+    height: 100vh;
+    text-align: center;
+    background: white;
+    a {
+      color: #97989b;
+      text-decoration: none;
+      width: 75px;
+      height: 80px;
+      display: block;
+      border-radius: 15%;
+      margin: 20px auto;
+      padding: 3px;
+      font-size: 14px;
+      &.active {
+      color: white; 
+      background: #FF5F6D;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to top, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to top, #FFC371, #FF5F6D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      box-shadow: 0px 3px 10px 2px rgba(0, 0, 0, 0.15);
+    }
+      img {
+        width: 30px;
+        height: 30px;
+        padding: 12px 5px 2px;
+      }
+      span {
+        display: block;
+        line-height: 0.8;
+      }
+    }
+  }
+}
+.right-wrapper {
+  width: calc(99vw - 110px);
+  float: right;
+  .items_wrapper {
+    display: inline-block;
+    margin: 20px;
+    width: 60%;
+  }
+  .items_wrapper_payment {
+    display: inline-block;
+    margin: 20px;
+    width: 100%;
+  }
+}
+
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.container {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  margin: 20px;
+  max-width: 1360px;
+  padding: 40px 20px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
