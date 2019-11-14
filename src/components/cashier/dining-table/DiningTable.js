@@ -27,7 +27,7 @@ class DiningTable extends React.Component {
             <div onClick={() => {
                 this.handleClick(this.props)
             }}
-                 className={this.props.isSelected ? 'diningTableBox' : 'diningTableBox selected'}>
+                 className={this.props.isSelected ? 'diningTableBox' : 'diningTableBox table-selected'}>
                 <img className="itemImage" src={diningTable} alt="Dining Table"/>
                 {/*{this.props.isSelected ?*/}
                 {/*    <label>*/}
