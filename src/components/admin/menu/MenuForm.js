@@ -21,6 +21,7 @@ class MenuForm extends React.Component {
     };
 
     render() {
+        console.log(this.props)
         return (
             <div className="modal fade" id="modalForm" tabIndex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -51,7 +52,7 @@ class MenuForm extends React.Component {
                                 <div className="form-group">
                                     <label>Menu Category</label>
                                     <select className="form-control" onChange={this.handleInputCategory} required>
-                                        <option value="" selected disabled>Choose Menu Category</option>
+                                        <option defaultValue={this.props.menuForm.idMenuCategory} selected disabled>Choose Menu Category</option>
                                         {
                                             this.props.menuCategories.map((item, key) => {
                                                 return (
@@ -64,7 +65,7 @@ class MenuForm extends React.Component {
                                 <div className="form-group">
                                     <label>Availability</label>
                                     <select className="form-control" onChange={this.handleInputAvailability} required>
-                                        <option value="" selected disabled>Choose Availability</option>
+                                        <option defaultValue={this.props.menuForm.availability} selected disabled>Choose Availability</option>
                                         <option value="true">Tersedia</option>
                                         <option value="false">Tidak Tersedia</option>
                                     </select>

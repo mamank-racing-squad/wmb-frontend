@@ -10,7 +10,6 @@ const initialState = {
 };
 
 export function menuOrderReducer(state=initialState, action) {
-    console.log(action,"ini action")
     switch (action.type) {
         case 'ADD_SELECTED_MENU':
             return {...state, orderDetails: state.orderDetails.concat([{...action.payload}])};

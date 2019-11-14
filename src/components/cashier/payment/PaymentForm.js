@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import '../../../assets/css/DiningTable.scss';
 import '../../../assets/css/Order.scss'
 
@@ -6,7 +6,17 @@ import {connect} from 'react-redux'
 import {handleInputPay, resetPaymentForm} from "./PaymentAction";
 import {submitPayment} from "./PaymentService";
 import {handleNumberFormatCurrency} from "../../admin/menu/MenuAction";
+import ReactToPrint from "react-to-print";
 
+export const printIframe = (id) => {
+    const iframe = document.frames ? document.frames[id] : document.getElementById(id);
+    const iframeWindow = iframe.contentWindow || iframe;
+
+    iframe.focus();
+    iframeWindow.print();
+
+    return false;
+};
 
 class PaymentForm extends React.Component {
 
@@ -45,6 +55,7 @@ class PaymentForm extends React.Component {
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={()=>{this.handleCheckout(orderDetail)}}>Checkout</button>
+                                <iframe id="receipt" src={`/receipt/${orderDetail.idOrder}`} style={{display: 'none'}} title="Receipt" />
                             </div>
                         </form>
                     </div>
@@ -60,10 +71,13 @@ class PaymentForm extends React.Component {
     handleCheckout(orderDetail) {
         submitPayment(orderDetail.idOrder, this.props.paymentInput, orderDetail.totalPrice).then(this.props.fetchData).then(this.props.dispatch(resetPaymentForm))
     }
+
+
 }
 
 const mapStateToProp=(state)=>{
     return {...state.paymentReducer}
 };
+
 
 export default connect(mapStateToProp)(PaymentForm);
