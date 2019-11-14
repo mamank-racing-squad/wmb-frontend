@@ -11,15 +11,12 @@ class MenuItem extends React.Component {
         if (this.props.orderDetails.length === 0) {
             return this.props.dispatch({type: "ADD_SELECTED_MENU", payload: {...data, amount: 1}});
         } else {
-            if (!this.handleMenuIsExist(data.idMenu)) return this.props.dispatch({
-                type: "ADD_SELECTED_MENU",
-                payload: {...data, amount: 1}
-            });
+            if (!this.handleMenuIsExist(data.idMenu)) return this.props.dispatch({type: "ADD_SELECTED_MENU", payload: {...data, amount: 1}});
             else this.props.dispatch({type: "REMOVE_SELECTED_MENU", idMenu: data.idMenu});
         }
     };
 
-    handleMenuIsExist(value) {
+    handleMenuIsExist (value) {
         let isExist = false;
         this.props.orderDetails.forEach(function (element) {
             if (element.idMenu === value) isExist = true;
@@ -30,10 +27,10 @@ class MenuItem extends React.Component {
     render() {
         return (
             <div onClick={() => {this.handleClick(this.props)}}
-                 className={this.props.isSelected ? 'FoodItemBox selected' : 'FoodItemBox'}
-            >
-                <img className="itemImage" src={`http://localhost/menu-img/${this.props.idMenu}.jpg`} alt="Menu Item Images"/>
-                {this.props.isSelected ?
+                 className={this.handleMenuIsExist(this.props.idMenu) ? 'FoodItemBox selected' : 'FoodItemBox'}>
+                {/*<img className="itemImage" src={pizza} alt="Menu Item Images"/>*/}
+                <img className="itemImage" src={`http://localhost/menu-image/${this.props.idMenu}.jpg`} alt="Menu Item Images"/>
+                {this.handleMenuIsExist(this.props.idMenu) ?
                     <label>
                         <img src={tick} alt="Menu Item"/>
                     </label>
@@ -44,6 +41,8 @@ class MenuItem extends React.Component {
             </div>
         )
     }
+
+
 }
 
 export default connect()(MenuItem);
