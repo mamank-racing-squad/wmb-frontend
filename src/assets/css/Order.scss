@@ -64,3 +64,14 @@
         }
     }
 }
+.addMenu {
+    width: 20%;
+    border-radius: 8px;
+    height: 40px;
+    color: white;
+    border: none;
+    float: left;
+    background: #FF5F6D;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #FFC371, #FF5F6D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
