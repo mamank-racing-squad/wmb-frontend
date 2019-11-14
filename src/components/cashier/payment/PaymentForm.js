@@ -3,9 +3,9 @@ import '../../../assets/css/DiningTable.scss';
 import '../../../assets/css/Order.scss'
 
 import {connect} from 'react-redux'
-import {handleInputPay, resetPaymentForm} from "./PaymentAction";
-import {submitPayment} from "./PaymentService";
-import {handleNumberFormatCurrency} from "../../admin/menu/MenuAction";
+import {handleInputPay, resetPaymentForm} from "../../../actions/PaymentAction";
+import {submitPayment} from "../../../services/PaymentService";
+import {handleNumberFormatCurrency} from "../../../actions/MenuAction";
 
 export const printIframe = (id) => {
     const iframe = document.frames ? document.frames[id] : document.getElementById(id);
@@ -20,7 +20,6 @@ class PaymentForm extends React.Component {
 
     render() {
         const orderDetail = this.props.orderDetail;
-        console.log(this.props);
         return (
             <div className="modal fade" id="modalForm" tabIndex="-" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -48,7 +47,7 @@ class PaymentForm extends React.Component {
                                 </div>
                                 <div className="form-group">
                                     Pay
-                                    <input type="number" className="form-control" value={this.props.paymentInput.pay} autoFocus={true} onChange={(event)=>this.handleInput(event)} required/>
+                                    <input type="text" className="form-control" value={this.props.paymentInput.pay} onChange={(event)=>this.handleInput(event)} required/>
                                 </div>
                             </div>
                             <div className="modal-footer">
@@ -64,14 +63,15 @@ class PaymentForm extends React.Component {
     }
 
     handleInput(event) {
-        this.props.dispatch({...handleInputPay, pay:event.target.value})
+        const number=/^[0-9]+$/;
+        if(event.target.value.match(number)){
+            this.props.dispatch({...handleInputPay, pay:event.target.value})
+        }
     }
 
     handleCheckout(orderDetail) {
         submitPayment(orderDetail.idOrder, this.props.paymentInput, orderDetail.totalPrice).then(this.props.fetchData).then(this.props.dispatch(resetPaymentForm))
     }
-
-
 }
 
 const mapStateToProp=(state)=>{

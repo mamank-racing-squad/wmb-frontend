@@ -1,27 +1,12 @@
 import React, {Component} from "react"
-import DiningTableForm from "./DiningTableForm";
-import {editDiningTableForm, fetchDiningTableSuccess, resetDiningTableForm} from "./DiningTableAction";
-import {
-    deleteDiningTableById,
-    fetchDiningTable,
-    getDataDiningTableById,
-    submitDiningTable
-} from "../../../services/DiningTableService";
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 import {connect} from "react-redux";
+import DiningTableForm from "./DiningTableForm";
 
-const MySwal = withReactContent(Swal);
-
+import {editDiningTableForm, fetchDiningTableSuccess, resetDiningTableForm} from "../../../actions/DiningTableAction";
+import {deleteDiningTableById,fetchDiningTable,getDataDiningTableById,submitDiningTable} from "../../../services/DiningTableService";
 
 class DiningTableContainer extends Component {
-
-    handleAvailability(payload) {
-        if (payload) {
-            return "Available";
-        }
-        return "Not Available"
-    }
 
     render() {
         return (
@@ -34,9 +19,9 @@ class DiningTableContainer extends Component {
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Nomor Dining Table</th>
+                        <th scope="col">Number Dining Table</th>
                         <th scope="col">Capacity</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Availability</th>
                         <th scope="col">Action</th>
                     </tr>
                     </thead>
@@ -50,13 +35,9 @@ class DiningTableContainer extends Component {
                                     <td>{element.capacity}</td>
                                     <td>{this.handleAvailability(element.availability)}</td>
                                     <td>
-                                        <a href="#" onClick={() => {
-                                            this.handleEditData(element.idDiningTable)
-                                        }} data-toggle="modal" data-target="#modalForm" data-backdrop="static" data-keyboard="false">Edit</a>
+                                        <a href="#" onClick={() => {this.handleEditData(element.idDiningTable)}} data-toggle="modal" data-target="#modalForm" data-backdrop="static" data-keyboard="false">Edit</a>
                                         |
-                                        <a href="#" onClick={() => {
-                                            this.handleDeleteData(element.idDiningTable)
-                                        }}>Delete</a>
+                                        <a href="#" onClick={() => {this.handleDeleteData(element.idDiningTable)}}>Delete</a>
                                     </td>
                                 </tr>
                             )
@@ -71,9 +52,12 @@ class DiningTableContainer extends Component {
 
     componentDidMount() {
         this.fetchDataDiningTable();
-        console.log(fetchDiningTable(),"ini adalah fetch")
     }
 
+    handleAvailability(payload) {
+        if (payload) return "Available";
+        return "Not Available"
+    }
 
     fetchDataDiningTable = async () => {
         const data = await fetchDiningTable();
@@ -96,7 +80,7 @@ class DiningTableContainer extends Component {
     };
 
     handleDeleteData = async (id) => {
-        MySwal.fire({
+        Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
             icon: 'warning',
@@ -111,7 +95,6 @@ class DiningTableContainer extends Component {
             }
         })
     }
-
 }
 
 const mapStateToProps = (state) => {

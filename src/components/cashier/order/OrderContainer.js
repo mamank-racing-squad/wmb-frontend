@@ -1,40 +1,12 @@
 import React from 'react';
-import '../../assets/css/Order.scss';
+import '../../../assets/css/Order.scss';
 import {connect} from 'react-redux'
 import OrderList from "./OrderList";
-import {handleNumberFormatCurrency} from "../admin/menu/MenuAction";
-import {submitOrder} from "../../services/OrderService";
-import {handleCostumerNameOrder, handleNumberDiningTable, handleTotalCostumerName, resetOrder} from "./OrderAction";
+import {handleNumberFormatCurrency} from "../../../actions/MenuAction";
+import {submitOrder} from "../../../services/OrderService";
+import {handleCostumerNameOrder, handleNumberDiningTable, handleTotalCostumerName, resetOrder} from "../../../actions/OrderAction";
 
-class Order extends React.Component {
-
-    handleCostumerName = (event) => {
-        this.props.dispatch({...handleCostumerNameOrder, payload: event.target.value})
-    };
-
-    handleTotalCostumer = (event) => {
-        this.props.dispatch({...handleTotalCostumerName, payload: event.target.value})
-    };
-
-    handleDiningNumber = (event) => {
-        this.props.dispatch({...handleNumberDiningTable, payload: event.target.value})
-    };
-    handleTotalPrice = () => {
-        let totalPrice = 0;
-        for (let orderDetail of this.props.orderDetails) {
-            totalPrice += orderDetail.price * orderDetail.amount;
-        }
-        return handleNumberFormatCurrency(totalPrice);
-    };
-
-    handleSubmitData = () => {
-        submitOrder(this.props.orderForm, this.props.orderDetails)
-            .then(this.props.dispatch(resetOrder));
-
-    };
-    handleClearListMenu = () => {
-        this.props.dispatch(resetOrder);
-    };
+class OrderContainer extends React.Component {
 
     render() {
         return (
@@ -77,6 +49,36 @@ class Order extends React.Component {
             </div>
         )
     }
+
+    handleCostumerName = (event) => {
+        this.props.dispatch({...handleCostumerNameOrder, payload: event.target.value})
+    };
+
+    handleTotalCostumer = (event) => {
+        this.props.dispatch({...handleTotalCostumerName, payload: event.target.value})
+    };
+
+    handleDiningNumber = (event) => {
+        this.props.dispatch({...handleNumberDiningTable, payload: event.target.value})
+    };
+
+    handleTotalPrice = () => {
+        let totalPrice = 0;
+        for (let orderDetail of this.props.orderDetails) {
+            totalPrice += orderDetail.price * orderDetail.amount;
+        }
+        return handleNumberFormatCurrency(totalPrice);
+    };
+
+    handleSubmitData = () => {
+        submitOrder(this.props.orderForm, this.props.orderDetails)
+            .then(this.props.dispatch(resetOrder));
+
+    };
+
+    handleClearListMenu = () => {
+        this.props.dispatch(resetOrder);
+    };
 }
 
 const mapStateToProps = (state) => (
@@ -86,4 +88,4 @@ const mapStateToProps = (state) => (
     }
 );
 
-export default connect(mapStateToProps)(Order);
+export default connect(mapStateToProps)(OrderContainer);

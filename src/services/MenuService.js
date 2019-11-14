@@ -29,7 +29,6 @@ export async function submitMenu(payload, image) {
                 timer: 1500
             })
         })
-        .catch(reason => console.log(reason));
 }
 
 export async function deleteMenuById(id) {

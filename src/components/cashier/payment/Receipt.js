@@ -1,11 +1,10 @@
 import React from "react";
-import {getTrxById} from "./PaymentService";
-import {fetchingOrderDetailSuccess} from "./PaymentAction";
+import {getTrxById} from "../../../services/PaymentService";
+import {fetchingOrderDetailSuccess} from "../../../actions/PaymentAction";
 import {connect} from "react-redux";
 class Receipt extends React.Component{
     render() {
        const idOrder = this.props.match.params.id;
-       console.log(this.props);
         return(
             <div>
                 <h5><i>Warung Makan Bahari</i></h5>
@@ -30,12 +29,12 @@ class Receipt extends React.Component{
                         <td style={{"text-align":"left"}}>Kembalian</td>
                         <td style={{"text-align":"right"}}>{this.props.receipt.change}</td>
                     </tr>
-                </table>
                 ======= DETAIL TRANSAKSI =======
-                {/*<p>nomor meja : {this.props.receipt.diningTable.idDiningTable}</p>*/}
-                {/*<p>{this.props.receipt.orderDetails.map(element=>{*/}
-                {/*    return element.menuName*/}
-                {/*})}</p>*/}
+                    <tr>
+                        <td style={{"text-align":"left"}}>Total</td>
+                        <td style={{"text-align":"right"}}>{this.props.receipt.totalPrice}</td>
+                    </tr>
+                </table>
             </div>
         )
     }

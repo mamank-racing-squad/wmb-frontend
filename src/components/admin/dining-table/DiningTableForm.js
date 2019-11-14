@@ -1,19 +1,11 @@
 import React from 'react';
 import '../../../assets/css/DiningTable.scss';
-import '../../../assets/css/Order.scss'
-
 import {connect} from 'react-redux'
-import {
-    handleCapacityDiningTableForm,
-    handleNumberDiningTableForm, resetDiningTableForm
-} from "./DiningTableAction";
+
+import {handleCapacityDiningTableForm,handleNumberDiningTableForm, resetDiningTableForm} from "../../../actions/DiningTableAction";
 
 
 class DiningTableForm extends React.Component {
-
-    handleTitle = () => {
-        return this.props.diningTableForm.idDiningTable === "" ? "Add New Data" : "Edit Data";
-    };
 
     render() {
         return (
@@ -22,7 +14,7 @@ class DiningTableForm extends React.Component {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">{this.handleTitle()}</h5>
+                            <h5 className="modal-title" id="exampleModalLabel">{this.handleModalTitle()}</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => {this.props.dispatch(resetDiningTableForm)}}>
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -48,6 +40,10 @@ class DiningTableForm extends React.Component {
             </div>
         )
     }
+
+    handleModalTitle = () => {
+        return this.props.diningTableForm.idDiningTable === "" ? "Add New Data" : "Edit Data";
+    };
 
     handleInputNumberDiningTable = (event) => {
         this.props.dispatch({...handleNumberDiningTableForm, payload: event.target.value})

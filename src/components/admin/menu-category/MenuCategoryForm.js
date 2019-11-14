@@ -1,15 +1,8 @@
 import React from 'react';
-import '../../../assets/css/DiningTable.scss';
-import '../../../assets/css/Order.scss'
-
 import {connect} from 'react-redux'
-import {handleCategoryNameForm, resetMenuCategoryForm} from "./MenuCategoryAction";
+import {handleCategoryNameForm, resetMenuCategoryForm} from "../../../actions/MenuCategoryAction";
 
 class MenuCategoryForm extends React.Component {
-
-    handleTitle = () => {
-        return this.props.menuCategoryForm.idMenuCategory === "" ? "Add New Data" : "Edit Data";
-    };
 
     render() {
         return (
@@ -27,18 +20,15 @@ class MenuCategoryForm extends React.Component {
                             <div className="modal-body">
                                 <div className="form-group">
                                     <label>Category Name</label>
-                                    <input type="text" className="form-control" placeholder="Enter Category Name"
-                                           value={this.props.menuCategoryForm.categoryName}
-                                           onChange={this.handleInputCategoryName} required/>
+                                    <input type="text" className="form-control" placeholder="Enter Category Name" value={this.props.menuCategoryForm.categoryName} onChange={this.handleInputCategoryName}/>
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" onClick={() => {
-                                    this.props.dispatch(resetMenuCategoryForm)
-                                }} data-dismiss="modal">Cancel
+                                <button type="button" className="btn btn-secondary" onClick={() => {this.props.dispatch(resetMenuCategoryForm)}} data-dismiss="modal">
+                                    Cancel
                                 </button>
-                                <button type="button" className="btn btn-primary" onClick={this.props.handleSubmitData}
-                                        data-dismiss="modal">Save
+                                <button type="button" className="btn btn-primary" onClick={this.props.handleSubmitData} data-dismiss="modal">
+                                    Save
                                 </button>
                             </div>
                         </form>
@@ -47,6 +37,10 @@ class MenuCategoryForm extends React.Component {
             </div>
         )
     }
+
+    handleTitle = () => {
+        return this.props.menuCategoryForm.idMenuCategory === "" ? "Add New Data" : "Edit Data";
+    };
 
     handleInputCategoryName = (event) => {
         this.props.dispatch({...handleCategoryNameForm, payload: event.target.value})

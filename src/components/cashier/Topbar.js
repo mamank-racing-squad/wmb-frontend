@@ -2,12 +2,9 @@ import React from 'react';
 import '../../assets/css/Topbar.scss';
 
 class Topbar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: ''
-        }
-    }
+    state = {
+        title: ''
+    };
 
     static getDerivedStateFromProps(nextProps) {
         if (nextProps.match) {
@@ -24,7 +21,10 @@ class Topbar extends React.Component {
                     return {
                         title: 'Select Dining Table'
                     };
-                default: return {title:'Payment'};
+                default:
+                    return {
+                        title:'Payment'
+                    };
             }
         }
         return null

@@ -16,7 +16,6 @@ export function paymentReducer(state=initialState, action) {
             return {...state, paymentInput: {...state.paymentInput, pay:''}};
         case 'FETCHING_ORDER_DETAIL_SUCCESS':
             return {...state, receipt: {...action.payload, diningTable: action.payload.diningTable}};
-        default:
-            return {...state}
+        default: return {...state}
     }
 }
