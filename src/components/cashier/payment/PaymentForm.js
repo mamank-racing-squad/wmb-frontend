@@ -48,7 +48,7 @@ class PaymentForm extends React.Component {
                                 </div>
                                 <div className="form-group">
                                     Pay
-                                    <input type="number" className="form-control" value={this.props.paymentInput.pay} autoFocus={true} onChange={(event)=>this.handleInput(event)} required/>
+                                    <input type="text" className="form-control" value={this.props.paymentInput.pay} onChange={(event)=>this.handleInput(event)} required/>
                                 </div>
                             </div>
                             <div className="modal-footer">
@@ -64,7 +64,10 @@ class PaymentForm extends React.Component {
     }
 
     handleInput(event) {
-        this.props.dispatch({...handleInputPay, pay:event.target.value})
+        const number=/^[0-9]+$/;
+        if(event.target.value.match(number)){
+            this.props.dispatch({...handleInputPay, pay:event.target.value})
+        }
     }
 
     handleCheckout(orderDetail) {
