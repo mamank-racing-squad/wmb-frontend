@@ -3,7 +3,7 @@ import '../../../assets/css/OrderList.scss';
 import deleteIcon from '../../../assets/images/garbage.png';
 import AmountControl from './AmountControl';
 import {connect} from "react-redux";
-import {handleNumberFormatCurrency} from "../../../actions/MenuAction";
+import {handleNumberFormatCurrency} from "../../../constants/Constanta";
 
 class OrderList extends React.Component {
 

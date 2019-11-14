@@ -6,6 +6,3 @@ export const handleMenuAvailabilityForm = {type: 'HANDLE_MENU_AVAILABILITY_FORM'
 export const handleMenuCategoryForm = {type: 'HANDLE_MENU_CATEGORY_FORM'};
 export const handleMenuImageForm = {type: 'HANDLE_MENU_IMAGE_FORM'};
 export const resetMenuForm = {type: 'RESET_MENU_FORM'};
-export function handleNumberFormatCurrency(payload) {
-    return new Intl.NumberFormat('id').format(payload);
-}

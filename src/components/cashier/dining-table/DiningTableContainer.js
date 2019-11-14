@@ -4,7 +4,7 @@ import '../../../assets/css/DiningTable.scss';
 import diningTable from '../../../assets/images/dining-table.png';
 import tick from '../../../assets/images/tick.png'
 import {connect} from "react-redux";
-import Swal from "sweetalert2";
+import {handleRespond} from "../../../constants/Alert";
 
 
 class DiningTableContainer extends React.Component {
@@ -32,11 +32,7 @@ class DiningTableContainer extends React.Component {
         if (data.isSelected) {
             this.props.dispatch({type: "ADD_SELECTED_TABLE", payload: data})
         } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Table In Use',
-                showConfirmButton: true
-            })
+            handleRespond(400, "Sorry, table in use !");
         }
     };
 }

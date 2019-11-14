@@ -40,8 +40,8 @@ class MenuForm extends React.Component {
                                 </div>
                                 <div className="form-group">
                                     <label>Menu Category</label>
-                                    <select className="form-control" onChange={this.handleInputCategory}>
-                                        <option defaultValue={this.props.menuForm.idMenuCategory} selected disabled>Choose Menu Category</option>
+                                    <select className="form-control" defaultValue={this.props.menuForm.idMenuCategory} onChange={this.handleInputCategory}>
+                                        <option value="" disabled>Choose Menu Category</option>
                                         {
                                             this.props.menuCategories.map((item, key) => {
                                                 return (
@@ -53,8 +53,8 @@ class MenuForm extends React.Component {
                                 </div>
                                 <div className="form-group">
                                     <label>Availability</label>
-                                    <select className="form-control" onChange={this.handleInputAvailability}>
-                                        <option defaultValue={this.props.menuForm.availability} selected disabled>Choose Availability</option>
+                                    <select className="form-control" defaultValue={this.props.menuForm.isAvailable} onChange={this.handleInputAvailability}>
+                                        <option value="" disabled>Choose Availability</option>
                                         <option value="true">Tersedia</option>
                                         <option value="false">Tidak Tersedia</option>
                                     </select>

@@ -3,8 +3,8 @@ import '../../../assets/css/MenuItem.scss';
 
 import tick from '../../../assets/images/tick.png'
 import {connect} from "react-redux";
-import {handleNumberFormatCurrency} from "../../../actions/MenuAction";
 import pizza from '../../../assets/images/Pizza.jpg';
+import {handleNumberFormatCurrency} from "../../../constants/Constanta";
 
 class MenuItemContainer extends React.Component {
 

@@ -2,9 +2,9 @@ import React from 'react';
 import '../../../assets/css/Order.scss';
 import {connect} from 'react-redux'
 import OrderList from "./OrderList";
-import {handleNumberFormatCurrency} from "../../../actions/MenuAction";
 import {submitOrder} from "../../../services/OrderService";
 import {handleCostumerNameOrder, handleNumberDiningTable, handleTotalCostumerName, resetOrder} from "../../../actions/OrderAction";
+import {handleNumberFormatCurrency} from "../../../constants/Constanta";
 
 class OrderContainer extends React.Component {
 

@@ -3,6 +3,7 @@ import '../../../assets/css/DiningTable.scss';
 import {connect} from 'react-redux'
 
 import {handleCapacityDiningTableForm,handleNumberDiningTableForm, resetDiningTableForm} from "../../../actions/DiningTableAction";
+import {handleToUppercase} from "../../../constants/Constanta";
 
 
 class DiningTableForm extends React.Component {
@@ -46,7 +47,7 @@ class DiningTableForm extends React.Component {
     };
 
     handleInputNumberDiningTable = (event) => {
-        this.props.dispatch({...handleNumberDiningTableForm, payload: event.target.value})
+        this.props.dispatch({...handleNumberDiningTableForm, payload: event.target.value.toUpperCase()})
     };
     handleInputCapacity = (event) => {
         this.props.dispatch({...handleCapacityDiningTableForm, payload: event.target.value})

@@ -5,7 +5,7 @@ import '../../../assets/css/Order.scss'
 import {connect} from 'react-redux'
 import {handleInputPay, resetPaymentForm} from "../../../actions/PaymentAction";
 import {submitPayment} from "../../../services/PaymentService";
-import {handleNumberFormatCurrency} from "../../../actions/MenuAction";
+import {handleNumberFormatCurrency} from "../../../constants/Constanta";
 
 export const printIframe = (id) => {
     const iframe = document.frames ? document.frames[id] : document.getElementById(id);

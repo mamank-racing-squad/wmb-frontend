@@ -3,8 +3,8 @@ import MenuCategoryForm from "./MenuCategoryForm";
 import {connect} from 'react-redux';
 import Swal from 'sweetalert2'
 import {deleteMenuCategoryById,fetchMenuCategory,getMenuCategoryById,submitMenuCategory} from "../../../services/MenuCategoryService";
-import {editMenuCategoryForm, fetchMenuCategorySuccess} from "../../../actions/MenuCategoryAction";
-import {resetDiningTableForm} from "../../../actions/DiningTableAction";
+import {editMenuCategoryForm,fetchMenuCategorySuccess,resetMenuCategoryForm} from "../../../actions/MenuCategoryAction";
+import {handleRespond} from "../../../constants/Alert";
 
 class MenuCategoryContainer extends Component {
 
@@ -59,8 +59,12 @@ class MenuCategoryContainer extends Component {
 
     handleSubmitData = () => {
         submitMenuCategory(this.props.menuCategoryForm)
+            .then((respond)=>{
+                if (respond.status !== 200) handleRespond(respond.status,respond.message);
+                if (respond.status === undefined) handleRespond(200, "Your data has been saved")
+                    .then(this.props.dispatch({...resetMenuCategoryForm}));
+            })
             .then(this.fetchDataCategoryMenu)
-            .then(this.props.dispatch({...resetDiningTableForm}));
     };
 
     handleEditData = async (id) => {
@@ -82,6 +86,9 @@ class MenuCategoryContainer extends Component {
         }).then( async (result) => {
             if (result.value){
                 await deleteMenuCategoryById(id)
+                    .then((respond)=>{
+                        handleRespond(respond.status, "Your data has been deleted");
+                    })
                     .then(this.fetchDataCategoryMenu);
             }
         })

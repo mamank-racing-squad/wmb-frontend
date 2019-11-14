@@ -83,7 +83,7 @@ class CashierContainer extends React.Component {
                                         idDiningTable={item.idDiningTable}
                                         numberDiningTable={item.numberDiningTable}
                                         capacity={item.capacity}
-                                        isSelected={item.availability}
+                                        isSelected={item.isAvailable}
                                     />
                                 )
                             }
