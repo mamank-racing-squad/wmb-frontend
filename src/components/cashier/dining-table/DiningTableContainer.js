@@ -11,17 +11,15 @@ class DiningTableContainer extends React.Component {
 
     render() {
         return (
-            <div onClick={() => {
-                this.handleClick(this.props)
-            }}
-                 className={this.props.isSelected ? 'diningTableBox' : 'diningTableBox table-selected'}>
+            <div onClick={() => {this.handleClick(this.props)}}
+                 className={this.handleMenuIsExist(this.props.idDiningTable) || !this.props.isAvailable ? 'diningTableBox table-selected' : 'diningTableBox'}>
                 <img className="itemImage" src={diningTable} alt="Dining Table"/>
-                {/*{this.props.isSelected ?*/}
-                {/*    <label>*/}
-                {/*        <img src={tick}/>*/}
-                {/*    </label>*/}
-                {/*    : null*/}
-                {/*}*/}
+                {this.handleMenuIsExist(this.props.idDiningTable) ?
+                    <label>
+                        <img src={tick} alt="Dining Table Selected"/>
+                    </label>
+                    : null
+                }
                 <span className="capacity">Slot : {this.props.capacity}</span>
                 <span className="numberDiningTable">Number : {this.props.numberDiningTable}</span>
             </div>
@@ -29,12 +27,29 @@ class DiningTableContainer extends React.Component {
     }
 
     handleClick = (data) => {
-        if (data.isSelected) {
-            this.props.dispatch({type: "ADD_SELECTED_TABLE", payload: data})
-        } else {
+        if (!data.isAvailable){
             handleRespond(400, "Sorry, table in use !");
+        } else if (data.idDiningTable !== this.props.orderForm.idDiningTable) {
+            this.props.dispatch({type: "ADD_SELECTED_TABLE", payload: data})
         }
+        else {
+            this.props.dispatch({type: "REMOVE_SELECTED_TABLE"});
+        }
+    };
+
+    handleMenuIsExist (value) {
+        let isExist = false;
+        if (value === this.props.orderForm.idDiningTable) {
+            isExist = true;
+        }
+        return isExist
     };
 }
 
-export default connect()(DiningTableContainer);
+const mapStateToProps = (state) => (
+    {
+        orderForm : {...state.orderReducer.orderForm}
+    }
+);
+
+export default connect(mapStateToProps)(DiningTableContainer);

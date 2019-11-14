@@ -5,7 +5,7 @@
     position: relative;
     overflow: hidden;
     display: inline-block;
-    margin-right: 20px; 
+    margin-right: 20px;
     margin-bottom: 20px;
     cursor: pointer;
     transition: all .2s;
@@ -44,7 +44,7 @@
         z-index: 1;
         padding: 5px 15px;
         border-radius: 5px;
-        color: white; 
+        color: white;
         font-weight: 800;
         text-align: center;
         font-size: 12px;
@@ -69,15 +69,15 @@
     }
     label {
         background: #FF5F6D;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);
         background: linear-gradient(to right, #FFC371, #FF5F6D);
-        padding: 10px;
         position: absolute;
+        padding: 2px 5px;
         z-index: 1;
-        bottom: -5px;
-        right: 0;
-        width: 10%;
-        height: 10%;
+        bottom: -10px;
+        right: 3px;
+        width: 15%;
+        height: 15%;
         border-radius: 5px;
         img {
             width: 100%;

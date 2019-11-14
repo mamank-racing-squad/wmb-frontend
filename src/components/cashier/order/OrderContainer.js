@@ -18,7 +18,6 @@ import {handleRespond} from "../../../constants/Alert";
 class OrderContainer extends React.Component {
 
     render() {
-        console.log(this.props,"format payload")
         return (
             <div className="orderBox">
                 <div className="title">
