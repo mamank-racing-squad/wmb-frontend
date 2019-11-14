@@ -48,7 +48,7 @@ class MenuForm extends React.Component {
                                                     <option key={key} value={item.idMenuCategory}>{item.categoryName}</option>
                                                 )
                                             })
-                                        }
+                                        }co
                                     </select>
                                 </div>
                                 <div className="form-group">

@@ -2,6 +2,7 @@ const initialState = {
     orderForm: {
         costumerName: "",
         totalCostumer: "",
+        description: "",
         idDiningTable: "",
         numberDiningTable: "",
     },
@@ -20,6 +21,8 @@ export function menuOrderReducer(state=initialState, action) {
             return {...state, orderForm: {...state.orderForm, totalCostumer: action.payload}};
         case 'HANDLE_NUMBER_DINING_TABLE_ORDER':
             return {...state, orderForm: {...state.orderForm, totalCostumer: action.payload}};
+        case 'HANDLE_DESCRIPTION_ORDER':
+            return {...state, orderForm: {...state.orderForm, description: action.payload}};
         case 'REMOVE_SELECTED_MENU':
             return {...state, orderDetails: state.orderDetails.filter(element => element.idMenu !== action.idMenu)};
         case 'CLEAR_LIST_MENU':
