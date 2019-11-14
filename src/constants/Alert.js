@@ -1,12 +1,13 @@
 import Swal from 'sweetalert2'
 
-export function handleRespond(respondStatus, respondMessage) {
+export function handleRespond(respondStatus, respondMessage, respondText) {
     switch (respondStatus) {
         case 200 :
             return (
                 Swal.fire({
                     icon: 'success',
                     title: respondMessage,
+                    text: respondText,
                     showConfirmButton: false,
                     timer: 1500
                 })

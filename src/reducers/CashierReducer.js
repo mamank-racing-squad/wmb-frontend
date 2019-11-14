@@ -4,7 +4,8 @@ const initialState = {
         totalCostumer: "",
         description: "",
         idDiningTable: "",
-        numberDiningTable: "",
+        numberDiningTable: "Select Table",
+        capacity: "Select Table"
     },
     orderDetails: []
 };
@@ -14,7 +15,7 @@ export function menuOrderReducer(state=initialState, action) {
         case 'ADD_SELECTED_MENU':
             return {...state, orderDetails: state.orderDetails.concat([{...action.payload}])};
         case 'ADD_SELECTED_TABLE':
-            return {...state, orderForm: {...state.orderForm, numberDiningTable: action.payload.numberDiningTable, idDiningTable: action.payload.idDiningTable}};
+            return {...state, orderForm: {...state.orderForm, numberDiningTable: action.payload.numberDiningTable, idDiningTable: action.payload.idDiningTable, capacity: action.payload.capacity}};
         case 'HANDLE_COSTUMER_NAME_ORDER':
             return {...state, orderForm: {...state.orderForm, costumerName: action.payload}};
         case 'HANDLE_TOTAL_COSTUMER_ORDER':

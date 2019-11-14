@@ -12,12 +12,14 @@ import paymentGray from '../../assets/images/payment-gray.png'
 import Topbar from './Topbar'
 import Order from './order/OrderContainer'
 import {connect} from 'react-redux'
-import MenuItem from "./menu/MenuItemContainer";
+import MenuItem from "./menu/MenuContainer";
 import DiningTable from "./dining-table/DiningTableContainer";
 import {fetchDiningTable} from "../../services/DiningTableService";
 import {fetchDiningTableSuccess} from "../../actions/DiningTableAction";
 import {fetchMenu} from "./../../services/MenuService";
 import {fetchMenuSuccess} from "../../actions/MenuAction";
+import {Redirect} from "react-router";
+import {handleRespond} from "../../constants/Alert";
 
 class CashierContainer extends React.Component {
     render() {
@@ -64,7 +66,10 @@ class CashierContainer extends React.Component {
                     <Topbar {...this.props}/>
                     <div className="items_wrapper">
                         <Route path="/foods" render={() => this.props.listMenu.map((item, key) => {
-                                return (
+                            if (this.props.orderForm.numberDiningTable === "Select Table") {
+                                // return handleRespond(400, "Please selected dining table")
+                            }
+                            return (
                                     <MenuItem
                                         key={key}
                                         idMenu={item.idMenu}
@@ -122,6 +127,7 @@ class CashierContainer extends React.Component {
 
 const mapStateToProps = (state) => (
     {
+        orderForm: {...state.orderReducer.orderForm},
         orderDetails: state.orderReducer.orderDetails,
         listMenu: state.menuReducer.listMenu,
         diningTables: state.diningTableReducer.diningTables,

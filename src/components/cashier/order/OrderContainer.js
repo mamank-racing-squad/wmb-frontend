@@ -12,6 +12,8 @@ import {
 } from "../../../actions/OrderAction";
 import NavLink from "react-router-dom/NavLink";
 import { FaPlusCircle } from 'react-icons/fa';
+import {handleNumberFormatCurrency} from "../../../constants/Constanta";
+import {handleRespond} from "../../../constants/Alert";
 
 class OrderContainer extends React.Component {
 
@@ -32,9 +34,18 @@ class OrderContainer extends React.Component {
                                onChange={this.handleTotalCostumer} placeholder="Input Number of Customers" required/>
                     </div>
                     <div className="form-group">
-                        <input type="text" className="form-control" placeholder="No Tables"
-                               onChange={this.handleDiningNumber} disabled required
-                               value={this.props.orderForm.numberDiningTable}/>
+                        <div className="row">
+                            <div className="col-sm-6">
+                                <input type="text" className="form-control" placeholder="No Tables"
+                                       onChange={this.handleDiningNumber} disabled required
+                                       value={"Number : " + this.props.orderForm.numberDiningTable}/>
+                            </div>
+                            <div className="col-sm-6">
+                                <input type="text" className="form-control" placeholder="No Tables"
+                                       onChange={this.handleDiningNumber} disabled required
+                                       value={"Capacity : " + this.props.orderForm.capacity}/>
+                            </div>
+                        </div>
                     </div>
                     <div className="form-group">
                         <textarea
@@ -98,8 +109,12 @@ class OrderContainer extends React.Component {
 
     handleSubmitData = () => {
         submitOrder(this.props.orderForm, this.props.orderDetails)
-            .then(this.props.dispatch(resetOrder));
-        this.props.handleSubmit();
+            .then((respond) => {
+                if (respond.status !== 200) handleRespond(respond.status,respond.message);
+                if (respond.status === undefined) handleRespond(200, "Your data has been saved")
+                    .then(this.props.dispatch(resetOrder));
+            })
+            .then(this.props.handleSubmit());
     };
 
     handleClearListMenu = () => {

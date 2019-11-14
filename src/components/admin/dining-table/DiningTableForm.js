@@ -3,7 +3,6 @@ import '../../../assets/css/DiningTable.scss';
 import {connect} from 'react-redux'
 
 import {handleCapacityDiningTableForm,handleNumberDiningTableForm, resetDiningTableForm} from "../../../actions/DiningTableAction";
-import {handleToUppercase} from "../../../constants/Constanta";
 
 
 class DiningTableForm extends React.Component {

@@ -12,12 +12,12 @@ export async function getUnpaidOrder(){
 }
 
 export async function submitPayment(id, payment) {
-    const paymentInput = JSON.stringify(payment);
+    payment.pay = payment.pay.replace(/\D+/g, '');
     return await fetch(`http://localhost:9090/payment/${id}`,
         {
             method: "PUT",
             headers: {'Content-Type': 'application/json'},
-            body: paymentInput
+            body: JSON.stringify(payment)
         })
         .then((response) => {
            return response.json();

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {handleMenuAvailabilityForm,handleMenuCategoryForm,handleMenuImageForm,handleMenuNameForm,handleMenuPriceForm,resetMenuForm} from "../../../actions/MenuAction";
 import {fetchMenuCategory} from "../../../services/MenuCategoryService";
 import {fetchMenuCategorySuccess} from "../../../actions/MenuCategoryAction";
-
+import CurrencyFormat from "react-currency-format";
 class MenuForm extends React.Component {
 
     render() {
@@ -26,7 +26,12 @@ class MenuForm extends React.Component {
                                 </div>
                                 <div className="form-group">
                                     <label>Price</label>
-                                    <input type="text" className="form-control" placeholder="Enter Input Price" value={this.props.menuForm.price} onChange={this.handleInputPrice}/>
+                                    <div className="input-group mb-2">
+                                        <div className="input-group-prepend">
+                                            <div className="input-group-text">Rp.</div>
+                                        </div>
+                                        <CurrencyFormat decimalSeparator="," thousandSeparator="." className="form-control" placeholder="Enter Input Price" value={this.props.menuForm.price} onChange={this.handleInputPrice}/>
+                                    </div>
                                 </div>
                                 <div className="form-group">
                                     <label>Image</label>

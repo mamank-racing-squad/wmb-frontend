@@ -6,6 +6,7 @@ export async function fetchMenu() {
 }
 
 export async function submitMenu(payload, image) {
+    payload.price = payload.price.replace(/\D+/g, '');
     const formData = new FormData();
     formData.append('image', image);
     formData.append('menuInput', JSON.stringify(payload));

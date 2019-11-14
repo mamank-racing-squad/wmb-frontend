@@ -2,7 +2,7 @@ import React from "react";
 import {getOrderById} from "../../../services/PaymentService";
 import {fetchingOrderDetailSuccess} from "../../../actions/PaymentAction";
 import {connect} from "react-redux";
-import {handleNumberFormatCurrency} from "../../../actions/MenuAction";
+import {handleNumberFormatCurrency} from "../../../constants/Constanta";
 class Receipt extends React.Component{
     render() {
         const orderDetails = this.props.orderDetails.map((element)=>{
