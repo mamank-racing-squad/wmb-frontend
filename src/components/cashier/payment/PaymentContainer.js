@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import DiningTable from "../dining-table/DiningTable";
 import {NavLink} from "react-router-dom";
 import diningTable from "../../../assets/images/table.png";
 import diningTableGray from "../../../assets/images/table-gray.png";
@@ -10,20 +9,16 @@ import paymentGray from "../../../assets/images/payment-gray.png";
 import admin from "../../../assets/images/admin.png";
 import adminGray from "../../../assets/images/admin-gray.png";
 import PaymentTopBar from "./PaymentTopBar";
-import {fetchDiningTable} from "../../../services/DiningTableService";
 import {withRouter} from "react-router";
 import {connect} from "react-redux";
-import {fetchingDiningTablesFromPayment, fetchingOrderSuccess} from "./PaymentAction";
+import {fetchingOrderSuccess} from "../../../actions/PaymentAction";
 import DiningTableToPaid from "./DiningTableToPaid";
-import {getUnpaidOrder, submitPayment} from "./PaymentService";
-import {submitMenu} from "../../../services/MenuService";
-import {resetMenuForm} from "../../admin/menu/MenuAction";
-
+import {getUnpaidOrder, submitPayment} from "../../../services/PaymentService";
+import {resetMenuForm} from "../../../actions/MenuAction";
 
 class PaymentContainer extends Component {
 
     render() {
-        console.log(this.props);
         const diningTableToPaid = this.props.unpaidOrder.map((element, index) => {
             return <DiningTableToPaid
                 key={index}

@@ -1,11 +1,10 @@
 import React from "react";
-import {getTrxById} from "./PaymentService";
-import {fetchingOrderDetailSuccess} from "./PaymentAction";
+import {getTrxById} from "../../../services/PaymentService";
+import {fetchingOrderDetailSuccess} from "../../../actions/PaymentAction";
 import {connect} from "react-redux";
 class Receipt extends React.Component{
     render() {
        const idOrder = this.props.match.params.id;
-       console.log(this.props);
         return(
             <div>
                 <h5><i>Warung Makan Bahari</i></h5>

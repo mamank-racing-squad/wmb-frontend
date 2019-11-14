@@ -3,12 +3,10 @@ import '../../assets/css/Topbar.scss';
 import adminGray from '../../assets/images/admin-gray.png';
 
 class Topbar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: ''
-        }
-    }
+
+    state = {
+        title: ''
+    };
 
     static getDerivedStateFromProps(nextProps) {
         if (nextProps.match) {

@@ -1,18 +1,10 @@
 import React, {Component} from "react";
 import MenuCategoryForm from "./MenuCategoryForm";
-import {
-    deleteMenuCategoryById,
-    fetchMenuCategory,
-    getMenuCategoryById,
-    submitMenuCategory
-} from "../../../services/MenuCategoryService";
-import {editMenuCategoryForm, fetchMenuCategorySuccess} from "./MenuCategoryAction";
 import {connect} from 'react-redux';
-import {resetDiningTableForm} from "../dining-table/DiningTableAction";
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-
-const MySwal = withReactContent(Swal);
+import {deleteMenuCategoryById,fetchMenuCategory,getMenuCategoryById,submitMenuCategory} from "../../../services/MenuCategoryService";
+import {editMenuCategoryForm, fetchMenuCategorySuccess} from "../../../actions/MenuCategoryAction";
+import {resetDiningTableForm} from "../../../actions/DiningTableAction";
 
 class MenuCategoryContainer extends Component {
 
@@ -39,13 +31,9 @@ class MenuCategoryContainer extends Component {
                                     <td>{index + 1}</td>
                                     <td>{element.categoryName}</td>
                                     <td>
-                                        <a href="#" onClick={() => {
-                                            this.handleEditData(element.idMenuCategory)
-                                        }} data-toggle="modal" data-target="#modalForm" data-backdrop="static" data-keyboard="false">Edit</a>
+                                        <a href="#" onClick={() => {this.handleEditData(element.idMenuCategory)}} data-toggle="modal" data-target="#modalForm" data-backdrop="static" data-keyboard="false">Edit</a>
                                         |
-                                        <a href="#" onClick={() => {
-                                            this.handleDeleteData(element.idMenuCategory)
-                                        }}>Delete</a>
+                                        <a href="#" onClick={() => {this.handleDeleteData(element.idMenuCategory)}}>Delete</a>
                                     </td>
                                 </tr>
                             )
@@ -83,7 +71,7 @@ class MenuCategoryContainer extends Component {
     };
 
     handleDeleteData = async (id) => {
-        MySwal.fire({
+        Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
             icon: 'warning',
