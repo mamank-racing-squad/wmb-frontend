@@ -7,7 +7,8 @@ const initialState = {
         availability: true,
         idMenuCategory: ""
     },
-    menuImage: {}
+    menuImage: {},
+    previewImage: ""
 };
 
 export function menuReducer(state=initialState, action) {
@@ -15,7 +16,7 @@ export function menuReducer(state=initialState, action) {
         case 'FETCH_MENU_SUCCESS':
             return {...state, listMenu: action.payload};
         case 'EDIT_MENU_FORM':
-            return {...state,  menuForm: action.payload};
+            return {...state,  menuForm: action.payload, previewImage: action.imageUrl};
         case 'HANDLE_MENU_NAME_FORM':
             return {...state, menuForm: {...state.menuForm, menuName: action.payload}};
         case 'HANDLE_MENU_PRICE_FORM':
@@ -25,9 +26,9 @@ export function menuReducer(state=initialState, action) {
         case 'HANDLE_MENU_CATEGORY_FORM':
             return {...state, menuForm: {...state.menuForm, idMenuCategory:action.payload}};
         case 'HANDLE_MENU_IMAGE_FORM':
-            return {...state, menuImage: action.payload};
+            return {...state, menuImage: action.payload, previewImage: action.imageUrl};
         case 'RESET_MENU_FORM':
-            return {...state, menuForm: {...state.menuForm, idMenu: "", menuName: "", price: "", availability: "", idMenuCategory: ""}, menuImage: {}};
+            return {...state, menuForm: {...state.menuForm, idMenu: "", menuName: "", price: "", availability: "", idMenuCategory: ""}, menuImage: {}, previewImage: ""};
         default: return {...state}
     }
 }

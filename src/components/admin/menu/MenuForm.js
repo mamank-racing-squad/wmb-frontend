@@ -1,6 +1,4 @@
 import React from 'react';
-import '../../../assets/css/DiningTable.scss';
-import '../../../assets/css/Order.scss'
 import {connect} from 'react-redux'
 import {
     handleMenuAvailabilityForm,
@@ -20,8 +18,11 @@ class MenuForm extends React.Component {
         return this.props.menuForm.idMenu === "" ? "Add New Data" : "Edit Data";
     };
 
+    handlePreviewImage = () => {
+        if (this.props.previewImage !== "") return this.props.previewImage;
+    };
+
     render() {
-        console.log(this.props)
         return (
             <div className="modal fade" id="modalForm" tabIndex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -44,6 +45,9 @@ class MenuForm extends React.Component {
                                     <input type="number" className="form-control" placeholder="Enter Input Price" value={this.props.menuForm.price} onChange={this.handleInputPrice} required/>                                </div>
                                 <div className="form-group">
                                     <label>Image</label>
+                                    <br/>
+                                    <img className="rounded d-block" src={this.handlePreviewImage()} alt="" style={{maxWidth: "200px", maxHeight:"200px"}}/>
+                                    <br/>
                                     <div className="custom-file">
                                         <input type="file" className="custom-file-input" onChange={this.handleInputImage} required/>
                                             <label className="custom-file-label" htmlFor="customFile">Choose file</label>
@@ -106,13 +110,16 @@ class MenuForm extends React.Component {
         this.props.dispatch({...handleMenuCategoryForm, payload: event.target.value})
     };
     handleInputImage = (event) => {
-        this.props.dispatch({...handleMenuImageForm, payload: event.target.files[0]})
+        let file = event.target.files[0];
+        let imageUrl = URL.createObjectURL(file);
+        this.props.dispatch({...handleMenuImageForm, payload: file, imageUrl: imageUrl})
     };
 
 }
 
 const mapStateToProps = (state) => {
     return {
+        ...state.previewImage,
         ...state.menuReducer,
         ...state.menuCategoryReducer
     }

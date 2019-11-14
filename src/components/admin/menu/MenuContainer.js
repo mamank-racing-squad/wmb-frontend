@@ -76,7 +76,7 @@ class MenuContainer extends React.Component {
     handleEditData = async (id) => {
         const data = await getMenuById(id);
         if (!(data === undefined)) {
-            this.props.dispatch({...editMenuForm, payload: data})
+            this.props.dispatch({...editMenuForm, payload: data, imageUrl: `http://localhost/menu-image/${id}.jpg`})
         }
     };
 
