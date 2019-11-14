@@ -1,26 +1,11 @@
 import React from 'react';
-import '../../assets/css/OrderList.scss';
-import deleteIcon from '../../assets/images/garbage.png';
-import AmountControl from './AmountControl'
+import '../../../assets/css/OrderList.scss';
+import deleteIcon from '../../../assets/images/garbage.png';
+import AmountControl from './AmountControl';
 import {connect} from "react-redux";
-import {handleNumberFormatCurrency} from "../admin/menu/MenuAction";
+import {handleNumberFormatCurrency} from "../../../actions/MenuAction";
 
 class OrderList extends React.Component {
-
-    handleIncreaseAmount = () => {
-        this.props.dispatch({type: "INCREMENT_AMOUNT_MENU", index: this.props.index});
-    };
-
-    handleDecreaseAmount = () => {
-        if (this.props.amount <= 1) {
-            return;
-        }
-        this.props.dispatch({type: "DECREMENT_AMOUNT_MENU", index: this.props.index});
-    };
-
-    handleRemoveOrder = () => {
-        this.props.dispatch({type: "REMOVE_SELECTED_MENU", idMenu: this.props.idMenu});
-    };
 
     render() {
         return (
@@ -43,6 +28,21 @@ class OrderList extends React.Component {
             </div>
         )
     }
+
+    handleIncreaseAmount = () => {
+        this.props.dispatch({type: "INCREMENT_AMOUNT_MENU", index: this.props.index});
+    };
+
+    handleDecreaseAmount = () => {
+        if (this.props.amount <= 1) {
+            return;
+        }
+        this.props.dispatch({type: "DECREMENT_AMOUNT_MENU", index: this.props.index});
+    };
+
+    handleRemoveOrder = () => {
+        this.props.dispatch({type: "REMOVE_SELECTED_MENU", idMenu: this.props.idMenu});
+    };
 }
 
 export default connect()(OrderList);

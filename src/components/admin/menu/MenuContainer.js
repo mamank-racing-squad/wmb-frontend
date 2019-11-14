@@ -1,12 +1,9 @@
 import React from "react";
 import MenuForm from "./MenuForm";
 import {connect} from "react-redux";
-import {deleteMenuById, fetchMenu, getMenuById, submitMenu} from "../../../services/MenuService";
-import {editMenuForm, fetchMenuSuccess, handleNumberFormatCurrency, resetMenuForm} from "./MenuAction";
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-
-const MySwal = withReactContent(Swal);
+import {deleteMenuById, fetchMenu, getMenuById, submitMenu} from "../../../services/MenuService";
+import {editMenuForm, fetchMenuSuccess, handleNumberFormatCurrency, resetMenuForm} from "../../../actions/MenuAction";
 
 class MenuContainer extends React.Component {
 
@@ -37,13 +34,9 @@ class MenuContainer extends React.Component {
                                     <td>Rp. {handleNumberFormatCurrency(element.price)}</td>
                                     <td>{element.menuCategory.categoryName}</td>
                                     <td>
-                                        <a href="#" onClick={() => {
-                                            this.handleEditData(element.idMenu)
-                                        }} data-toggle="modal" data-target="#modalForm" data-backdrop="static" data-keyboard="false">Edit</a>
+                                        <a href="#" onClick={() => {this.handleEditData(element.idMenu)}} data-toggle="modal" data-target="#modalForm" data-backdrop="static" data-keyboard="false">Edit</a>
                                         |
-                                        <a href="#" onClick={() => {
-                                            this.handleDeleteData(element.idMenu)
-                                        }}>Delete</a>
+                                        <a href="#" onClick={() => {this.handleDeleteData(element.idMenu)}}>Delete</a>
                                     </td>
                                 </tr>
                             )
@@ -81,7 +74,7 @@ class MenuContainer extends React.Component {
     };
 
     handleDeleteData = async (id) => {
-        MySwal.fire({
+        Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
             icon: 'warning',

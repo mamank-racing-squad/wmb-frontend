@@ -1,26 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {
-    handleMenuAvailabilityForm,
-    handleMenuCategoryForm,
-    handleMenuImageForm,
-    handleMenuNameForm,
-    handleMenuPriceForm,
-    resetMenuForm
-} from "./MenuAction";
+import {handleMenuAvailabilityForm,handleMenuCategoryForm,handleMenuImageForm,handleMenuNameForm,handleMenuPriceForm,resetMenuForm} from "../../../actions/MenuAction";
 import {fetchMenuCategory} from "../../../services/MenuCategoryService";
-import {fetchMenuCategorySuccess} from "../menu-category/MenuCategoryAction";
-
+import {fetchMenuCategorySuccess} from "../../../actions/MenuCategoryAction";
 
 class MenuForm extends React.Component {
-
-    handleTitle = () => {
-        return this.props.menuForm.idMenu === "" ? "Add New Data" : "Edit Data";
-    };
-
-    handlePreviewImage = () => {
-        if (this.props.previewImage !== "") return this.props.previewImage;
-    };
 
     render() {
         return (
@@ -29,7 +13,7 @@ class MenuForm extends React.Component {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">{this.handleTitle()}</h5>
+                            <h5 className="modal-title" id="exampleModalLabel">{this.handleModalTitle()}</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => {this.props.dispatch(resetMenuForm)}}>
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -38,24 +22,25 @@ class MenuForm extends React.Component {
                             <div className="modal-body">
                                 <div className="form-group">
                                     <label>Menu Name</label>
-                                    <input type="text" className="form-control" placeholder="Enter Menu Name" value={this.props.menuForm.menuName} onChange={this.handleInputName} required/>
+                                    <input type="text" className="form-control" placeholder="Enter Menu Name" value={this.props.menuForm.menuName} onChange={this.handleInputName}/>
                                 </div>
                                 <div className="form-group">
                                     <label>Price</label>
-                                    <input type="text" className="form-control" placeholder="Enter Input Price" value={this.props.menuForm.price} onChange={this.handleInputPrice} required/>                                </div>
+                                    <input type="text" className="form-control" placeholder="Enter Input Price" value={this.props.menuForm.price} onChange={this.handleInputPrice}/>
+                                </div>
                                 <div className="form-group">
                                     <label>Image</label>
                                     <br/>
                                     <img className="rounded d-block" src={this.handlePreviewImage()} alt="" style={{maxWidth: "200px", maxHeight:"200px"}}/>
                                     <br/>
                                     <div className="custom-file">
-                                        <input type="file" className="custom-file-input" onChange={this.handleInputImage} required/>
+                                        <input type="file" className="custom-file-input" onChange={this.handleInputImage}/>
                                             <label className="custom-file-label" htmlFor="customFile">Choose file</label>
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <label>Menu Category</label>
-                                    <select className="form-control" onChange={this.handleInputCategory} required>
+                                    <select className="form-control" onChange={this.handleInputCategory}>
                                         <option defaultValue={this.props.menuForm.idMenuCategory} selected disabled>Choose Menu Category</option>
                                         {
                                             this.props.menuCategories.map((item, key) => {
@@ -68,7 +53,7 @@ class MenuForm extends React.Component {
                                 </div>
                                 <div className="form-group">
                                     <label>Availability</label>
-                                    <select className="form-control" onChange={this.handleInputAvailability} required>
+                                    <select className="form-control" onChange={this.handleInputAvailability}>
                                         <option defaultValue={this.props.menuForm.availability} selected disabled>Choose Availability</option>
                                         <option value="true">Tersedia</option>
                                         <option value="false">Tidak Tersedia</option>
@@ -89,6 +74,14 @@ class MenuForm extends React.Component {
     componentDidMount() {
         this.fetchDataCategoryMenu();
     }
+
+    handleModalTitle = () => {
+        return this.props.menuForm.idMenu === "" ? "Add New Data" : "Edit Data";
+    };
+
+    handlePreviewImage = () => {
+        if (this.props.previewImage !== "") return this.props.previewImage;
+    };
 
     fetchDataCategoryMenu = async () => {
         const data = await fetchMenuCategory();

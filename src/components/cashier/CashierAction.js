@@ -1,1 +1,0 @@
-export const FETCH_MENU_SUCCESS = {type:'FETCH_MENU_SUCCESS'};

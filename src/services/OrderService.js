@@ -5,7 +5,6 @@ const MySwal = withReactContent(Swal);
 
 export async function submitOrder(payload, orderDetails) {
     const order = {...payload, orderDetails: orderDetails};
-    console.log(order, "data order")
     return await fetch("http://localhost:9090/order",
         {
             method: "PUT",
@@ -21,11 +20,11 @@ export async function submitOrder(payload, orderDetails) {
                     timer: 1500
                 })
             } else {
-                response = await response.json()
+                response = await response.json();
                 await MySwal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: "Please Complete the data first",
+                    text: response.message,
                 })
             }
         })

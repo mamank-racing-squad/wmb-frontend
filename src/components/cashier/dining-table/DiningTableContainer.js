@@ -7,20 +7,7 @@ import {connect} from "react-redux";
 import Swal from "sweetalert2";
 
 
-class DiningTable extends React.Component {
-
-    handleClick = (data) => {
-        if (data.isSelected) {
-            this.props.dispatch({type: "ADD_SELECTED_TABLE", payload: data})
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Table In Use',
-                showConfirmButton: true
-            })
-        }
-    };
-
+class DiningTableContainer extends React.Component {
 
     render() {
         return (
@@ -40,6 +27,18 @@ class DiningTable extends React.Component {
             </div>
         )
     }
+
+    handleClick = (data) => {
+        if (data.isSelected) {
+            this.props.dispatch({type: "ADD_SELECTED_TABLE", payload: data})
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Table In Use',
+                showConfirmButton: true
+            })
+        }
+    };
 }
 
-export default connect()(DiningTable);
+export default connect()(DiningTableContainer);

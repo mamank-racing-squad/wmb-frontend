@@ -3,7 +3,9 @@ const initialState={
     paymentInput:{
         pay:''
     },
-    receipt:{}
+    receipt:{},
+    diningTable: {},
+    orderDetails:[]
 };
 
 export function paymentReducer(state=initialState, action) {
@@ -15,8 +17,7 @@ export function paymentReducer(state=initialState, action) {
         case 'RESET_PAYMENT_FORM':
             return {...state, paymentInput: {...state.paymentInput, pay:''}};
         case 'FETCHING_ORDER_DETAIL_SUCCESS':
-            return {...state, receipt: {...action.payload, diningTable: action.payload.diningTable}};
-        default:
-            return {...state}
+            return {...state, receipt: {...action.payload}, diningTable: {...action.payload.diningTable}, orderDetails: [...action.payload.orderDetails]};
+        default: return {...state}
     }
 }
