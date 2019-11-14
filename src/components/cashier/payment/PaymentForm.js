@@ -16,15 +16,11 @@ export const printIframe = (id) => {
 
     return false;
 };
-<<<<<<< HEAD
-=======
-
->>>>>>> 2b9db13f1d34756c4e3c75f4f295cfe208974b54
 class PaymentForm extends React.Component {
 
     render() {
         const orderDetail = this.props.orderDetail;
-        console.log(this.props.orderDetail);
+        console.log(this.props);
         return (
             <div className="modal fade" id="modalForm" tabIndex="-" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -40,15 +36,15 @@ class PaymentForm extends React.Component {
                             <div className="modal-body">
                                 PIC Name
                                 <div className="form-group">
-                                    <input type="text" className="form-control" value={this.props.orderDetail.costumerName} disabled={true}/>
+                                    <input type="text" className="form-control" value={this.props.receipt.costumerName} disabled={true}/>
                                 </div>
                                 <div className="form-group">
                                     Total Costumer
-                                    <input type="text" className="form-control" value={orderDetail.totalCostumer} disabled={true}/>
+                                    <input type="text" className="form-control" value={this.props.receipt.totalCostumer} disabled={true}/>
                                 </div>
                                 <div className="form-group">
                                     Total Price
-                                    <input type="text" className="form-control" value={"Rp." + handleNumberFormatCurrency(orderDetail.totalPrice)} disabled={true}/>
+                                    <input type="text" className="form-control" value={"Rp." + handleNumberFormatCurrency(this.props.receipt.totalPrice)} disabled={true}/>
                                 </div>
                                 <div className="form-group">
                                     Pay
@@ -57,8 +53,8 @@ class PaymentForm extends React.Component {
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={()=>{this.handleCheckout(orderDetail)}}>Checkout</button>
-                                <iframe id="receipt" src={`/receipt/${orderDetail.idOrder}`} style={{display: 'none'}} title="Receipt" />
+                                <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={()=>{this.handleCheckout(this.props.receipt)}}>Checkout</button>
+                                <iframe id="receipt" src={`/receipt/${this.props.receipt.idOrder}`} style={{display: 'none'}} title="Receipt" />
                             </div>
                         </form>
                     </div>
