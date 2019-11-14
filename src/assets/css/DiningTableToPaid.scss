@@ -4,8 +4,8 @@
     border-radius: 20px;
     position: relative;
     overflow: hidden;
-    display: inline-table;
-    margin-right: 20px; 
+    display: inline-block;
+    margin-right: 20px;
     margin-bottom: 20px;
     cursor: pointer;
     transition: all .2s;
@@ -41,7 +41,7 @@
         z-index: 1;
         padding: 5px 15px;
         border-radius: 5px;
-        color: white; 
+        color: white;
         font-weight: 800;
         text-align: center;
         font-size: 12px;

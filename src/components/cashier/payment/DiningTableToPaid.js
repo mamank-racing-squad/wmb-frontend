@@ -12,11 +12,10 @@ class DiningTableToPaid extends React.Component {
 
     render() {
         return (
-            <div>
-                <div onClick={() => {
-                    this.handleClick(this.props.idOrder)
-                }} className={this.props.isSelected ? 'diningTableBoxToPaid' : 'diningTableBoxToPaid selected'}
-                     data-toggle="modal" data-target="#modalForm" data-backdrop="static" data-keyboard="false">
+            <div onClick={() => {
+                this.handleClick(this.props.idOrder)
+            }} className={this.props.isSelected ? 'diningTableBoxToPaid' : 'diningTableBoxToPaid selected'}>
+                <div data-toggle="modal" data-target="#modalForm" data-backdrop="static" data-keyboard="false">
                     <img className="itemImage" src={diningTable} alt="Dining Table"/>
                     <span className="capacity">{this.props.costumerName}</span>
                     <span className="numberDiningTable">Number : {this.props.numberDiningTable}</span>
