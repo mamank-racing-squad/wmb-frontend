@@ -1,4 +1,5 @@
 import {handleNumberFormatCurrency} from "../constants/Constanta";
+import foodIcon from '../assets/images/food-icon.jpg'
 
 export async function fetchMenu() {
     return await fetch(`http://localhost:9090/menus`, {method: "GET"})
