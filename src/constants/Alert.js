@@ -17,6 +17,7 @@ export function handleRespond(respondStatus, respondMessage, respondText) {
                 Swal.fire({
                     icon: 'error',
                     title: respondMessage,
+                    showConfirmButton: true,
                 })
             );
         case 403 :
@@ -31,6 +32,7 @@ export function handleRespond(respondStatus, respondMessage, respondText) {
                 Swal.fire({
                     icon: 'info',
                     title: respondMessage,
+                    showConfirmButton:true,
                 })
             );
         case 500 :

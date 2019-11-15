@@ -21,6 +21,7 @@ import {resetOrder} from "../../../actions/OrderAction";
 class PaymentContainer extends Component {
 
     render() {
+        console.log(this.props)
         const diningTableToPaid = this.props.unpaidOrder.map((element, index) => {
             return <DiningTableToPaid
                 key={index}

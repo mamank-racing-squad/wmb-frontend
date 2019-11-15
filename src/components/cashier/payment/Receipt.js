@@ -71,7 +71,7 @@ class Receipt extends React.Component{
     }
     componentDidMount() {
         this.fetchDataOrder();
-        setInterval(this.fetchDataOrder,1000)
+        setInterval(this.fetchDataOrder,500)
     }
 
     fetchDataOrder = async () => {
