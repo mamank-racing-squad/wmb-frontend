@@ -113,7 +113,7 @@ class OrderContainer extends React.Component {
                 if (respond.status === undefined) handleRespond(200, "Your data has been saved")
                     .then(this.props.dispatch(resetOrder));
             })
-            .then(this.props.handleSubmit());
+            .then(()=>{this.props.handleSubmit()});
     };
 
     handleClearListMenu = () => {
