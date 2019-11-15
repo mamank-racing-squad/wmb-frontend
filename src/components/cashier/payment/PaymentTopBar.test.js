@@ -3,7 +3,7 @@ import React from 'react'
 import Enzyme from 'enzyme'
 import {shallow, mount, render} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import PaymentTopBar from "../../components/cashier/payment/PaymentTopBar";
+import PaymentTopBar from "./PaymentTopBar";
 
 let component
 

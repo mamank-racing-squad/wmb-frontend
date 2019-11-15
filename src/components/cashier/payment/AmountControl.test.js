@@ -3,8 +3,8 @@ import React from 'react'
 import Enzyme from 'enzyme'
 import {shallow, mount, render} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import Topbar from "../../components/cashier/Topbar";
-import AmountControl from "../../components/cashier/order/AmountControl";
+import Topbar from "../Topbar";
+import AmountControl from "../order/AmountControl";
 
 let component
 
