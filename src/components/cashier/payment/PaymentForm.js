@@ -4,25 +4,14 @@ import '../../../assets/css/Order.scss'
 
 import {connect} from 'react-redux'
 import {handleInputPay, resetPaymentForm} from "../../../actions/PaymentAction";
-import {submitPayment} from "../../../services/PaymentService";
+import { submitPayment} from "../../../services/PaymentService";
 import {handleNumberFormatCurrency} from "../../../constants/Constanta";
 import CurrencyFormat from "react-currency-format";
 import {handleRespond} from "../../../constants/Alert";
 
-export const printIframe = (id) => {
-    const iframe = document.frames ? document.frames[id] : document.getElementById(id);
-    const iframeWindow = iframe.contentWindow || iframe;
-
-    iframe.focus();
-    iframeWindow.print();
-
-    return false;
-};
-
 class PaymentForm extends React.Component {
 
     render() {
-        const orderDetail = this.props.orderDetail;
         return (
             <div className="modal fade" id="modalForm" tabIndex="-" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -58,7 +47,8 @@ class PaymentForm extends React.Component {
                                         <div className="input-group-prepend">
                                             <div className="input-group-text">Rp.</div>
                                         </div>
-                                        <CurrencyFormat decimalSeparator="," thousandSeparator="." className="form-control"
+                                        <CurrencyFormat decimalSeparator="," thousandSeparator="."
+                                                        className="form-control"
                                                         placeholder="Enter customer money"
                                                         value={this.props.paymentInput.pay}
                                                         onChange={(event) => this.handleInput(event)}/>
@@ -82,17 +72,18 @@ class PaymentForm extends React.Component {
     }
 
     handleInput(event) {
-        this.props.dispatch({...handleInputPay, pay: event.target.value})
+        let change = event.target.value.toString().replace(/\D+/g, "") - this.props.receipt.totalPrice;
+        this.props.dispatch({...handleInputPay, pay: event.target.value, change: change})
     }
 
-    handleCheckout(orderDetail) {
-        let change = this.props.paymentInput.pay - orderDetail.totalPrice;
-        submitPayment(orderDetail.idOrder, this.props.paymentInput)
-            .then((respond) => {
-                if (respond.status !== 200) handleRespond(respond.status,respond.message);
-                if (respond.status === undefined) handleRespond(200, "Payment Success", `Change : Rp. ${handleNumberFormatCurrency(change)}`)
-                    .then(printIframe('receipt'))
-                    .then(this.props.dispatch(resetPaymentForm))
+    handleCheckout= async (orderDetail)=> {
+        let change = this.props.paymentInput.pay.replace(/\D+/g, "") - orderDetail.totalPrice;
+        await submitPayment(orderDetail.idOrder, this.props.paymentInput)
+            .then( async (respond) => {
+                if (respond.status !== 200) handleRespond(respond.status, respond.message);
+                if (respond.status === undefined) await handleRespond(200, "Payment Success", `Change : Rp. ${handleNumberFormatCurrency(change)}`)
+                    .then(this.props.dispatch(resetPaymentForm));
+                await printIframe('receipt')
             })
             .then(this.props.fetchData)
     }
@@ -102,5 +93,13 @@ const mapStateToProp = (state) => {
     return {...state.paymentReducer}
 };
 
+export const printIframe = (id) => {
+    const iframe = document.frames ? document.frames[id] : document.getElementById(id);
+    const iframeWindow = iframe.contentWindow || iframe;
 
+    iframe.focus();
+    iframeWindow.print();
+
+    return false;
+};
 export default connect(mapStateToProp)(PaymentForm);
