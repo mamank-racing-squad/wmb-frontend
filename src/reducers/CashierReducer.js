@@ -29,7 +29,7 @@ export function menuOrderReducer(state=initialState, action) {
         case 'HANDLE_DESCRIPTION_ORDER':
             return {...state, orderForm: {...state.orderForm, description: action.payload}};
         case 'CLEAR_LIST_MENU':
-            return {...state, orderDetails: [], orderForm: {...state.orderForm, costumerName: "", totalCostumer: "", idDiningTable: "", numberDiningTable: ""}};
+            return {...state, orderDetails: [], orderForm: {...state.orderForm, costumerName: "", totalCostumer: "", idDiningTable: "", numberDiningTable: "Select Table", capacity: "Select Table", description: ""}};
         case 'INCREMENT_AMOUNT_MENU':
             return {...state, orderDetails: state.orderDetails.map((element, index) => index===action.index ? {...element, element: element.amount += 1} : element)};
         case 'DECREMENT_AMOUNT_MENU':
