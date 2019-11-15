@@ -56,14 +56,7 @@ class MenuForm extends React.Component {
                                         }co
                                     </select>
                                 </div>
-                                <div className="form-group">
-                                    <label>Availability</label>
-                                    <select className="form-control" value={this.props.menuForm.isAvailable} onChange={this.handleInputAvailability}>
-                                        <option value="" disabled>Choose Availability</option>
-                                        <option value="true">Tersedia</option>
-                                        <option value="false">Tidak Tersedia</option>
-                                    </select>
-                                </div>
+
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" onClick={ () => {this.props.dispatch(resetMenuForm)}} data-dismiss="modal">Cancel</button>
@@ -101,9 +94,7 @@ class MenuForm extends React.Component {
     handleInputPrice = (event) => {
         this.props.dispatch({...handleMenuPriceForm, payload: event.target.value})
     };
-    handleInputAvailability = (event) => {
-        this.props.dispatch({...handleMenuAvailabilityForm, payload: event.target.value})
-    };
+
     handleInputCategory = (event) => {
         this.props.dispatch({...handleMenuCategoryForm, payload: event.target.value})
     };
