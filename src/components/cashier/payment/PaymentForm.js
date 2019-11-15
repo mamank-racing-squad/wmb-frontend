@@ -3,8 +3,8 @@ import '../../../assets/css/DiningTable.scss';
 import '../../../assets/css/Order.scss'
 
 import {connect} from 'react-redux'
-import {fetchingOrderDetailSuccess, handleInputPay, resetPaymentForm} from "../../../actions/PaymentAction";
-import {getOrderById, submitPayment} from "../../../services/PaymentService";
+import {handleInputPay, resetPaymentForm} from "../../../actions/PaymentAction";
+import { submitPayment} from "../../../services/PaymentService";
 import {handleNumberFormatCurrency} from "../../../constants/Constanta";
 import CurrencyFormat from "react-currency-format";
 import {handleRespond} from "../../../constants/Alert";
@@ -12,7 +12,6 @@ import {handleRespond} from "../../../constants/Alert";
 class PaymentForm extends React.Component {
 
     render() {
-        const orderDetail = this.props.orderDetail;
         return (
             <div className="modal fade" id="modalForm" tabIndex="-" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -73,41 +72,33 @@ class PaymentForm extends React.Component {
     }
 
     handleInput(event) {
-        this.props.dispatch({...handleInputPay, pay: event.target.value})
+        let change = event.target.value.toString().replace(/\D+/g, "") - this.props.receipt.totalPrice;
+        this.props.dispatch({...handleInputPay, pay: event.target.value, change: change})
     }
 
     handleCheckout= async (orderDetail)=> {
         let change = this.props.paymentInput.pay.replace(/\D+/g, "") - orderDetail.totalPrice;
-        submitPayment(orderDetail.idOrder, this.props.paymentInput)
-            .then((respond) => {
+        await submitPayment(orderDetail.idOrder, this.props.paymentInput)
+            .then( async (respond) => {
                 if (respond.status !== 200) handleRespond(respond.status, respond.message);
-                if (respond.status === undefined) handleRespond(200, "Payment Success", `Change : Rp. ${handleNumberFormatCurrency(change)}`)
+                if (respond.status === undefined) await handleRespond(200, "Payment Success", `Change : Rp. ${handleNumberFormatCurrency(change)}`)
                     .then(this.props.dispatch(resetPaymentForm));
+                await printIframe('receipt')
             })
-            .then(this.props.fetchData);
-        this.fetchDataOrder(orderDetail.idOrder);
+            .then(this.props.fetchData)
     }
-
-    fetchDataOrder = async (id) => {
-        const data = await getOrderById(id);
-        if (!(data === undefined)) {
-            console.log(data);
-            this.props.dispatch({...fetchingOrderDetailSuccess, payload: data});
-            printIframe('receipt')
-        }
-    };
 }
 
 const mapStateToProp = (state) => {
     return {...state.paymentReducer}
 };
 
-export const printIframe = async (id) => {
+export const printIframe = (id) => {
     const iframe = document.frames ? document.frames[id] : document.getElementById(id);
     const iframeWindow = iframe.contentWindow || iframe;
 
-    await iframe.focus();
-    await iframeWindow.print();
+    iframe.focus();
+    iframeWindow.print();
 
     return false;
 };

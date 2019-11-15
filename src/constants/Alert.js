@@ -8,8 +8,7 @@ export function handleRespond(respondStatus, respondMessage, respondText) {
                     icon: 'success',
                     title: respondMessage,
                     text: respondText,
-                    showConfirmButton: false,
-                    timer: 1500
+                    showConfirmButton: true,
                 })
             );
         case 400 :

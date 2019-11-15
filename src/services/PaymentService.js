@@ -1,6 +1,3 @@
-import Swal from "sweetalert2";
-import {printIframe} from "../components/cashier/payment/PaymentForm";
-
 export async function getOrderById(id){
     return await fetch(`http://localhost:9090/order/${id}`, {method: "GET"})
         .then((response) => {
