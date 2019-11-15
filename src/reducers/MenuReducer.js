@@ -16,7 +16,7 @@ export function menuReducer(state=initialState, action) {
         case 'FETCH_MENU_SUCCESS':
             return {...state, listMenu: action.payload};
         case 'EDIT_MENU_FORM':
-            return {...state,  menuForm: action.payload, previewImage: action.imageUrl};
+            return {...state,  menuForm: action.payload, previewImage: action.imageUrl, menuImage: action.imageUrl};
         case 'HANDLE_MENU_NAME_FORM':
             return {...state, menuForm: {...state.menuForm, menuName: action.payload}};
         case 'HANDLE_MENU_PRICE_FORM':
