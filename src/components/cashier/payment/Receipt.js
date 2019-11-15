@@ -11,7 +11,7 @@ class Receipt extends React.Component{
                 <td style={{"text-align":"right"}}>{element.amount}</td>
                 <td style={{"text-align":"right"}}>Rp. {handleNumberFormatCurrency(element.subTotalPrice)}</td>
             </tr>
-        })
+        });
        return(
             <div>
                 <table style={{"width":"35%"}} >
@@ -71,7 +71,6 @@ class Receipt extends React.Component{
     }
     componentDidMount() {
         this.fetchDataOrder();
-        setInterval(this.fetchDataOrder,1000)
     }
 
     fetchDataOrder = async () => {

@@ -4,6 +4,7 @@ export async function getOrderById(id){
             return response.json()
         });
 }
+
 export async function getUnpaidOrder(){
     return await fetch(`http://localhost:9090/payment/`, {method: "GET"})
         .then((response) => {
@@ -20,6 +21,6 @@ export async function submitPayment(id, payment) {
             body: JSON.stringify(payment)
         })
         .then((response) => {
-           return response.json();
-        })
+            return response.json();
+        });
 }
