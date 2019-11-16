@@ -4,7 +4,6 @@ const initialState = {
         idMenu:"",
         menuName: "",
         price: "",
-        isAvailable: true,
         idMenuCategory: ""
     },
     menuImage: null,
@@ -21,8 +20,6 @@ export function menuReducer(state=initialState, action) {
             return {...state, menuForm: {...state.menuForm, menuName: action.payload}};
         case 'HANDLE_MENU_PRICE_FORM':
             return {...state, menuForm: {...state.menuForm, price: action.payload}};
-        case 'HANDLE_MENU_AVAILABILITY_FORM':
-            return {...state, menuForm: {...state.menuForm, isAvailable: action.payload}};
         case 'HANDLE_MENU_CATEGORY_FORM':
             return {...state, menuForm: {...state.menuForm, idMenuCategory:action.payload}};
         case 'HANDLE_MENU_IMAGE_FORM':
