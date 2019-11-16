@@ -109,7 +109,7 @@ class OrderContainer extends React.Component {
     handleSubmitData = () => {
         submitOrder(this.props.orderForm, this.props.orderDetails)
             .then((respond) => {
-                if (respond.status !== 200) handleRespond(respond.status,respond.message);
+                if (respond.status !== 200) handleRespond(respond.status, respond.message);
                 if (respond.status === undefined) handleRespond(200, "Your data has been saved")
                     .then(this.props.dispatch(resetOrder));
             })
