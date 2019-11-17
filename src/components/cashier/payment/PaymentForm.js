@@ -12,6 +12,9 @@ import {handleRespond} from "../../../constants/Alert";
 class PaymentForm extends React.Component {
 
     render() {
+        const orderToPaid = this.props.orderReducer.orderToPaid;
+        const payment = this.props.paymentReducer.paymentInput;
+        console.log(orderToPaid, payment);
         return (
             <div className="modal fade" id="modalForm" tabIndex="-" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -27,18 +30,18 @@ class PaymentForm extends React.Component {
                             <div className="modal-body">
                                 PIC Name
                                 <div className="form-group">
-                                    <input type="text" className="form-control" value={this.props.receipt.costumerName}
+                                    <input type="text" className="form-control" value={orderToPaid.costumerName}
                                            disabled={true}/>
                                 </div>
                                 <div className="form-group">
                                     Total Costumer
-                                    <input type="text" className="form-control" value={this.props.receipt.totalCostumer}
+                                    <input type="text" className="form-control" value={orderToPaid.totalCostumer}
                                            disabled={true}/>
                                 </div>
                                 <div className="form-group">
                                     Total Price
                                     <input type="text" className="form-control"
-                                           value={"Rp." + handleNumberFormatCurrency(this.props.receipt.totalPrice)}
+                                           value={"Rp." + handleNumberFormatCurrency(orderToPaid.totalPrice)}
                                            disabled={true}/>
                                 </div>
                                 <div className="form-group">
@@ -50,7 +53,7 @@ class PaymentForm extends React.Component {
                                         <CurrencyFormat decimalSeparator="," thousandSeparator="."
                                                         className="form-control"
                                                         placeholder="Enter customer money"
-                                                        value={this.props.paymentInput.pay}
+                                                        value={payment.pay}
                                                         onChange={(event) => this.handleInput(event)}/>
                                     </div>
                                 </div>
@@ -58,11 +61,11 @@ class PaymentForm extends React.Component {
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => {
-                                    this.handleCheckout(this.props.receipt)
+                                    this.handleCheckout(orderToPaid)
                                 }}>Checkout
                                 </button>
-                                <iframe id="receipt" src={`/receipt/${this.props.receipt.idOrder}`}
-                                        style={{display: 'none'}} title="Receipt"/>
+                                {/*<iframe id="receipt" src={`/receipt/${orderToPaid.idOrder}`}*/}
+                                {/*        style={{display: 'none'}} title="Receipt"/>*/}
                             </div>
                         </form>
                     </div>
@@ -72,25 +75,24 @@ class PaymentForm extends React.Component {
     }
 
     handleInput(event) {
-        let change = event.target.value.toString().replace(/\D+/g, "") - this.props.receipt.totalPrice;
-        this.props.dispatch({...handleInputPay, pay: event.target.value, change: change})
+        this.props.dispatch({...handleInputPay, pay: event.target.value})
     }
 
     handleCheckout= async (orderDetail)=> {
-        let change = this.props.paymentInput.pay.replace(/\D+/g, "") - orderDetail.totalPrice;
-        await submitPayment(orderDetail.idOrder, this.props.paymentInput)
+        let change = this.props.paymentReducer.paymentInput.pay.replace(/\D+/g, "") - orderDetail.totalPrice;
+        await submitPayment(orderDetail.idOrder, this.props.paymentReducer.paymentInput)
             .then( async (respond) => {
                 if (respond.status !== 200) handleRespond(respond.status, respond.message);
                 if (respond.status === undefined) await handleRespond(200, "Payment Success", `Change : Rp. ${handleNumberFormatCurrency(change)}`)
-                    .then(this.props.dispatch(resetPaymentForm));
-                await printIframe('receipt')
+                    .then(this.props.dispatch(resetPaymentForm)).then();
             })
             .then(this.props.fetchData)
+        // await printIframe('receipt')
     }
 }
 
 const mapStateToProp = (state) => {
-    return {...state.paymentReducer}
+    return {...state}
 };
 
 export const printIframe = (id) => {

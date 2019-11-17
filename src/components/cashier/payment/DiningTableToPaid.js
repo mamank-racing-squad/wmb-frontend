@@ -3,14 +3,15 @@ import '../../../assets/css/DiningTableToPaid.scss';
 
 import diningTable from '../../../assets/images/dining-table.png';
 import PaymentForm from "./PaymentForm";
-import {getOrderById} from "../../../services/PaymentService";
-import {fetchingOrderDetailSuccess} from "../../../actions/PaymentAction";
+import {getOrderById} from "../../../services/OrderService";
 import {connect} from "react-redux";
+import {fetchingOrderDetailSuccess} from "../../../actions/OrderAction";
 
 
 class DiningTableToPaid extends React.Component {
 
     render() {
+        console.log(this.props);
         return (
             <div>
             <div onClick={() => {
@@ -38,7 +39,7 @@ class DiningTableToPaid extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {...state.paymentReducer}
+    return {...state.orderReducer}
 };
 
 export default connect(mapStateToProps)(DiningTableToPaid);

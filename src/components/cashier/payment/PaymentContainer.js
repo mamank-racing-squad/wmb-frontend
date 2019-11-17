@@ -13,10 +13,7 @@ import {withRouter} from "react-router";
 import {connect} from "react-redux";
 import {fetchingOrderSuccess} from "../../../actions/PaymentAction";
 import DiningTableToPaid from "./DiningTableToPaid";
-import {getUnpaidOrder, submitPayment} from "../../../services/PaymentService";
-import {resetMenuForm} from "../../../actions/MenuAction";
-import {handleRespond} from "../../../constants/Alert";
-import {resetOrder} from "../../../actions/OrderAction";
+import {getUnpaidOrder} from "../../../services/OrderService";
 
 class PaymentContainer extends Component {
 
