@@ -15,8 +15,9 @@ import diningTableGray from '../../assets/images/table-gray.png';
 import menuGray from '../../assets/images/menu-gray.png'
 import menu from '../../assets/images/menu.png'
 import cashierGray from '../../assets/images/cashier-gray.png'
+import ReportContainer from "./report/ReportContainer";
 
-class AdminContainer extends Component {
+export class AdminContainer extends Component {
 
     render() {
         return (
@@ -47,6 +48,14 @@ class AdminContainer extends Component {
                         }
                         <span>Menu Category</span>
                     </NavLink>
+                    <NavLink to="/admin/report" activeClassName="active">
+                        {
+                            this.props.match && this.props.match.params.type === 'report' ?
+                                <img src={menuCategory} alt="Admin Panel"/> :
+                                <img src={menuCategoryGray} alt="Admin Panel"/>
+                        }
+                        <span>Report</span>
+                    </NavLink>
                     <NavLink to="/dining-table" activeClassName="active">
                                 <img src={cashierGray} alt="Admin Panel"/>
                         <span>Cashier</span>
@@ -58,6 +67,7 @@ class AdminContainer extends Component {
                     <Route path="/admin/menu" component={MenuContainer}/>
                     <Route path="/admin/dining-table" component={DiningTableContainer}/>
                     <Route path="/admin/menu-category" component={MenuCategoryContainer}/>
+                    <Route path="/admin/report" component={ReportContainer}/>
                 </div>
             </div>
         );
@@ -72,4 +82,4 @@ const mapStateToProps = state => (
     }
 );
 
-export default withRouter(connect(mapStateToProps)(AdminContainer))
+export default connect(mapStateToProps)(AdminContainer)

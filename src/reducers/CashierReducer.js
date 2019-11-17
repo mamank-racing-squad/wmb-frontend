@@ -7,7 +7,8 @@ const initialState = {
         numberDiningTable: "Select Table",
         capacity: "Select Table"
     },
-    orderDetails: []
+    orderDetails: [],
+    orderToPaid:{}
 };
 
 export function menuOrderReducer(state=initialState, action) {
@@ -34,6 +35,8 @@ export function menuOrderReducer(state=initialState, action) {
             return {...state, orderDetails: state.orderDetails.map((element, index) => index===action.index ? {...element, element: element.amount += 1} : element)};
         case 'DECREMENT_AMOUNT_MENU':
             return {...state, orderDetails: state.orderDetails.map((element, index) => index===action.index ? {...element, element: element.amount -= 1} : element)};
+        case 'FETCHING_ORDER_DETAIL_SUCCESS' :
+            return {...state, orderToPaid: action.payload};
         default: return {...state};
     }
 }

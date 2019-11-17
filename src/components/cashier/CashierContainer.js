@@ -21,7 +21,7 @@ import {fetchMenuSuccess} from "../../actions/MenuAction";
 import {Redirect} from "react-router";
 import {handleRespond} from "../../constants/Alert";
 
-class CashierContainer extends React.Component {
+export class CashierContainer extends React.Component {
     render() {
         return (
             <div>

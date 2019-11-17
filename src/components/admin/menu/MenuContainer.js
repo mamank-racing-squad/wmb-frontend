@@ -65,11 +65,14 @@ class MenuContainer extends React.Component {
     handleSubmitData = () => {
         submitMenu(this.props.menuForm, this.props.menuImage)
             .then((respond)=>{
-                if (respond.status !== 200) handleRespond(respond.status,respond.message);
+                if (respond.status !== 200) handleRespond(respond.status, respond.message);
                 if (respond.status === undefined) handleRespond(200, "Your data has been saved")
                     .then(this.props.dispatch({...resetMenuForm}));
             })
-            .then(this.fetchDataMenu)
+            setTimeout(()=>{
+              window.location.reload()
+            },800)
+
     };
 
     handleEditData = async (id) => {

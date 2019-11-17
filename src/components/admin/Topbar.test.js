@@ -3,7 +3,7 @@ import React from 'react'
 import Enzyme from 'enzyme'
 import {shallow, mount, render} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import Topbar from "../../components/admin/Topbar";
+import Topbar from "./Topbar";
 
 let component
 
