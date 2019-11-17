@@ -17,7 +17,7 @@ import menu from '../../assets/images/menu.png'
 import cashierGray from '../../assets/images/cashier-gray.png'
 import ReportContainer from "./report/ReportContainer";
 
-class AdminContainer extends Component {
+export class AdminContainer extends Component {
 
     render() {
         return (
@@ -82,4 +82,4 @@ const mapStateToProps = state => (
     }
 );
 
-export default withRouter(connect(mapStateToProps)(AdminContainer))
+export default connect(mapStateToProps)(AdminContainer)
