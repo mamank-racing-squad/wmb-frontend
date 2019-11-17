@@ -8,7 +8,7 @@ import {deleteDiningTableById,fetchDiningTable,getDataDiningTableById,submitDini
 import {handleRespond} from "../../../constants/Alert";
 import {handleAvailability} from "../../../constants/Constanta";
 
-class DiningTableContainer extends Component {
+export class DiningTableContainer extends Component {
 
     render() {
         return (

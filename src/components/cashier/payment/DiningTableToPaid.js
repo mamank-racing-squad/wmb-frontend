@@ -8,12 +8,12 @@ import {connect} from "react-redux";
 import {fetchingOrderDetailSuccess} from "../../../actions/OrderAction";
 
 
-class DiningTableToPaid extends React.Component {
+export class DiningTableToPaid extends React.Component {
 
     render() {
         console.log(this.props);
         return (
-            <div>
+            <div className="container">
             <div onClick={() => {
                 this.handleClick(this.props.idOrder)
             }} className={this.props.isSelected ? 'diningTableBoxToPaid' : 'diningTableBoxToPaid selected'}
