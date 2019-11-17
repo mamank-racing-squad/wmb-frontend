@@ -1,6 +1,6 @@
 import React from "react";
-import {getOrderById} from "../../../services/PaymentService";
-import {fetchingOrderDetailSuccess} from "../../../actions/PaymentAction";
+import {getPaymentById} from "../../../services/PaymentService";
+import {fetchingPaymentSuccess} from "../../../actions/PaymentAction";
 import {connect} from "react-redux";
 import {handleNumberFormatCurrency} from "../../../constants/Constanta";
 class Receipt extends React.Component{
@@ -15,10 +15,14 @@ class Receipt extends React.Component{
        return(
             <div>
                 <table style={{"width":"35%"}} >
+                    <tbody>
                     <tr style={{"text-align":"center"}}><h5><i>Warung Makan Bahari</i></h5></tr>
                     <tr style={{"text-align":"center"}}><p><i>Jl. H. Dahlan No.75</i></p></tr>
+                    </tbody>
+
                 </table>
                 <table style={{"width":"35%"}} >
+                    <tbody>
                     <tr>
                         <td style={{"text-align":"left"}} width="40%">PIC Name </td>
                         <td style={{"text-align":"right"}} colSpan="2">{this.props.receipt.costumerName}</td>
@@ -35,18 +39,22 @@ class Receipt extends React.Component{
                         <td style={{"text-align":"left"}}>Nomor Meja</td>
                         <td style={{"text-align":"right"}} colSpan="2">{this.props.diningTable.numberDiningTable}</td>
                     </tr>
+                    </tbody>
                 </table>
                 <br/>
                     ========== DETAIL TRANSAKSI ==========
                 <br/>
                 <br/>
                 <table style={{"width":"35%"}}>
+                    <tbody>
                     {orderDetails}
+                    </tbody>
                 </table>
                 <br/>
                     =================================
                 <br/><br/>
                 <table style={{"width":"35%"}} >
+                    <tbody>
                     <tr>
                         <td style={{"text-align":"left"}}><b>Total</b></td>
                         <td style={{"text-align":"right"}} colSpan="2"><b>Rp. {handleNumberFormatCurrency(this.props.receipt.totalPrice)}</b></td>
@@ -59,24 +67,27 @@ class Receipt extends React.Component{
                         <td style={{"text-align":"left"}}>Kembalian</td>
                         <td style={{"text-align":"right"}} colSpan="2">Rp. {handleNumberFormatCurrency(this.props.receipt.change)}</td>
                     </tr>
+                    </tbody>
                 </table>
                 <br/><br/>
                 <table style={{"width":"35%"}}>
+                    <tbody>
                     <tr style={{"text-align":"center"}}><i>Terimakasih Telah Berkunjung</i></tr>
                     <tr style={{"text-align":"center"}}><i>Jika tidak puas, laporlah kepada kami</i></tr>
                     <tr style={{"text-align":"center"}}><i>Jika puas, Sebarkanlah kepuasan anda kepada teman-teman!</i></tr>
+                    </tbody>
                 </table>
             </div>
         )
     }
     componentDidMount() {
-        this.fetchDataOrder();
+        this.fetchDataPayment();
     }
 
-    fetchDataOrder = async () => {
-        const data = await getOrderById(this.props.match.params.id);
+    fetchDataPayment = async () => {
+        const data = await getPaymentById(this.props.match.params.id);
         if (!(data === undefined)) {
-            this.props.dispatch({...fetchingOrderDetailSuccess, payload: data})
+            this.props.dispatch({...fetchingPaymentSuccess, payload: data})
         }
     };
 }

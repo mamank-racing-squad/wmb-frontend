@@ -16,7 +16,7 @@ export async function submitMenu(payload, image) {
     formData.append('menuInput', JSON.stringify(payload));
 
     if (image !== null) {
-        return await fetch("http://localhost:9090/menu/upload",
+        return await fetch("http://localhost:9090/menu/image",
             {
                 method: payload.idMenu !== "" ? "POST" : "PUT",
                 body: formData
