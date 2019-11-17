@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {handleCapacityDiningTableForm,handleNumberDiningTableForm, resetDiningTableForm} from "../../../actions/DiningTableAction";
 
 
-class DiningTableForm extends React.Component {
+export class DiningTableForm extends React.Component {
 
     render() {
         return (

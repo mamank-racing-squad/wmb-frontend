@@ -1,7 +1,5 @@
 import React from 'react'
-import Enzyme from 'enzyme'
 import {shallow, mount, render} from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import {AdminContainer} from './AdminContainer'
 
 let component
@@ -10,7 +8,7 @@ beforeEach(() => {
     component = shallow(<AdminContainer/>)
 })
 
-describe('AmountControl Component', () => {
+describe('AdminContainer Component', () => {
 
     it('shouldnt explode', () => {
         expect(component.exists()).toBeTruthy()
